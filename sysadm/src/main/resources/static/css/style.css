@@ -1,0 +1,23 @@
+.intro{
+	height: 100%;
+}
+
+@media(mini-height: 300px) and (min-height: 450px){
+	.intro{
+		height: auto;
+	}
+}
+
+.gradient-custom{
+	background: #e8eaeb;
+}
+
+.log{
+	height: 21rem;
+}
+
+@media (max-width: 991px){
+	.log{
+		font-size: 12rem;
+	}
+}
