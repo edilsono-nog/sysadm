@@ -5,7 +5,7 @@ function login(){
 	
 	$.ajax({
 		method: "POST",
-		url: "http://localhost:8080/appsysadm/login",
+		url: "http://localhost:8080/appsysadm/login1",
 		data: JSON.stringify({
 			login: username,
 			senha: password
