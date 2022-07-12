@@ -5,16 +5,18 @@ function login(){
 	
 	$.ajax({
 		method: "POST",
-		url: "http://localhost:8080/appsysadm/login1",
+		url: "login1",
 		data: JSON.stringify({
 			login: username,
 			senha: password
 	  }),
-	  success: function (response) {
+	 success: function (response) {
 		  localStorage.removeItem("token");
 		  token = response.replace('{"Authorization": "', '');
 		  token = token.replace('"}', '');
 		  localStorage.setItem("token",  token);
+		  header = {"Authorization": localStorage.getItem("token") },
+		  window.location = 'dashboard';
 	  }
 	}).fail(function (xhr, status, errorThrown) {
 		localStorage.removeItem("token");
