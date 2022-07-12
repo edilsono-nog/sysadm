@@ -31,7 +31,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		
 		/*Ativando a permissão para acesso a página inicial do sistema EX: sistema.com.br/index.html*/
 		.disable().authorizeRequests().antMatchers("/").permitAll()
-		.antMatchers("/index").permitAll()
+		.antMatchers("/index", "/login").permitAll()
 		
 		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 		

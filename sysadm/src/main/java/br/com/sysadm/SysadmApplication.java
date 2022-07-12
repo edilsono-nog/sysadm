@@ -6,13 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.Ordered;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"br.com.sysadm.model"})
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 @RestController
 @EnableAutoConfiguration
 @EnableCaching
-public class SysadmApplication {
+public class SysadmApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SysadmApplication.class, args);
@@ -34,9 +34,17 @@ public class SysadmApplication {
 
 	}
 	
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/appsysadm/login").setViewName("login");
+	/*public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("login");
 		registry.setOrder(Ordered.LOWEST_PRECEDENCE);
-	}
+	}*/
+	
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	     registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+	     registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+	     registry.addResourceHandler("/imagem/**").addResourceLocations("classpath:/static/imagem/");
+	     
+	 }
+
 
 }
