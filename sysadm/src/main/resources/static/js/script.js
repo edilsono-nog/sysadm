@@ -21,8 +21,9 @@ function login(){
 	  }
 	}).fail(function (xhr, status, errorThrown) {
 		localStorage.removeItem("token");
-		const msg = "Usuário e/ou senha inválido: " + xhr.responseText;
-		ativar(msg);
+		//const msg = "Usuário e/ou senha inválido: " + xhr.responseText;
+		//ativar(msg);
+		$.notify("Usuário e/ou senha inválidos" + xhr.responseText, "error");
 	});
 }
 
