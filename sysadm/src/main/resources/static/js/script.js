@@ -1,3 +1,5 @@
+const divMessage = document.querySelector(".alert");
+
 function login(){
 	
 	var username = $('#typeUsername').val();
@@ -19,7 +21,8 @@ function login(){
 	  }
 	}).fail(function (xhr, status, errorThrown) {
 		localStorage.removeItem("token");
-		alert("Usuário e/ou senha inválido: " + xhr.responseText);
+		const msg = "Usuário e/ou senha inválido: " + xhr.responseText;
+		ativar(msg);
 	});
 }
 
@@ -33,24 +36,15 @@ function dashboard() {
 			window.location='dashboard';
 		}
 	});
-	
-	/*var settings = {
-    "crossDomain": true,
-    "url": "dashboard",
-    "method": "GET",
-    "dataType": "json",
-    "headers": {
-	 "content-type": "application/x-www-form-urlencoded",
-     "Authorization": localStorage.getItem("token")
-    },
-	   "data": {
-	   "name": "name"
-  }
- }
+}
 
-    $.ajax(settings).done(function (data,status, xhr) {
-     console.log("Authorization=> "+xhr.getResponseHeader('Authorization'));
-   //  console.log(localStorage.getItem("token"));
- });  */  
-	
+function ativar(msg) {
+    const message = document.createElement("div");
+    message.classList.add("message");
+    message.innerText = msg;
+    divMessage.appendChild(message);
+
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
 }
