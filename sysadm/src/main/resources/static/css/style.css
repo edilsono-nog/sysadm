@@ -22,12 +22,6 @@
 	}
 }
 
-.card {
-	height: 400px;
-	padding: 0 20px 0px 0px;
-	width: 80%;
-}
-
 .message {
     padding: 19px 60px;
     position: fixed;
