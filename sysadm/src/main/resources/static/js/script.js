@@ -15,11 +15,42 @@ function login(){
 		  token = response.replace('{"Authorization": "', '');
 		  token = token.replace('"}', '');
 		  localStorage.setItem("token",  token);
-		  header = {"Authorization": localStorage.getItem("token") },
-		  window.location = 'dashboard';
+		  dashboard();
 	  }
 	}).fail(function (xhr, status, errorThrown) {
 		localStorage.removeItem("token");
 		alert("Usuário e/ou senha inválido: " + xhr.responseText);
 	});
+}
+
+function dashboard() {
+	$.ajax({
+		crossDomain: true,
+		method: "GET",
+		url: "dashboard",
+		headers: {"Authorization": localStorage.getItem("token")},
+		success: function(){
+			window.location='dashboard';
+		}
+	});
+	
+	/*var settings = {
+    "crossDomain": true,
+    "url": "dashboard",
+    "method": "GET",
+    "dataType": "json",
+    "headers": {
+	 "content-type": "application/x-www-form-urlencoded",
+     "Authorization": localStorage.getItem("token")
+    },
+	   "data": {
+	   "name": "name"
+  }
+ }
+
+    $.ajax(settings).done(function (data,status, xhr) {
+     console.log("Authorization=> "+xhr.getResponseHeader('Authorization'));
+   //  console.log(localStorage.getItem("token"));
+ });  */  
+	
 }

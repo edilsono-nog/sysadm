@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-public class PagesController {
+public class IndexController {
 
 	@GetMapping("dashboard")
 	private String dashboard() {
@@ -17,7 +17,13 @@ public class PagesController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public String home() {
+	public String inicio() {
 		return "login";
 	}
+	
+	/*@RequestMapping(value = "dashboard", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String home() {
+		return "dashboar";
+	}*/
 }
