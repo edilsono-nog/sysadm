@@ -33,8 +33,10 @@ function dashboard() {
 		method: "GET",
 		url: "dashboard",
 		headers: {"Authorization": localStorage.getItem("token")},
-		success: function(){
-			window.location='dashboard';
+		success: function(response){
+			console.log(response);
+			window.open("dashboard");
+			//window.location='dashboard';
 		}
 	});
 }
