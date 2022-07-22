@@ -23,24 +23,9 @@ function login(){
 	  }
 	}).fail(function (xhr, status, errorThrown) {
 		localStorage.removeItem("token");
-		//const msg = "Usuário e/ou senha inválido: " + xhr.responseText;
-		//ativar(msg);
-		$.notify("Usuário e/ou senha inválidos" + xhr.responseText, "error");
-	});
-}
-
-function dashboard() {
-	$.ajax({
-		crossDomain: true,
-		method: "GET",
-		url: "dashboard",
-		dataType: 'html',
-		headers: {"Authorization": localStorage.getItem("token")},
-		success: function(response){
-			console.log(response);
-			location.href="dashboard";
-			//window.location='dashboard';
-		}
+		const msg = "Usuário e/ou senha inválido: " + xhr.responseText;
+		ativar(msg);
+		//$.notify("Usuário e/ou senha inválidos" + xhr.responseText, "error");
 	});
 }
 
