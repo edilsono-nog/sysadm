@@ -34,15 +34,13 @@ public class SysadmApplication implements WebMvcConfigurer {
 
 	}
 	
-	/*public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/login").setViewName("login");
-		registry.setOrder(Ordered.LOWEST_PRECEDENCE);
-	}*/
-	
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	     registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
 	     registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 	     registry.addResourceHandler("/imagem/**").addResourceLocations("classpath:/static/imagem/");
+	     registry.addResourceHandler("/assets/js/**").addResourceLocations("classpath:/static/assets/js/");
+	     registry.addResourceHandler("/assets/css/**").addResourceLocations("classpath:/static/assets/css/");
+	     registry.addResourceHandler("/assets/imagem/**").addResourceLocations("classpath:/static/assets/imagem/");
 	     
 	 }
 

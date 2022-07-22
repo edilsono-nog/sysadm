@@ -17,7 +17,9 @@ function login(){
 		  token = response.replace('{"Authorization": "', '');
 		  token = token.replace('"}', '');
 		  localStorage.setItem("token",  token);
-		  dashboard();
+		  let jsession = Math.random().toString(16).substr(2) + Math.random().toString(16).substr(2)
+		  setCookie('JSESSIONID', jsession, 0)
+		  window.location='dashboard';
 	  }
 	}).fail(function (xhr, status, errorThrown) {
 		localStorage.removeItem("token");
@@ -32,10 +34,11 @@ function dashboard() {
 		crossDomain: true,
 		method: "GET",
 		url: "dashboard",
+		dataType: 'html',
 		headers: {"Authorization": localStorage.getItem("token")},
 		success: function(response){
 			console.log(response);
-			window.open("dashboard");
+			location.href="dashboard";
 			//window.location='dashboard';
 		}
 	});
@@ -50,4 +53,14 @@ function ativar(msg) {
     setTimeout(() => {
         message.style.display = "none";
     }, 3000);
+}
+
+function setCookie(nome,valor,days) {
+    var validade = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        validade = "; expires=" + date.toUTCString();
+    }
+    document.cookie = nome + "=" + (valor || "")  + validade + "; path=/";
 }
