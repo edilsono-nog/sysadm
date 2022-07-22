@@ -4,12 +4,6 @@ if (getCookie('JSESSIONID') == null) {
     window.location.href = 'login'
 }
 
-function sair(){
-    localStorage.removeItem('token')
-    window.location.href = 'login'
-    eraseCookie('JSESSIONID')
-}
-
 function getCookie(nome) {
     var nomeCookie = nome + "=";
     var ca = document.cookie.split(';');
