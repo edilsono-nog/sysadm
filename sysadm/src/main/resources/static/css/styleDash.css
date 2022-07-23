@@ -1,0 +1,15 @@
+#logado{
+	font-size: 15px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-family: cursive;
+}
+
+.card {
+    background-color: rgb(192, 192, 192);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px 0px #00000080;
+    width: 95%;
+    left: 10px;
+}

@@ -1,3 +1,10 @@
+let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
+
+let logado = document.querySelector('#logado')
+
+if (userLogado != null) {
+    logado.innerHTML = userLogado.name
+}
 
 if (getCookie('JSESSIONID') == null) {
     alert('Você precisa estar logado para acessar essa página')

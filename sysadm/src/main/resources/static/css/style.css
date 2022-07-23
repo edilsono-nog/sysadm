@@ -63,3 +63,11 @@
         width: 100%;
     }
 }
+
+.fa-eye {
+    position: absolute;
+    top: 21px;
+    right: 20px;
+    cursor: pointer;
+    color: #272262;
+}

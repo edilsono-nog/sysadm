@@ -1,5 +1,7 @@
 package br.com.sysadm.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +20,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Modifying
 	@Query(nativeQuery = true, value = "update Usuario set token = ?1 where login = ?2")
 	void atualizaTokenUser(String token, String login);
+	
+	@Query(value = "select u from Usuario u where upper(trim(u.login)) like %?1%")
+	List<Usuario> buscarPorNome (String name);
 
 }
