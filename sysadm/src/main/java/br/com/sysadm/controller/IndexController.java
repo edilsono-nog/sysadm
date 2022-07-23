@@ -21,9 +21,8 @@ public class IndexController {
 		return "login";
 	}
 	
-	/*@RequestMapping(value = "dashboard", method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-	public String home() {
-		return "dashboar";
-	}*/
+	@GetMapping("listacad")
+	private String listacad() {
+		return "listacad";
+	}
 }
