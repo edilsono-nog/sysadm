@@ -25,3 +25,7 @@ function getCookie(nome) {
 function eraseCookie(nome) {   
     document.cookie = nome +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+
+function cadastrar(){
+	window.location.href='alunoscad'
+}

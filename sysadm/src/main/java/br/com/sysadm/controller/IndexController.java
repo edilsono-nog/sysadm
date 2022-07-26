@@ -25,4 +25,9 @@ public class IndexController {
 	private String listacad() {
 		return "listacad";
 	}
+	
+	@GetMapping("alunoscad")
+	private String alunoscad() {
+		return "alunoscad";
+	}
 }

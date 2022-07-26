@@ -1,6 +1,7 @@
 package br.com.sysadm.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +33,7 @@ public class Alunos implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
 	private Long id;
 	private String nome;
+	private Date dt_nasc;
 	private String email;
 	private String cep;
 	private String logradouro;
