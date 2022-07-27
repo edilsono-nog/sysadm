@@ -1,6 +1,8 @@
-package br.com.sysadm.model;
+package br.com.sysadm.Dto;
 
 import java.io.Serializable;
+
+import br.com.sysadm.model.Usuario;
 
 public class UsuarioDTO implements Serializable {
 

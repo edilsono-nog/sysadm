@@ -96,9 +96,13 @@ thead th{
 
 th, td{
 	border-bottom: 1px solid #dddddd;
-	padding: 5px 10px;
+	padding: 0px 7px;
 	word-break: break-all;
 	text-align: center;
+}
+
+#td_id{
+	width: 25px;
 }
 
 tr:hover td {
@@ -111,3 +115,26 @@ tr:hover td {
 	color: #0298cf;
 }
 
+.pagination {
+	margin:20px 0; 
+	cursor: pointer;
+	text-align: center;
+}
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 13px;
+    height: 100%;
+    width: 50px;
+    border-radius: 10px;
+}
+li:hover{
+    background-color:#fff;
+    color:black;
+    
+}
+
+#td_nome{
+	text-align: left;
+}

@@ -29,3 +29,4 @@ function eraseCookie(nome) {
 function cadastrar(){
 	window.location.href='alunoscad'
 }
+
