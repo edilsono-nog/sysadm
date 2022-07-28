@@ -1,13 +1,22 @@
 package br.com.sysadm.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -29,10 +38,10 @@ public class Alunos implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alunos")
 	private Long id;
 	private String nome;
-	private Date dt_nasc;
+	private LocalDate dt_nasc;
 	private String email;
 	private String cep;
 	private String logradouro;

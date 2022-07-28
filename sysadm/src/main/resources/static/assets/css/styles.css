@@ -119,6 +119,7 @@ a{
 /*Active links menu*/
 .active{
   background-color: var(--first-color);
+  color: #fff;
 }
 
 /*===== COLLAPSE =====*/

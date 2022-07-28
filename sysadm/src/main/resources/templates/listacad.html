@@ -17,7 +17,7 @@
 				<p></p>
 				<div>
 					<input placeholder="Localizar Aluno"/>
-					<button class="add_new" onclick="cadastrar()">+Add New</button>
+					<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add New</button>
 				</div>
 			</div>
 		</div>
@@ -26,8 +26,8 @@
 			<table id="alunoTable" class="table_section table table-hover table-sm">
 			  <thead class="thead-dark">
 			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Nome</th>
+			      <th scope="col" id="td_id">#</th>
+			      <th scope="col" id="td_nome">Nome</th>
 			      <th scope="col">Data de Nascimento</th>
 			      <th scope="col">Celular</th>
 			      <th scope="col">Ações</th>

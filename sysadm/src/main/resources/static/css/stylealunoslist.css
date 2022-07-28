@@ -52,6 +52,7 @@ button{
 	cursor: pointer;
 	padding: 10px;
 	color: #ffffff;
+	margin-left: 5px;
 }
 
 td button:nth-child(1){
@@ -96,13 +97,13 @@ thead th{
 
 th, td{
 	border-bottom: 1px solid #dddddd;
-	padding: 0px 7px;
+	padding: 2px 7px;
 	word-break: break-all;
 	text-align: center;
 }
 
 #td_id{
-	width: 25px;
+	width: 100px;
 }
 
 tr:hover td {
@@ -132,9 +133,9 @@ li {
 li:hover{
     background-color:#fff;
     color:black;
-    
 }
 
 #td_nome{
 	text-align: left;
+	width: 300px;
 }

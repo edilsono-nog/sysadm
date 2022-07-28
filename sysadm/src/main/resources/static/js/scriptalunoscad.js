@@ -151,6 +151,8 @@ function salvarAluno(){
 	var cpf = $("#cpf").val();
 	var rg = $("#rg").val();
 	
+	console.log(dtnascimento)
+	
 	if (nome == null || nome != null && nome.trim() == ''){
 		$("#nome").focus();
 		alert('Informe o nome');
@@ -182,12 +184,13 @@ function salvarAluno(){
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success: function (response) {
+			
 			$("#id").val(response.id);
 			const msg = "Realizando cadatro.... ";
-			msgSuccess(msg);
-			document.getElementById('formCadastroAluno').reset();
+			msgSuccess(msg);			
 			setTimeout(() => {
 				window.location.href='listacad'
+				document.getElementById('formCadastroAluno').reset();
 			},3000)
 		}
 	}).fail(function (xhr, status, errorThrown) {

@@ -22,13 +22,13 @@ $(document).ready(function() {
 	          // add table rows
 	          $.each(response.content, (i, aluno) => {
 	            let alunoRow = '<tr>' +
-	      	  						'<td id="td_id">' + aluno.id + '</td>' +
+	      	  						'<td >' + aluno.id + '</td>' +
 			                		'<td id="td_nome">' + aluno.nome + 
 			                		'<p style="font-size: 12px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
 			                		'<td>' + aluno.dt_nasc + '</td>' +
 			                		'<td>' + aluno.celular + '</td>' +
-			                		'<td> <button><i class="fa-solid fa-pen-to-square"></i></button>'+
-			      						 '<button><i class="fa-solid fa-trash"></i></button> </td>' +
+			                		'<td> <button title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
+			      						 '<button title="Excluir"><i class="fa-solid fa-trash"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });
