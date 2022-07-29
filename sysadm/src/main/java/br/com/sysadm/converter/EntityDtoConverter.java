@@ -15,6 +15,7 @@ public class EntityDtoConverter {
 		alunosDto.setDt_nasc(alunos.getDt_nasc());
 		alunosDto.setEmail(alunos.getEmail());
 		alunosDto.setCelular(alunos.getCelular());
+		alunosDto.setStatus(alunos.getStatus());
 		
 		return alunosDto;
 	}
@@ -27,6 +28,7 @@ public class EntityDtoConverter {
 		alunos.setDt_nasc(alunosDto.getDt_nasc());
 		alunos.setEmail(alunosDto.getEmail());
 		alunos.setCelular(alunosDto.getCelular());
+		alunos.setStatus(alunosDto.getStatus());
 		
 		return alunos;
 	}

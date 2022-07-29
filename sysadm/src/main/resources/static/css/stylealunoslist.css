@@ -31,6 +31,7 @@ h1{
 	width: 95%;
 	margin-left: 15px;
 	margin-top: 10px;
+	font-size: 14px;
 }
 
 .table_header{
@@ -78,6 +79,33 @@ input{
 	border: 1px solid #0298cf;
 	border-radius: 6px;
 	color: #0298cf;
+}
+
+#div_header{
+	width: 75%;
+	margin-left: 50%;
+}
+
+#status {
+	width: 25%;
+	-webkit-appearance: none;
+    /* Remove estilo padrão do Chrome */
+    -moz-appearance: none;
+    /* Remove estilo padrão do FireFox */
+    appearance: none;
+    /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
+    /* Imagem de fundo (Seta) */
+    background-position: 218px center;
+    /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 36px;
+    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+	color: #0298cf;
+    padding-left: 15px;
+    font-family:Verdana, Trebuchet,sans-serif;
 }
 
 table{
@@ -138,4 +166,8 @@ li:hover{
 #td_nome{
 	text-align: left;
 	width: 300px;
+}
+#td_nasc{
+	text-align: left;
+	width: 70px;
 }

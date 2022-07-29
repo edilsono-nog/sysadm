@@ -94,8 +94,6 @@ function pegaUsuario(nome){
 			   		}
 				})
 				
-			    console.log(userValid)
-				
 			localStorage.setItem('userLogado',JSON.stringify(userValid))
 			}
 		})

@@ -15,8 +15,14 @@
 		<div class="table">
 			<div class="table_header">
 				<p></p>
-				<div>
-					<input placeholder="Localizar Aluno"/>
+				<div id="div_header">
+	            	<label id="labelstatus" for="status">Status: </label>
+	            	<select name="status" id="status" required>
+	            	  <option value="Todos">Todos</option>
+					  <option value="Ativo">Ativo</option>
+					  <option value="Inativo">Inativo</option>
+					</select>
+					<input id="localiza" placeholder="Localizar Aluno"/>
 					<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add New</button>
 				</div>
 			</div>
@@ -28,8 +34,9 @@
 			    <tr>
 			      <th scope="col" id="td_id">#</th>
 			      <th scope="col" id="td_nome">Nome</th>
-			      <th scope="col">Data de Nascimento</th>
+			      <th scope="col" >Data de Nascimento</th>
 			      <th scope="col">Celular</th>
+			      <th scope="col" id="td_nasc">Status</th>
 			      <th scope="col">Ações</th>
 			    </tr>
 			  </thead>
@@ -46,7 +53,7 @@
 		</div>
 		
 		<script src="js/scriptalunoslist.js"></script>
-		<script src="js/table-pagination.js"></script>
+		<script src="js/table-paginationcad.js"></script>
 	</section>
 </body>
 </html>

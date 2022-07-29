@@ -53,7 +53,7 @@ public class Alunos implements Serializable {
 	private String celular;
 	private String cpf;
 	private String rg;
-	
+	private String status;
 	
 
 }

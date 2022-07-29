@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sysadm.Dto.AlunosDto;
 import br.com.sysadm.converter.EntityDtoConverter;
@@ -39,8 +40,60 @@ public class AlunosService {
   	    	
   	return pages;
 }
+
+	public ResponseEntity<Alunos> pegaAlunoId(Long iduser) {
+		
+		Alunos aluno = alunosRepository.findById(iduser).get();
+    	
+    	return new ResponseEntity<Alunos>(aluno, HttpStatus.OK);
+	}
 	
 	
-	
+	public Page<AlunosDto> listaAlunos(@RequestParam(name = "name") String name, Pageable pageable ){
+		
+		Page<Alunos> aluPage = alunosRepository.listAluno(name.trim().toUpperCase(), pageable);
+		
+		 Page<AlunosDto> pages = aluPage.map(entity -> {
+			 AlunosDto aluno = EntityDtoConverter.entityToDto(entity);
+			 return aluno;
+		 });
+		 
+		 return pages;
+	}
+
+	public Page<AlunosDto> listatodosStatus(@RequestParam(name = "status") String status, Pageable pageable) {
+		
+		Page<Alunos> aluPage = alunosRepository.listAlunosStatus(status.trim(), pageable);
+		
+		 Page<AlunosDto> pages = aluPage.map(entity -> {
+			 AlunosDto aluno = EntityDtoConverter.entityToDto(entity);
+			 return aluno;
+		 });
+		 
+		 return pages;
+	}
+
+	public Page<AlunosDto> pesqAlunos(@RequestParam(name = "status") String status, 
+									  @RequestParam(name = "name") String name, Pageable pageable) {
+		Page<Alunos> aluPage = alunosRepository.pesqAlunos(status.trim(), name.trim().toUpperCase(), pageable);
+		
+		 Page<AlunosDto> pages = aluPage.map(entity -> {
+			 AlunosDto aluno = EntityDtoConverter.entityToDto(entity);
+			 return aluno;
+		 });
+		 
+		 return pages;
+	}
+
+	public Page<AlunosDto> pesqAluno(@RequestParam(name = "name") String name, Pageable pageable) {
+		Page<Alunos> aluPage = alunosRepository.pesqAluno(name.trim().toUpperCase(), pageable);
+		
+		 Page<AlunosDto> pages = aluPage.map(entity -> {
+			 AlunosDto aluno = EntityDtoConverter.entityToDto(entity);
+			 return aluno;
+		 });
+		 
+		 return pages;
+	}
 
 }

@@ -1,18 +1,23 @@
+
 $(document).ready(function() {
+	
+		
 	let totalPages = 1;
 	
 	function fetchNotes(startPage) {
+		
 		//console.log('startPage: ' +startPage);
 		/**
 		 * get data from Backend's REST API
 		 */
 	    $.ajax({
 	        type : "GET",
-	        url : "aluno/listatodos",
+	        url : "aluno/listatodos?sort=id&",
 	        data: { 
-	            page: startPage, 
-	            size: 5
-	        },
+				page: startPage, 
+				size: 5, 
+				status: $select.value  
+			},
 	        timeout: 0,
 		    headers: {
 		    Authorization: localStorage.getItem("token")
@@ -21,14 +26,15 @@ $(document).ready(function() {
 	          $('#alunoTable tbody').empty();
 	          // add table rows
 	          $.each(response.content, (i, aluno) => {
-	            let alunoRow = '<tr>' +
+				 let alunoRow = '<tr>' +
 	      	  						'<td >' + aluno.id + '</td>' +
 			                		'<td id="td_nome">' + aluno.nome + 
-			                		'<p style="font-size: 12px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
+			                		'<p style="font-size: 11px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
 			                		'<td>' + aluno.dt_nasc + '</td>' +
 			                		'<td>' + aluno.celular + '</td>' +
-			                		'<td> <button title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
-			      						 '<button title="Excluir"><i class="fa-solid fa-trash"></i></button> </td>' +
+			                		'<td>' + aluno.status + '</td>' +
+			                		'<td> <button onclick=edit('+aluno.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
+			      						 '<button  title="Ficha"><i class="fa fa-eye" aria-hidden="true"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });
@@ -146,9 +152,10 @@ function buildPagination(response) {
 			//$(this).addClass("active");
 	  	}
     });
-	
 	(function(){
-    	// get first-page at initial time
-    	fetchNotes(0);
-    })();
+	    	// get first-page at initial time
+	    	fetchNotes(0);
+	    })();
 });
+		
+

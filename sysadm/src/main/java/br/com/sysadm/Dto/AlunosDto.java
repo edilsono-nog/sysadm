@@ -34,4 +34,6 @@ public class AlunosDto {
 	private String email;
 	@Column
 	private String celular;
+	@Column
+	private String status;
 }
