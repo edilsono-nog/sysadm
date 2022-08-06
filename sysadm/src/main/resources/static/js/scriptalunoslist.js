@@ -78,7 +78,7 @@ function fetchAlunos(startPage) {
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +
 			                		'<td> <button onclick=edit('+aluno.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
-			      						 '<button  title="Ficha"><i class="fa fa-eye" aria-hidden="true"></i></button> </td>' +
+			      						 '<button onclick=ficha('+aluno.id+') title="Ficha"><i class="fa fa-eye" aria-hidden="true"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });
@@ -137,7 +137,7 @@ function fetchNotes(startPage) {
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +
 			                		'<td> <button onclick=edit('+aluno.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
-			      						 '<button title="Ficha"><i class="fa fa-eye" aria-hidden="true"></i></button> </td>' +
+			      						 '<button onclick=ficha('+aluno.id+') title="Ficha"><i class="fa fa-eye" aria-hidden="true"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });
@@ -256,3 +256,7 @@ function buildPagination(response) {
 	  	}
     });
 
+function ficha(id){
+	localStorage.setItem('idFicha',JSON.stringify(id))
+	window.location.href='fichaaluno'
+}

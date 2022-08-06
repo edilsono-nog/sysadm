@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<link rel="stylesheet" href="css/stylefichaaluno.css">
+				
+		<div id="cabecario" class="card">
+			<h1>Ficha do Alunos</h1> 
+		</div>
+		
+		<div class="card" id="conteudo">
+			<div class="title_box" id="subject_dados">
+			  <div id="title">Dados do Aluno</div>
+			  <div id="content">
+			  	  <div>
+			  	  	<label id="labelTitulo" ><strong>Matricula do Aluno:</strong> </label>
+				    <label id="labelTitulo" class="id">id</label>
+				    <label id="labelTitulo" ><strong>Status:</strong> </label>
+				    <label id="labelTitulo" class="status">status</label>
+			  	  </div>
+				  <div>
+				  	<label id="labelTitulo" ><strong>Nome do Aluno:</strong> </label>
+				    <label id="labelTitulo" class="nome">nome</label>
+				    <label id="labelTitulo"><strong>Data de Nascimento:</strong> </label>
+				    <label id="labelTitulo" class="dtnascimento">nasc</label>
+				  </div>
+				  <div>
+			  	  	<label id="labelTitulo" ><strong>E-mail:</strong> </label>
+				    <label id="labelTitulo" class="email">email</label>
+			  	  </div>
+			   	  <div>
+			   	  	<label id="labelTitulo"><strong>Endereço:</strong> </label>
+				    <label id="labelTitulo" class="logradouro">end</label>
+				    <label id="labelTitulo"><strong>Bairro:</strong> </label>
+				    <label id="labelTitulo" class="bairro">bairro</label>
+				    <label id="labelTitulo"><strong>Cidade:</strong> </label>
+				    <label id="labelTitulo" class="cidade">cidade</label>
+				    <label id="labelTitulo"><strong>Estado:</strong> </label>
+				    <label id="labelTitulo" class="uf">estado</label>
+			   	  </div>
+			   	  <div>
+			   	  	<label id="labelTitulo"><strong>Telefone:</strong> </label>
+				    <label id="labelTitulo" class="telefone">tel</label>
+				    <label id="labelTitulo"><strong>Celular:</strong> </label>
+				    <label id="labelTitulo" class="celular">cel</label>
+			   	  </div>
+			  </div>
+			</div>
+			<div class="title_box" id="subject">
+			  <div id="title">Matriculas</div>
+			  	<a id="novo" href="#">+Novo</a>
+				  <div id="content">
+				  	 <label id="labelTitulo_mat"><strong>Matricula:</strong> </label>
+			  </div>
+			 </div>
+			 <div class="title_box" id="subject" style="margin-left: -2px;">
+			   <div id="title">Responsáveis</div>
+				  <div id="content">
+				  	<a id="novo">+Novo</a>
+				  	<label id="labelTitulo_mat"><strong>Nome:</strong> </label>
+			  </div>
+			</div>
+			<div class="title_box" id="subject_dados">
+			   <div id="title">Telefone Responsaveis</div>
+				  <div id="content">
+				  	<label id="labelTitulo"><strong>Telefone:</strong> </label>
+				    <label id="labelTitulo" class="tel">tel</label>
+				    <label id="labelTitulo"><strong>Celular:</strong> </label>
+				    <label id="labelTitulo" class="cel">cel</label>
+			  </div>
+			</div>
+			<br>
+		</div>
+		<div id="id_button">
+			<button >Voltar</button>
+		</div>
+		<script src="js/scriptfichaaluno.js"></script>
+	</section>
+</body>
+</html>

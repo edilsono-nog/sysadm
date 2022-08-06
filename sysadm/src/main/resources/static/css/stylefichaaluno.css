@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+#logado{
+	font-size: 15px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-family: cursive;
+}
+
+#cabecario {
+    background-color: rgb(192, 192, 192);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px 0px #00000080;
+    width: 95%;
+    left: 10px;
+}
+
+h1{
+	font-size: 25px;
+}
+
+#conteudo{
+	margin-top: 20px;
+	margin-left: 0;
+	width: 95%;
+	border-radius: 11px;
+	box-shadow: 2px 5px 4px 3px #00000080;
+}
+
+.title_box {
+  border: #01658b 2px solid;
+  border-radius: 10px;
+  color: #01658b;
+  margin: 3px 5px 10px 10px;
+}
+
+.title_box #title {
+  position: relative;
+  font-size: 15px;
+  top: -0.5em;
+  margin-left: 1em;
+  display: inline;
+  background-color: white;
+}
+
+.title_box #content {}
+
+#labelTitulo{
+	font-size: 12px;
+	color: black;
+	margin-left: 10px;
+}
+
+#subject{
+	display: inline-block;
+    width: 49%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#labelTitulo_mat{
+	top: -2em;
+	display: inline;
+	position: relative;
+	font-size: 12px;
+	color: black;
+	margin-left: 10px;
+}
+
+#novo{
+	font-size: 12px;
+	margin-left: 85%;
+	position: relative;
+    top: -2em;
+    display: inline;
+    cursor: pointer;
+}
+
+button{
+	padding: 10px 20px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 0px;
+}
+#id_button {
+	margin-top: 20px;
+}

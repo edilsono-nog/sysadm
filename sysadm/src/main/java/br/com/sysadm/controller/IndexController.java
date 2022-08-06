@@ -30,4 +30,9 @@ public class IndexController {
 	private String alunoscad() {
 		return "alunoscad";
 	}
+	
+	@GetMapping("fichaaluno")
+	private String fichaaluno() {
+		return "fichaaluno";
+	}
 }
