@@ -23,16 +23,16 @@ public class IndexController {
 	
 	@GetMapping("listacad")
 	private String listacad() {
-		return "listacad";
+		return "cadastro/listacad";
 	}
 	
 	@GetMapping("alunoscad")
 	private String alunoscad() {
-		return "alunoscad";
+		return "cadastro/alunoscad";
 	}
 	
 	@GetMapping("fichaaluno")
 	private String fichaaluno() {
-		return "fichaaluno";
+		return "cadastro/fichaaluno";
 	}
 }
