@@ -16,4 +16,15 @@ public class ConfiguracaoController {
 		return "config/anoletivocad";
 	}
 	
+	@GetMapping("escolaslist")
+	private String escolaslist() {
+		return "config/escolaslist";
+	}
+	
+	@GetMapping("escolascad")
+	private String escolascad() {
+		return "config/escolascad";
+	}
+	
+	
 }

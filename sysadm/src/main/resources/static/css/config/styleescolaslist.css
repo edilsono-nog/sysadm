@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+#logado{
+	font-size: 15px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-family: cursive;
+}
+
+#cabecario {
+    background-color: rgb(192, 192, 192);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px 0px #00000080;
+    width: 95%;
+    left: 10px;
+}
+
+h1{
+	font-size: 25px;
+}
+
+#conteudo{
+	margin-top: 20px;
+	margin-left: 15px;
+	width: 95%;
+	box-shadow: 4px 4px 6px 0px #00000080;
+}
+
+.table {
+	width: 95%;
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.table_header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background-color: rgb(240, 240, 240);
+}
+
+.table_header p{
+	color: #000000;
+}
+
+button{
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px;
+	color: #ffffff;
+	margin-left: 5px;
+}
+
+td button:nth-child(1){
+	background-color: #0298cf;
+}
+
+td button:nth-child(2){
+	background-color: #f80000;
+}
+
+.add_new{
+	padding: 10px 20px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+input{
+	padding: 10px 20px;
+	margin: 0 10px;
+	outline: none;
+	border: 1px solid #0298cf;
+	border-radius: 6px;
+	color: #0298cf;
+}
+
+#div_header{
+	width: 75%;
+	margin-left: 69%;
+}
+
+table{
+	width: 100%;
+	table-layout: fixed;
+	min-width: 1000px;
+	border-collapse: collapse;
+}
+
+thead th{
+	position: sticky;
+	top: 0;
+	background-color: #f6f9fc;
+	color: #8493a5;
+	font-size: 15´x;
+}
+
+th, td{
+	border-bottom: 1px solid #dddddd;
+	padding: 2px 7px;
+	word-break: break-all;
+	text-align: center;
+}
+
+#td_id{
+	width: 100px;
+}
+
+tr:hover td {
+	color: #0298cf;
+	cursor: pointer;
+	background-color: #f6f9fc;
+}
+
+::placeholder{
+	color: #0298cf;
+}
+
+.pagination {
+	margin:20px 0; 
+	cursor: pointer;
+	text-align: center;
+}
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 13px;
+    height: 100%;
+    width: 50px;
+    border-radius: 10px;
+}
+li:hover{
+    background-color:#fff;
+    color:black;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<link rel="stylesheet" href="css/config/styleescolaslist.css">
+				
+		<div id="cabecario" class="card">
+			<h1>Listagam de Escolas</h1> 
+		</div>
+		
+		<div class="table">
+			<div class="table_header">
+				<p></p>
+				<div id="div_header">
+					<input id="localiza" placeholder="Localizar Ano Letivo"/>
+					<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add New</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card" id="conteudo">
+			<table id="escolasTable" class="table_section table table-hover table-sm">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col" id="td_id">#</th>
+			      <th scope="col" id="td_nome">Nome da Escola</th>
+			      <th scope="col">Ações</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    
+			  </tbody>
+			</table>
+		</div>
+		<div>
+			<ul class="pagination">	</ul>
+		</div>
+		
+		<script src="js/config/scriptescolaslist.js"></script>
+		<script src="js/config/table-paginationesc.js"></script>
+	</section>
+</body>
+</html>
