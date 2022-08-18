@@ -1,5 +1,7 @@
 package br.com.sysadm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,15 +25,21 @@ public class AnoLetivoController {
 	private AnoLetivoService anoLetivoService;
 	
 	@PostMapping(value = "salvar")
-	 @ResponseBody
-	 public ResponseEntity<AnoLetivo> salvar(@RequestBody AnoLetivo anoLetivo ){
-		 return anoLetivoService.salvar(anoLetivo);
-	 }
+	@ResponseBody
+	public ResponseEntity<AnoLetivo> salvar(@RequestBody AnoLetivo anoLetivo ){
+		return anoLetivoService.salvar(anoLetivo);
+	}
 	
 	@GetMapping(value = "listatodos")
     @ResponseBody
     public Page<AnoLetivo> anoLetivo(Pageable pageable){
 		 return anoLetivoService.listatodos(pageable);
+    }
+	
+	@GetMapping(value = "listaAno")
+    @ResponseBody
+    public ResponseEntity<List<AnoLetivo>> listaAno(){
+		 return anoLetivoService.listaAno();
     }
 	
 	@GetMapping(value = "buscaranoid")

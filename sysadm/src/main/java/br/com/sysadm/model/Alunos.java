@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -51,8 +50,7 @@ public class Alunos implements Serializable {
 	private String cpf;
 	private String rg;
 	private String status;
-	@OneToMany(mappedBy = "aluno", orphanRemoval = true)
-	@Cascade(value = CascadeType.ALL)
+	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Matricula> matricula = new ArrayList<Matricula>();	
 
 }

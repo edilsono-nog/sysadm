@@ -9,10 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.ForeignKey;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -38,14 +39,13 @@ public class Matricula implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_matricula")
 	private Long id;
-	@ManyToOne
-	@JoinColumn(name = "aluno", nullable = false)
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "aluno")
 	@ForeignKey(name = "aluno_fk")
+	@JsonIgnore
 	private Alunos aluno;
-	@OneToOne(cascade = CascadeType.ALL)
-	@ForeignKey(name = "anoLetivo_fk")
-	private AnoLetivo anoLetivo;
-	@OneToOne(cascade = CascadeType.ALL)
-	@ForeignKey(name = "escolas_fk")
-	private Escolas escolas;
+	private String anoLetivo;
+	private String escolas;
+	private String turma;
+	private String turno;
 }

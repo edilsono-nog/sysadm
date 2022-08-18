@@ -4,6 +4,15 @@ let btn = document.querySelector('.fa-eye')
 
 let listaUser = []
 
+document.addEventListener('keypress', function(e) {
+	
+	if(e.key === 'Enter'){
+		const btns = document.querySelector('.btn');
+		
+		btns.click();
+	}
+})
+
 btn.addEventListener('click', ()=>{
     let inputSenha = document.querySelector('#typePassword')
 

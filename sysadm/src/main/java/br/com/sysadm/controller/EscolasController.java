@@ -1,5 +1,7 @@
 package br.com.sysadm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +35,12 @@ public class EscolasController {
    public Page<Escolas> escolas(Pageable pageable){
 		 return escolasService.listatodos(pageable);
    }
+	
+	@GetMapping(value = "listaEscola")
+    @ResponseBody
+    public ResponseEntity<List<Escolas>> listaEscola(){
+		 return escolasService.listaEscola();
+    }
 	
 	@GetMapping(value = "buscarescolaid")
    @ResponseBody

@@ -22,6 +22,10 @@ public class AlunosService {
 	private AlunosRepository alunosRepository;
 	
 	public ResponseEntity<Alunos> salvar(@RequestBody Alunos aluno ){
+		
+		for(int pos = 0; pos < aluno.getMatricula().size(); pos ++) {
+			aluno.getMatricula().get(pos).setAluno(aluno);
+		}
 		 
 		 Alunos newaluno = alunosRepository.save(aluno);
 		 

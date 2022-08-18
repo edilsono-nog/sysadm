@@ -50,19 +50,33 @@
 			   	  </div>
 			  </div>
 			</div>
-			<div class="title_box" id="subject">
-			  <div id="title">Matriculas</div>
-			  	<a id="novo" href="#">+Novo</a>
-				  <div id="content">
-				  	 <label id="labelTitulo_mat"><strong>Matricula:</strong> </label>
-			  </div>
-			 </div>
-			 <div class="title_box" id="subject" style="margin-left: -2px;">
-			   <div id="title">Responsáveis</div>
-				  <div id="content">
-				  	<a id="novo">+Novo</a>
-				  	<label id="labelTitulo_mat"><strong>Nome:</strong> </label>
-			  </div>
+			<div>
+				<div class="title_box" id="subject">
+				  <div id="title">Matriculas</div>
+				  	<button id="novoMatricula">+Novo</button>
+					  <div id="content">
+					  	 <table id="matriculaTable" class="table_section table table-hover table-sm">
+						  <thead class="thead-dark">
+						  </thead>
+						  <tbody>
+						    
+						  </tbody>
+						</table>
+				  </div>
+				 </div>
+				 <div class="title_box" id="subject" style="margin-left: -2px;">
+				   <div id="title">Responsáveis</div>
+					  <div id="content">
+					  <button id="novoResponsavel">+Novo</button>
+					  	<table id="responsavelTable" class="table_section table table-hover table-sm">
+						  <thead class="thead-dark">
+						  </thead>
+						  <tbody>
+						    
+						  </tbody>
+						</table>
+				  </div>
+				</div>
 			</div>
 			<div class="title_box" id="subject_dados">
 			   <div id="title">Telefone Responsaveis</div>
@@ -76,8 +90,60 @@
 			<br>
 		</div>
 		<div id="id_button">
-			<button >Voltar</button>
+			<button id="voltar" >Voltar</button>
 		</div>
+		
+		<!-- Modal -->
+		<div id="fade" class="hide"></div>
+	    <div id="modal" class="hide">
+	      <div class="modal-header">
+	        <h2>Cadastro de Matricula</h2>
+	        
+	      </div>
+	      <div class="modal-body">
+	      <form action="" id="formMatriculaAluno" name="formMatriculaAluno">
+	      	<div class="label-float" id="div_id">
+                <input type="text" id="idMatricula" placeholder="" name="idMatricula" required readonly="readonly"> 
+                <label id="labelId" for="idMatricula">ID Matricula: </label>
+            </div>
+	      	<div class="label-float" id="div_id">
+                <input type="text" id="idAluno" placeholder="" name="idAluno" required readonly="readonly"> 
+                <label id="labelId" for="idAluno">ID aluno: </label>
+            </div>
+	        <div>
+	        	<select name="selectAno" id="selectAno" >
+		        	<option>Selecione o ano Letivo</option>
+		        </select>
+		        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+	        </div>
+	        <div>
+	        	<select name="selectEscola" id="selectEscola" >
+		        	<option>Selecione a escola</option>
+		        </select>
+		        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+	        </div>
+	        <div >
+		        <div class="label-float" id="div_turma">
+	                <input type="text" id="turma" placeholder="" name="turma" required> 
+	                <label id="labelTurma" for="turma">Turma: </label>
+	            </div>
+	        </div>
+	        <div>
+	        	<select name="selectTurno" id="selectTurno" >
+		        	<option>Selecione o Turno</option>
+		        	<option value="Manhã">Manhã</option>
+		        	<option value="Tarde">Tarde</option>
+		        </select>
+		        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+	        </div>
+	        <div id="salMatricula">
+	        	<button id="salvaMatricula">Salvar</button>
+	        	<button id="close-modal">Cancelar</button>
+	        </div>
+	        </form>
+	      </div>
+	    </div>
+		
 		<script src="js/scriptfichaaluno.js"></script>
 	</section>
 </body>

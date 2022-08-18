@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+*{
+	box-sizing: border-box;
+}
+
 #logado{
 	font-size: 15px;
 	margin-top: 0;
@@ -44,6 +48,14 @@ h1{
   background-color: white;
 }
 
+#matriculaTable,
+#responsavelTable{
+	font-size: 13px;
+    margin-left: 5%;
+    position: relative;
+    top: -2em;
+}
+
 .title_box #content {}
 
 #labelTitulo{
@@ -68,13 +80,16 @@ h1{
 	margin-left: 10px;
 }
 
-#novo{
+#novoMatricula,
+#novoResponsavel{
 	font-size: 12px;
 	margin-left: 85%;
 	position: relative;
     top: -2em;
     display: inline;
     cursor: pointer;
+    color: #000000;
+	background-color: #ffffff;
 }
 
 button{
@@ -84,7 +99,188 @@ button{
 	border-radius: 6px;
 	cursor: pointer;
 	border: 0px;
+	transition: 0.4s;
+	opacity: 0.8;
 }
+.btn{
+	padding: 5px 10px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 0px;
+	transition: 0.4s;
+	opacity: 0.8;
+}
+
+button:hover,
+.btn:hover{
+	opacity: 1
+}
+
 #id_button {
 	margin-top: 20px;
+}
+
+.table {
+	width: 95%;
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.table_header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background-color: rgb(240, 240, 240);
+}
+
+.table_header p{
+	color: #000000;
+}
+
+/*modal*/
+#close-modal{
+	background-color: #888;
+}
+
+#fade{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	z-index: 5;
+}
+
+#modal{
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	max-width: 90%;
+	background-color: #fff;
+	padding: 1.2rem;
+	border-radius: 0.5rem;
+	z-index: 10;
+}
+
+#fade,
+#modal {
+  transition: 0.5s;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 1rem;
+	padding-bottom: 1rem;
+}
+
+#modal.hide,
+#fade.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modal.hide {
+  top: 0;
+}
+
+#selectAno,
+#selectEscola,
+#selectTurno{
+	width: 40%;
+	-webkit-appearance: none;
+    /* Remove estilo padrão do Chrome */
+    -moz-appearance: none;
+    /* Remove estilo padrão do FireFox */
+    appearance: none;
+    /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
+    /* Imagem de fundo (Seta) */
+    background-position: 218px center;
+    /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 36px;
+    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+	color: #0298cf;
+    padding-left: 15px;
+    font-family:Verdana, Trebuchet,sans-serif;
+}
+
+.fa-arrow-down{
+	margin-left: -10px;
+}
+
+#selectAno,
+selectEscola{
+	margin-bottom: 15px;
+}
+
+.label-float input,
+#selectAno,
+#selectEscola,
+#selectTurno {
+    padding: 5px;
+    display: inline-block;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    outline: none;
+    min-width: 180px;
+    font-size: 14px;
+    transition: all .3s ease-out;
+    border-radius: 0;
+    color: #01658b;
+}
+
+.label-float{
+    position: relative;
+    padding-top: 13px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: inline-block;
+    width: 49%;
+}
+
+.label-float input:focus {
+    border-bottom: 2px solid #000000;
+}
+
+.label-float label {
+    color: #000000;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 13px;
+    transition: all .3s ease-out;
+}
+
+.label-float input:focus + label,
+.label-float input:valid + label{
+    font-size: 13px;
+    margin-top: 0;
+    color: #000000;
+}
+
+#salMatricula{
+	margin-top: 20px;
+}
+
+#labelId{
+	font-size: 13px;
+    margin-top: 0;
+    color: #000000;
 }

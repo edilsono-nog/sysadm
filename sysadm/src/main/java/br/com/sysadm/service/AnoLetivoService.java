@@ -1,5 +1,7 @@
 package br.com.sysadm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,5 +40,10 @@ public class AnoLetivoService {
 		Page<AnoLetivo> aluPage = anoLetivoRepository.pesqAno(name.trim().toUpperCase(), pageable);
 		 
 		return aluPage;
+	}
+
+	public ResponseEntity<List<AnoLetivo>> listaAno() {
+		List<AnoLetivo> letivos = anoLetivoRepository.findAll();
+		return new ResponseEntity<List<AnoLetivo>>(letivos, HttpStatus.OK);
 	}
 }
