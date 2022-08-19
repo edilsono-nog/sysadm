@@ -4,7 +4,7 @@ let idFicha = JSON.parse(localStorage.getItem("idFicha"))
 
 let logado = document.querySelector('#logado')
 
-var idAluno = ""
+let idAluno = "";
 
 if (userLogado != null) {
     logado.innerHTML = userLogado.name
@@ -72,8 +72,8 @@ function autFicha(id) {
 	          for (var i = 0; i < response.matricula.length; i++) {
 				$('#matriculaTable > tbody').append(
 					'<tr>'+
-					'<td>'+  response.matricula[i].anoLetivo.ano + '</td>'+
-					'<td>'+  response.matricula[i].escolas.escola + '</td>'+
+					'<td>'+  response.matricula[i].anoLetivo + '</td>'+
+					'<td>'+  response.matricula[i].escolas + '</td>'+
 					'<td>'+  response.matricula[i].turma + '</td>'+
 					'<td>'+  response.matricula[i].turno + '</td>'+
 					'<td><button class="btn" onclick=edit('+response.matricula[i].id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button></td>'+
@@ -97,6 +97,7 @@ let openModalMatricula = document.querySelector("#novoMatricula");
 let closeModalButton = document.querySelector("#close-modal");
 let modal = document.querySelector('#modal');
 let fade = document.querySelector('#fade');
+let salMat = document.querySelector('#salvaMatricula');
 
 var clicked = false;
 
@@ -109,20 +110,21 @@ const toggleModal = () => {
 [openModalMatricula, closeModalButton].forEach((el) => {
 	el.addEventListener("click", () => {
 		toggleModal()
-		if (clicked) {
-		    console.log('tchau');
-		    salvaMatricula();
-		    clicked = false;
-		    document.location.reload(true);
-		  } else {
-			$("#idAluno").val(idAluno);
-			$("#idMatricula").val(idAluno);
-			autAno();
-			autEscolas();
-		    clicked = true;
-		  }
+		verificaStatus()
 	})	
 });
+
+function verificaStatus(){
+	if (clicked) {
+		salvaMatricula();
+		alert('verifica');
+	    clicked = false;
+	  } else {
+		autAno();
+		autEscolas();
+	    clicked = true;
+	  }
+}
 
 
 function autAno() {
@@ -170,27 +172,27 @@ function autEscolas() {
 }
 
 
-
 function salvaMatricula() {
 	
-	var idMatricula =$("#idMatricula");
-	var aluno = $("#idAluno").val();
 	var anoletivo = $("#selectAno").val();
 	var escolas = $("#selectEscola").val();
 	var turma = $("#turma").val();
 	var turno = $("#selectTurno").val();
 	
+	var dados = {
+		anoletivo: anoletivo,
+		escolas: escolas,
+		turma: turma,
+		turno: turno
+	}
+
+	console.log(dados)
+	
+	
 	$.ajax({
 		method : "POST",
-		url : "matricula/salvar",
-		data :JSON.stringify({
-			id: idMatricula,
-			aluno: aluno,
-			anoletivo: anoletivo,
-			escolas: escolas,
-			turma: turma,
-			turno: turno
-		}), 
+		url : "matricula/salvar?idAluno="+idAluno,
+		data : JSON.stringify({dados}), 
 		contentType: "application/json; charset=utf-8",
 		timeout: 0,
 	    headers: {
@@ -200,11 +202,7 @@ function salvaMatricula() {
 			 console.log(response)
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		alert("Erro ao cadastrar matricula: " + xhr.responseText);
 	});
 }
 
-let salMat = document.querySelector('#salvaMatricula').addEventListener('click', ()=>{
-	console.log('salvando')
-	salvaMatricula();
-})
