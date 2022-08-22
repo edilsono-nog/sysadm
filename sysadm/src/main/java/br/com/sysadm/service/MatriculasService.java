@@ -3,6 +3,7 @@ package br.com.sysadm.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -50,4 +51,19 @@ public class MatriculasService {
 		 
 		return null;// new ResponseEntity<Matricula>(newmatricula, HttpStatus.OK);
 	}
+
+	public ResponseEntity<Matricula> save(Matricula matricula) {
+
+		Matricula newmatricula = matriculasRepository.save(matricula);
+		
+	return new ResponseEntity<Matricula>(newmatricula, HttpStatus.OK);
+	}
+
+	public ResponseEntity<Matricula> pegaMatriculaId(Long idmatricula) {
+		
+		Matricula matricula = matriculasRepository.findById(idmatricula).get();
+    	
+    	return new ResponseEntity<Matricula>(matricula, HttpStatus.OK);
+	}
+
 }

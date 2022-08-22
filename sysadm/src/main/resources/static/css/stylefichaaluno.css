@@ -146,7 +146,8 @@ button:hover,
 	background-color: #888;
 }
 
-#fade{
+#fade,
+#fadeMensalidade{
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -156,7 +157,8 @@ button:hover,
 	z-index: 5;
 }
 
-#modal{
+#modal,
+#modalMensalidade{
 	position: fixed;
 	left: 50%;
 	top: 50%;
@@ -170,13 +172,16 @@ button:hover,
 }
 
 #fade,
-#modal {
+#modal,
+#fadeMensalidade,
+#modalMensalidade {
   transition: 0.5s;
   opacity: 1;
   pointer-events: all;
 }
 
-.modal-header{
+.modal-header,
+.modalMensalidade-header{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -186,12 +191,15 @@ button:hover,
 }
 
 #modal.hide,
-#fade.hide {
+#fade.hide,
+#modalMensalidade.hide,
+#fadeMensalidade.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-#modal.hide {
+#modal.hide,
+#modalMensalidade.hide {
   top: 0;
 }
 
@@ -283,4 +291,72 @@ selectEscola{
 	font-size: 13px;
     margin-top: 0;
     color: #000000;
+}
+
+td button:nth-child(1){
+	background-color: #0298cf;
+}
+
+td button:nth-child(2){
+	background-color: #f80000;
+}
+
+.messageSucesso {
+    padding: 19px 60px;
+    position: fixed;
+    top: 20px;
+    right: 105px;
+    background-color: #008040;
+    border-radius: 3px;
+    color: #fff;
+    opacity: 1;
+    z-index: 10;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.messageError {
+    padding: 19px 60px;
+    position: fixed;
+    top: 20px;
+    right: 105px;
+    background-color: #ff0000;
+    border-radius: 3px;
+    color: #fff;
+    opacity: 1;
+    z-index: 10;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slidein {
+    0%{
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.messageSucesso::before,
+.messageError::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: time 3s forwards;
+    opacity: 1;
+    pointer-events: all;
+}
+
+@keyframes time {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
 }

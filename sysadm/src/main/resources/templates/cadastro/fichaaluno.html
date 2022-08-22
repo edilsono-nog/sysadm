@@ -93,23 +93,17 @@
 			<button id="voltar" >Voltar</button>
 		</div>
 		
-		<!-- Modal -->
+		<!-- Modal Matricula -->
 		<div id="fade" class="hide"></div>
+		<div class="alert"></div>
 	    <div id="modal" class="hide">
 	      <div class="modal-header">
 	        <h2>Cadastro de Matricula</h2>
 	        
 	      </div>
+	      
 	      <div class="modal-body">
-	      <form action="" id="formMatriculaAluno" name="formMatriculaAluno">
-	     <!--  <div class="label-float" id="div_id">
-                <input type="text" id="idMatricula" placeholder="" name="idMatricula" required readonly="readonly"> 
-                <label id="labelId" for="idMatricula">ID Matricula: </label>
-            </div>
-	      	<div class="label-float" id="div_id">
-                <input type="text" id="idAluno" placeholder="" name="idAluno" required readonly="readonly"> 
-                <label id="labelId" for="idAluno">ID aluno: </label>
-            </div>--> 	
+	      <form action="" id="formMatriculaAluno" name="formMatriculaAluno">	
 	        <div>
 	        	<select name="selectAno" id="selectAno" >
 		        	<option>Selecione o ano Letivo</option>
@@ -141,6 +135,24 @@
 	        	<button id="close-modal">Cancelar</button>
 	        </div>
 	        </form>
+	      </div>
+	    </div>
+	    
+	    <!-- Modal Mensalidades -->
+		<div id="fadeMensalidade" class="hide"></div>
+	    <div id="modalMensalidade" class="hide">
+	      <div class="modalMensalidade-header">
+	        <h2>Cadastro de Mensalidades</h2>
+	        
+	      </div>
+	      <div class="modalMensalidade-body">
+	      	
+	      	<label id="labelMatriculaAluno" >Aluno: </label>
+	      
+			<div id="salMatricula">
+				<button id="salvaMensalidade">Salvar</button>
+				<button id="closemodalMensalidade">Cancelar</button>
+			</div>       
 	      </div>
 	    </div>
 		

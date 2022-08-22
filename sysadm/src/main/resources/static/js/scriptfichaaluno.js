@@ -5,6 +5,7 @@ let idFicha = JSON.parse(localStorage.getItem("idFicha"))
 let logado = document.querySelector('#logado')
 
 let idAluno = "";
+let idMat = "";
 
 if (userLogado != null) {
     logado.innerHTML = userLogado.name
@@ -67,16 +68,23 @@ function autFicha(id) {
 			document.querySelector('.telefone').innerHTML = response.telefone;
 			document.querySelector('.celular').innerHTML = response.celular;
 			
+			response.matricula.sort(function (x, y) {
+				return x.anoletivo - y.anoletivo;
+			})
+			
+		//	console.log(response.matricula)
+			
 			$('#matriculaTable > tbody > tr').remove();
 	          // add table rows
 	          for (var i = 0; i < response.matricula.length; i++) {
-				$('#matriculaTable > tbody').append(
+				$('#matriculaTable > tbody').append(					
 					'<tr>'+
-					'<td>'+  response.matricula[i].anoLetivo + '</td>'+
+					'<td>'+  response.matricula[i].anoletivo + '</td>'+
 					'<td>'+  response.matricula[i].escolas + '</td>'+
 					'<td>'+  response.matricula[i].turma + '</td>'+
 					'<td>'+  response.matricula[i].turno + '</td>'+
-					'<td><button class="btn" onclick=edit('+response.matricula[i].id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button></td>'+
+					'<td><button class="btn" onclick=edit('+response.matricula[i].id+') title="Edita Matricula"><i class="fa-solid fa-pen-to-square"></i></button>'+
+					'<button class="btn" onclick="openModalMensalidade()" title="Mensalidades"><i class="fa-solid fa-sack-dollar"></i></button></td>'+
 					'</tr>');
 			}
 		//	localStorage.removeItem('idEdit')
@@ -87,43 +95,79 @@ function autFicha(id) {
 
 }
 
-function edit(id) {
-	//edit
-}
+/*Modal Mensalidades*/
 
-/*Modal */
+let modalMensalidade = document.querySelector('#modalMensalidade');
+let fadeMensalidade = document.querySelector('#fadeMensalidade');
 
-let openModalMatricula = document.querySelector("#novoMatricula");
-let closeModalButton = document.querySelector("#close-modal");
-let modal = document.querySelector('#modal');
-let fade = document.querySelector('#fade');
-let salMat = document.querySelector('#salvaMatricula');
+var clicked1 = false;
 
-var clicked = false;
-
-const toggleModal = () => {
-	[modal, fade].forEach((el) => {		
-		el.classList.toggle("hide")
+const toggleModalMens = () => {
+	[modalMensalidade, fadeMensalidade].forEach((els) => {		
+		els.classList.toggle("hide")
 	});
 }
 
-[openModalMatricula, closeModalButton].forEach((el) => {
-	el.addEventListener("click", () => {
-		toggleModal()
-		verificaStatus()
-	})	
+const openModalMensalidade = () => {
+	modalMensalidade.classList.toggle('hide')
+	fadeMensalidade.classList.toggle('hide')
+	autDados();
+}
+
+document.getElementById("closemodalMensalidade").addEventListener("click", function(event){
+	modalMensalidade.classList.toggle('hide')
+	fadeMensalidade.classList.toggle('hide')
+//  	event.preventDefault()
 });
 
-function verificaStatus(){
-	if (clicked) {
-		salvaMatricula();
-		alert('verifica');
-	    clicked = false;
+
+function verificaStatusMens(){
+	if (clicked1) {
+	    clicked1 = false;
 	  } else {
-		autAno();
-		autEscolas();
-	    clicked = true;
+	    clicked1 = true;
 	  }
+}
+
+function autDados(){
+	document.querySelector('#labelMatriculaAluno').innerHTML = "Id Aluno:  " + idAluno;
+}
+
+
+/*Modal Matricula*/
+let modal = document.querySelector('#modal');
+let fade = document.querySelector('#fade');
+
+document.getElementById("novoMatricula").addEventListener("click", function(event){
+	modal.classList.toggle('hide')
+	fade.classList.toggle('hide')
+	autAno();
+	autEscolas();
+});
+
+document.getElementById("close-modal").addEventListener("click", function(event){
+	modal.classList.toggle('hide')
+	fade.classList.toggle('hide')
+	window.location.reload(true);
+});
+
+document.getElementById("salvaMatricula").addEventListener("click", function(event){
+	salvaMatricula()
+	event.preventDefault();
+	setTimeout(() => {
+		modal.classList.toggle('hide')
+		fade.classList.toggle('hide')
+		window.location.reload(true);
+	},3000)
+	
+});
+
+const edit = (id) => {
+	modal.classList.toggle('hide')
+	fade.classList.toggle('hide')
+	autAno();
+	autEscolas();
+	pegaMatricula(id)
 }
 
 
@@ -174,35 +218,83 @@ function autEscolas() {
 
 function salvaMatricula() {
 	
-	var anoletivo = $("#selectAno").val();
-	var escolas = $("#selectEscola").val();
+	var anoletivo = $("#selectAno ").val();
 	var turma = $("#turma").val();
 	var turno = $("#selectTurno").val();
 	
-	var dados = {
-		anoletivo: anoletivo,
-		escolas: escolas,
-		turma: turma,
-		turno: turno
-	}
-
-	console.log(dados)
-	
+	var select = document.getElementById('selectEscola');
+	var escolas = select.options[select.selectedIndex].text;
 	
 	$.ajax({
 		method : "POST",
 		url : "matricula/salvar?idAluno="+idAluno,
-		data : JSON.stringify({dados}), 
+		data : JSON.stringify({
+			id: idMat,
+			aluno: idAluno,
+			anoletivo: anoletivo,
+			escolas: escolas,
+			turma: turma,
+			turno: turno
+		}), 
 		contentType: "application/json; charset=utf-8",
 		timeout: 0,
 	    headers: {
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success : function(response) {
-			 console.log(response)
+			const msg = "Realizando Matricula .... ";
+			msgSuccess(msg);			
+			
 		}
 	}).fail(function(xhr, status, errorThrown) {
 		alert("Erro ao cadastrar matricula: " + xhr.responseText);
 	});
 }
 
+
+
+function pegaMatricula (id){
+	
+	$.ajax({
+		method : "GET",
+		url : "matricula/buscarmatriculaid",
+		data : "idmatricula=" + id,
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			idMat = response.id;
+			$("#selectAno").val(response.anoletivo);
+			$("#selectEscola").val(response.escolas);
+			$("#turma").val(response.turma);
+			$("#selectTurno").val(response.turno);
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao buscar matricula por id : " + xhr.responseText);
+	});
+}
+
+const divMessage = document.querySelector(".alert");
+
+function msgSuccess(msg) {
+    const message = document.createElement("div");
+    message.classList.add("messageSucesso");
+    message.innerText = msg;
+    divMessage.appendChild(message);
+
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
+}
+
+function msgError(msg) {
+    const message = document.createElement("div");
+    message.classList.add("messageError");
+    message.innerText = msg;
+    divMessage.appendChild(message);
+
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
+}
