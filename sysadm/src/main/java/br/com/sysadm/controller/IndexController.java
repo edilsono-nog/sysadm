@@ -35,4 +35,9 @@ public class IndexController {
 	private String fichaaluno() {
 		return "cadastro/fichaaluno";
 	}
+	
+	@GetMapping("responsaveis")
+	private String responsaveis() {
+		return "cadastro/responsaveis";
+	}
 }

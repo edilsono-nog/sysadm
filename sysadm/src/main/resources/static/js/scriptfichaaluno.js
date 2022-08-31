@@ -53,8 +53,6 @@ function autFicha(id) {
 		success : function(response) {
 			var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
 			
-		//	console.log(response.matricula)
-			
 			document.querySelector('.id').innerHTML = response.id;
 			idAluno = response.id;
 			document.querySelector('.status').innerHTML = response.status;
@@ -87,6 +85,21 @@ function autFicha(id) {
 					'<button class="btn" onclick="openModalMensalidade()" title="Mensalidades"><i class="fa-solid fa-sack-dollar"></i></button></td>'+
 					'</tr>');
 			}
+			
+			response.responsaveis.sort(function (x, y) {
+				return x.id - y.id;
+			})
+			
+			for (var i = 0; i < response.responsaveis.length; i++) {
+				$('#responsavelTable > tbody').append(					
+					'<tr>'+
+					'<td>'+  response.responsaveis[i].nome + '</td>'+
+					'<td>'+  response.responsaveis[i].celular + '</td>'+
+					'<td>'+  response.responsaveis[i].tipo + '</td>'+
+					'<td><button class="btn" onclick=edit('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-pen-to-square"></i></button>'+
+					'</tr>');
+			}
+			
 		//	localStorage.removeItem('idEdit')
 		}
 	}).fail(function(xhr, status, errorThrown) {
@@ -120,6 +133,9 @@ document.getElementById("closemodalMensalidade").addEventListener("click", funct
 //  	event.preventDefault()
 });
 
+document.getElementById("novoResponsavel").addEventListener("click", function(event){
+	window.location.href='responsaveis'
+});
 
 function verificaStatusMens(){
 	if (clicked1) {

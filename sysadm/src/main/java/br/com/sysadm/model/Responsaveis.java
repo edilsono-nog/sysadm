@@ -10,11 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,13 +22,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@SequenceGenerator(name = "seq_alunos", sequenceName = "seq_alunos", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_responsaveis", sequenceName = "seq_responsaveis", allocationSize = 1, initialValue = 1)
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class Alunos implements Serializable {
+public class Responsaveis implements Serializable {
 
 	/**
 	 * 
@@ -39,6 +38,8 @@ public class Alunos implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alunos")
 	private Long id;
+	private String tipo;
+	private String financeiro;
 	private String nome;
 	private LocalDate dt_nasc;
 	private String email;
@@ -52,13 +53,10 @@ public class Alunos implements Serializable {
 	private String celular;
 	private String cpf;
 	private String rg;
-	private String status;
-	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Matricula> matricula = new ArrayList<Matricula>();	
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="aluno_responsavel",
-				joinColumns = {@JoinColumn(name="aluno_id")},
-				inverseJoinColumns = {@JoinColumn(name="responsavel_id")})
-	private List<Responsaveis> responsaveis = new ArrayList<Responsaveis>();
+	@ManyToMany(mappedBy = "responsaveis", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Alunos> alunos = new ArrayList<Alunos>();
+	
+
 }

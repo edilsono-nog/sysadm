@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<link rel="stylesheet" href="css/styleresponsaveislist.css">
+				
+		<div id="cabecario" class="card">
+			<h1>Listagam de Responsaveis</h1> 
+		</div>
+		
+		<div class="alert"></div>
+		<div class="table">
+			<div class="table_header">
+				<p></p>
+				<div id="div_header">
+					<input id="localiza" placeholder="Localizar Responsável"/>
+					<button id="add_new" title="Adicionar" onclick="cadastrar()" >+Add New</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card" id="conteudo">
+			<table id="responsaveisTable" class="table_section table table-hover table-sm">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col" id="td_id">#</th>
+			      <th scope="col" id="td_nome">Nome</th>
+			      <th scope="col" >Data de Nascimento</th>
+			      <th scope="col">Celular</th>
+			      <th scope="col">Ações</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    
+			  </tbody>
+			</table>
+		</div>
+		<div>
+			<ul class="pagination">	</ul>
+		</div>
+		
+		<script src="js/scriptresponsaveislist.js"></script>
+		<script src="js/table-paginationresp.js"></script>
+	</section>
+</body>
+</html>
