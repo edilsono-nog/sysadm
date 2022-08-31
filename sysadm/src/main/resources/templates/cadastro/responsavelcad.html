@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<link rel="stylesheet" href="css/styleresponsavelcad.css">
+				
+		<div id="cabecario" class="card">
+			<h1>Cadastro de Responsável</h1> 
+		</div>
+		<div class="alert"></div>
+		<div class="card" id="conteudo">
+		<form action="" id="formCadastroAluno">
+			<div class="label-float" id="div_id">
+                <input type="text" id="id" placeholder="" name="id" required readonly="readonly"> 
+                <label id="labelId" for="id">ID: </label>
+            </div>
+            <div class="label-float1" id="div_status">
+            	<label id="labelstatus" for="status">Tipo: </label>
+            	<select name="status" id="status" required>
+            	  <option selected>Abra este menu de seleção</option>
+				  <option value="Pai">Pai</option>
+				  <option value="Mãe">Mãe</option>
+				  <option value="Tio">Tio</option>
+				  <option value="Tia">Tia</option>
+				  <option value="Outros">Outros</option>
+				</select>
+            </div>
+			<div class="label-float" id="div_nome">
+                <input type="text" id="nome" placeholder="" name="nome" required> 
+                <label id="labelNome" for="nome">Nome: </label>
+            </div>
+            <div class="label-float" id="div_nasc">
+                <input type="text" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" 
+                	   id="dtnascimento" placeholder="" name="dtnascimento" required> 
+                <label id="labeldtnascimento" for="dtnascimento">Data de Nascimento:</label>
+            </div>
+            <div class="label-float" id="div_email">
+                <input type="email" id="email" placeholder="" name="email" required> 
+                <label id="labelemail" for="email">E-mail: </label>
+            </div>
+            <div class="label-float" id="div_cep">
+                <input type="text" autocomplete="off" maxlength="9" name="cep" id="cep" placeholder="" required> 
+                <label id="labelCep" for="cep">Cep: </label>
+            </div>
+            <div class="label-float" id="div_logradouro">
+                <input type="text" id="logradouro" placeholder="" name="logradouro" required> 
+                <label id="labellogradouro" for="logradouro">Endereço: </label>
+            </div>
+            <div class="label-float" id="div_complemento">
+                <input type="text" id="complemento" placeholder="" name="complemento" required> 
+                <label id="labelComplemento" for="complemento">Complemento: </label>
+            </div>
+            <div class="label-float" id="div_bairro">
+                <input type="text" id="bairro" placeholder="" name="bairro" required> 
+                <label id="labelBairro" for="bairro">Bairro: </label>
+            </div>
+            <div class="label-float" id="div_cidade">
+                <input type="text" id="cidade" placeholder="" name="cidade" required> 
+                <label id="labelCidade" for="cidade">Cidade: </label>
+            </div>
+            <div class="label-float" id="div_uf">
+                <input type="text" id="uf" placeholder="" name="uf" required> 
+                <label id="labelUf" for="uf">Estado:</label>
+            </div>
+            <div class="label-float" id="div_telefone">
+                <input type="text" autocomplete="off" maxlength="13" name="telefone" id="telefone" placeholder="" required> 
+                <label id="labelTelefone" for="telefone">Telefone: </label>
+            </div>
+            <div class="label-float" id="div_celular">
+                <input type="text" autocomplete="off" maxlength="14" name="celular" id="celular" placeholder="" required> 
+                <label id="labelCelular" for="celular">Celular: </label>
+            </div>
+            <div class="label-float" id="div_cpf">
+                <input type="text" autocomplete="off" maxlength="14" name="cpf" id="cpf" placeholder="" required> 
+                <label id="labelCpf" for="cpf">CPF: </label>
+            </div>
+            <div class="label-float" id="div_rg">
+                <input type="text" id="rg" placeholder="" name="rg" required> 
+                <label id="labelRg" for="rg">RG: </label>
+            </div>
+        </form>
+	</div>
+		
+		<div class="btn">
+			<button class="save" onclick="salvarAluno()">Salvar</button>
+			<button class="cancel">Cancelar</button>
+		</div>
+		
+		
+		<script src="js/scriptresponsavelcad.js"></script>
+		<script type="text/javascript">
+ 
+			 $(document).ready(function() {
+			 	
+			 	function limpa_formulário_cep() {
+			         // Limpa valores do formulário de cep.
+			         $("#logradouro").val("");
+			         $("#complemento").val("");
+			         $("#bairro").val("");
+			         $("#cidade").val("");
+			         $("#uf").val("");
+			     }
+			     
+			     //Quando o campo cep perde o foco.
+			     $("#cep").blur(function() {
+			    	 
+			         //Nova variável "cep" somente com dígitos.
+			         var cep = $(this).val().replace(/\D/g, '');
+			
+			         //Verifica se campo cep possui valor informado.
+			         if (cep != "") {
+			
+			             //Expressão regular para validar o CEP.
+			             var validacep = /^[0-9]{8}$/;
+			
+			             //Valida o formato do CEP.
+			             if(validacep.test(cep)) {
+			
+			                 //Preenche os campos com "..." enquanto consulta webservice.
+			                 $("#logradouro").val("...");
+			                 $("#complemento").val("...");
+			                 $("#bairro").val("...");
+			                 $("#cidade").val("...");
+			                 $("#uf").val("...");
+			
+			                 //Consulta o webservice viacep.com.br/
+			                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+			
+			                     if (!("erro" in dados)) {
+			                         //Atualiza os campos com os valores da consulta.
+			                         $("#logradouro").val(dados.logradouro);
+			                         $("#complemento").val(dados.complemento);
+			                         $("#bairro").val(dados.bairro);
+			                         $("#cidade").val(dados.localidade);
+			                         $("#uf").val(dados.uf);
+			                     } //end if.
+			                     else {
+			                         //CEP pesquisado não foi encontrado.
+			                         limpa_formulário_cep();
+			                         alert("CEP não encontrado.");
+			                     }
+			                 });
+			             } //end if.
+			             else {
+			                 //cep é inválido.
+			                 limpa_formulário_cep();
+			                 alert("Formato de CEP inválido.");
+			             }
+			         } //end if.
+			         else {
+			             //cep sem valor, limpa formulário.
+			             limpa_formulário_cep();
+			         }
+			     });
+			 });
+	 </script>	
+	</section>
+</body>
+</html>

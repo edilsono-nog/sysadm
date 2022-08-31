@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+#logado{
+	font-size: 15px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-family: cursive;
+}
+
+#cabecario {
+    background-color: rgb(192, 192, 192);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px 0px #00000080;
+    width: 95%;
+    left: 10px;
+}
+
+h1{
+	font-size: 25px;
+}
+
+#conteudo{
+	margin-top: 20px;
+	margin-left: 15px;
+	width: 95%;
+	box-shadow: 4px 4px 6px 0px #00000080;
+}
+
+.label-float input {
+    padding: 5px;
+    display: inline-block;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    outline: none;
+    min-width: 180px;
+    font-size: 16px;
+    transition: all .3s ease-out;
+    border-radius: 0;
+    color: #01658b;
+}
+
+#id {
+	width: 10%;
+}
+
+#labelId{
+	font-size: 13px;
+    margin-top: 0;
+    color: #000000;
+}
+
+#div_id{
+	display: inline-block;
+    width: 49%;
+    margin-top: 0;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#status {
+	width: 55%;
+	-webkit-appearance: none;
+    /* Remove estilo padrão do Chrome */
+    -moz-appearance: none;
+    /* Remove estilo padrão do FireFox */
+    appearance: none;
+    /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
+    /* Imagem de fundo (Seta) */
+    background-position: 218px center;
+    /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 30px;
+    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 0px solid #ddd;
+    padding-left: 15px;
+    font-family:Verdana, Trebuchet,sans-serif;
+}
+
+#div_status{
+	display: inline-block;
+    width: 45%;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+.label-float1{
+    position: relative;
+    padding-top: 13px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: inline-block;
+    width: 49%;
+}
+
+#nome {
+	width: 100%;
+}
+
+#div_nome{
+	display: inline-block;
+    width: 75%;
+    margin-top: 0;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#dtnascimento {
+	width: 100%;
+}
+
+#div_nasc{
+	display: inline-block;
+    width: 20%;
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+#email {
+	width: 80%;
+}
+
+#div_email{
+	display: inline-block;
+    width: 81%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#cep {
+	width: 100%;
+}
+
+#div_cep{
+	display: inline-block;
+    width: 20%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+} 
+
+#logradouro {
+	width: 100%;
+}
+
+#div_logradouro{
+	display: inline-block;
+    width: 75%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#complemento {
+	width: 100%;
+}
+
+#div_complemento{
+	display: inline-block;
+    width: 25%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#bairro {
+	width: 100%;
+}
+
+#div_bairro{
+	display: inline-block;
+    width: 35%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#cidade {
+	width: 100%;
+}
+
+#div_cidade{
+	display: inline-block;
+    width: 33%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#uf {
+	width: 10%;
+}
+
+#div_uf{
+	display: inline-block;
+    width: 15%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#telefone {
+	width: 100%;
+}
+
+#div_telefone{
+	display: inline-block;
+    width: 20%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#celular {
+	width: 20%;
+}
+
+#div_celular{
+	display: inline-block;
+    width: 60%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#cpf {
+	width: 100%;
+}
+
+#div_cpf{
+	display: inline-block;
+    width: 20%;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    margin-left: 15px;
+}
+
+#rg {
+	width: 100%;
+}
+
+#div_rg{
+	display: inline-block;
+    width: 20%;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    margin-left: 15px;
+}
+
+.cep{
+	text-align: center;
+}
+
+.label-float{
+    position: relative;
+    padding-top: 13px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: inline-block;
+    width: 49%;
+}
+
+.label-float input:focus {
+    border-bottom: 2px solid #000000;
+}
+
+.label-float label {
+    color: #000000;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 13px;
+    transition: all .3s ease-out;
+}
+
+.label-float input:focus + label,
+.label-float input:valid + label{
+    font-size: 13px;
+    margin-top: 0;
+    color: #000000;
+}
+
+.btn{
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.save{
+	padding: 10px 20px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.cancel{
+	padding: 10px 20px;
+	color: #ffffff;
+	background-color: #ef2131;
+	border-radius: 6px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+button{
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px;
+	color: #ffffff;
+}
+
+.messageSucesso {
+    padding: 19px 60px;
+    position: fixed;
+    top: 20px;
+    right: 105px;
+    background-color: #008040;
+    border-radius: 3px;
+    color: #fff;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.messageError {
+    padding: 19px 60px;
+    position: fixed;
+    top: 20px;
+    right: 105px;
+    background-color: #ff0000;
+    border-radius: 3px;
+    color: #fff;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slidein {
+    0%{
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.messageSucesso::before,
+.messageError::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: time 3s forwards;
+}
+
+@keyframes time {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}

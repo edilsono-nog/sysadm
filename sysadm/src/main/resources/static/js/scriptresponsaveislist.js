@@ -241,8 +241,7 @@ function buildPagination(response) {
 
 
 function cadastrar(){
-	console.log('cadastrando....')
-	//window.location.href='responsavelcad'
+	window.location.href='responsavelcad'
 }
 
 function associar(id){

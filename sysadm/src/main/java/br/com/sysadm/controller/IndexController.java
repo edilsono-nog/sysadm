@@ -40,4 +40,9 @@ public class IndexController {
 	private String responsaveis() {
 		return "cadastro/responsaveis";
 	}
+	
+	@GetMapping("responsavelcad")
+	private String responsavelcad() {
+		return "cadastro/responsavelcad";
+	}
 }
