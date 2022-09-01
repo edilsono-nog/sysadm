@@ -1,5 +1,7 @@
 package br.com.sysadm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -68,15 +70,25 @@ public class ResponsaveisController {
 	@ResponseBody
 	public ResponseEntity<Alunos> associar(@RequestParam(name = "idAluno") String idAluno, 
 													@RequestParam(name = "idResponsavel") String idResponsavel){
+	
+			Alunos aluno = alunosRepository.findById(Long.parseLong( idAluno )).get();
+			Long idresp = Long.parseLong( idResponsavel );
+			
+			List<Responsaveis> alunoresp = aluno.getResponsaveis();
+			
+			for(int i = 0; i < alunoresp.size(); i++) {
+				
+				if(alunoresp.get(i).getId() == idresp)  {
+					return null;
+				}
+			}
 		
-		Alunos aluno = alunosRepository.findById(Long.parseLong( idAluno )).get();
-		
-		Responsaveis responsaveis = responsaveisRepository.findById(Long.parseLong( idResponsavel )).get();
-		
-		aluno.getResponsaveis().add(responsaveis);
-		aluno.setResponsaveis(aluno.getResponsaveis());
-		
-		return alunosService.salvar(aluno);
+			Responsaveis responsaveis = responsaveisRepository.findById(Long.parseLong( idResponsavel )).get();
+			
+			aluno.getResponsaveis().add(responsaveis);
+			aluno.setResponsaveis(aluno.getResponsaveis());
+			
+			return alunosService.salvar(aluno);		
 	}
 	
 	@GetMapping(value = "pesqResponsaveis")

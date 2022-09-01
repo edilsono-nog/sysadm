@@ -255,11 +255,18 @@ function associar(id){
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success: function (response) {
-			const msg = "Associando Aluno / Responsavel.... ";
-			msgSuccess(msg);			
-			setTimeout(() => {
-				window.location.href='fichaaluno'
-			},3000)
+			if(response.length == 0){
+				const msg = "Responsável já Associado .... ";
+				msgError(msg);
+			}else{
+				const msg = "Associando Responsável / Aluno .... ";
+				msgSuccess(msg);			
+				setTimeout(() => {
+					window.location.href='fichaaluno'
+				},3000)
+			}
+			
+			
 		}
 	}).fail(function (xhr, status, errorThrown) {
 		const msg = "Error ao realizar a Associação.... " + xhr.responseText;

@@ -15,5 +15,4 @@ public interface ResponsaveisRepository extends JpaRepository<Responsaveis, Long
 	@Query(value = "select r from Responsaveis r where upper(trim(r.nome)) like %?1%")
 	Page<Responsaveis> pesqResponsavel(String upperCase, Pageable pageable);
 
-
 }
