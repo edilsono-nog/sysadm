@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,body{height: 100%;}
+
+#logado{
+	font-size: 15px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-family: cursive;
+}
+
+header{
+    background-color: #73b4ff;
+    padding: 0 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*.logo{
+    margin-top: 15px;
+}*/
+
+.logo{
+	margin-top: 15px;
+}
+
+.logo h3{
+    cursor: pointer;
+}
+
+.logo h3:hover{
+    opacity: 0.7;
+}
+
+/*.icons-header{
+    margin-top: 8px;
+}*/
+
+.icons-header svg{
+    cursor: pointer;
+}
+
+.icons-header svg:hover{
+    opacity: 0.7;
+}
+
+.info-header{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+}
+
+.info-header img{
+    width: 60px;
+    height: 50px;
+    border-radius: 20px;
+    margin: 0 8px;
+}
+
+.info-header svg{
+    margin: 0 10px;
+}
+
+.icons-header{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.sidebar{
+    padding: 0 8px;
+    width: 20%;
+    background-color: white;
+    height: 100%;
+}
+
+.navigation{
+    position: relative;
+    height: 100%;
+    background: white;
+    box-shadow: 10px 0 0 rgb(201, 201, 201);
+}
+
+.navigation ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 5px;
+    padding-top: 30px;
+}
+
+.navigation ul .list{
+    position: relative;
+    list-style: none;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 40px;
+}
+
+.navigation ul .list a{
+    position: relative;
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: #444;
+    cursor: pointer;
+}
+
+.navigation ul .list a .icon{
+    position: relative;
+    display: block;
+    min-width: 40px;
+    height: 60px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.navigation ul .list a .icon svg{
+    position: relative;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.navigation ul .list a .title{
+    position: relative;
+    display: block;
+    padding-left: 5px;
+    height: 60px;
+    line-height: 40px;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.navigation ul .list.active{
+    background: rgb(201, 201, 201);
+}
+
+.navigation ul .list.active a::before{
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+ /*   box-shadow: 15px 15px 0 #fff;*/
+}
+
+.navigation ul .list.active a::after{
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+  /*  box-shadow: 15px -15px 0 #fff;*/
+}
+
+.content{
+    width: 80%;
+    background-color: rgb(201, 201, 201);
+    padding: 10px;
+}
+
+.titulo-secao{
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+.titulo-secao h2{
+    font-size: 19px;
+}
+
+.titulo-secao p{
+    font-size: 14px;
+}
+
+.titulo-secao svg{
+    color: #73b4ff;
+}
+
+.separator{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(235, 235, 235);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.box-info{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-info-single{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+    margin: 0 10px;
+    padding: 30px;
+}
+
+.box-info-single svg{
+    font-size: 28px;
+}
+
+.feed{
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 10px;
+    width: 50%;
+    padding: 30px;
+}
+
+.feed-single{
+    display: flex;
+    justify-content: space-between;
+}
+
+.feed-text{
+    display: flex;
+}
+
+.feed-text span{
+    color: black;
+    display: inline-block;
+    margin: 8px;
+}
+
+.feed-text .circle-icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #c3dfff;
+    position: relative;
+}
+
+.feed-text svg{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 18px;
+    color: #73b4ff;
+}
+
+.feed-time{
+    color: #444;
+}

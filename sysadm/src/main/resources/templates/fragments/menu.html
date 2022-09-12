@@ -1,80 +1,70 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
-<head><meta charset="UTF-8"></head>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
-	<aside th:fragment="menu">
-    <div class="l-navbar" id="navbar" >
-        <nav class="nav">
-            <div>
-                <div class="nav__brand">
-                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-                    <a href="#" class="nav__logo">SysAdm</a>
-                </div>
-                <div class="nav__list">
-                    <a href="dashboard" class="nav__link active">
-                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Dashboard</span>
-                    </a>
-                    
-                    <div  class="nav__link collapse">
-                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Cadastro</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="listacad" class="collapse__sublink">Aluno</a>
-                       <!--     <a href="#" class="collapse__sublink">Group</a>-->  
-                          <!--    <a href="#" class="collapse__sublink">Members</a> -->
-                        </ul>
-                    </div>
-                    
-                    <a href="#" class="nav__link">
-                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Messenger</span>
-                    </a>
-
-                    
-
-                    <a href="#" class="nav__link">
-                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Analytics</span>
-                    </a>
-                    <div class="nav__link collapse">
-                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Team</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">Data</a>
-                            <a href="#" class="collapse__sublink">Group</a>
-                            <a href="#" class="collapse__sublink">Members</a>
-                        </ul>
-                    </div>
-                    <div class="nav__link collapse">
-                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Configuração</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="anoletivo" class="collapse__sublink">Ano_Letivo</a>
-                            <a href="escolaslist" class="collapse__sublink">Escolas</a> 
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <a onclick="sair();" class="nav__link">
-                <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-                <span class="nav__name">Log Out</span>
-            </a>
-        </nav>
-    </div>
-    <script src="js/scriptMenu.js"></script>
-    </aside>
-    
+<div class="sidebar" th:fragment="menu">
+     <div class="navigation">
+         <ul>
+             <li class="list active">
+                 <a href="dashboard">
+                     <span class="icon" ><i class="fa-solid fa-house"></i></span>
+                     <span class="title" >Home</span>
+                 </a>
+             </li>
+             <li class="list">
+                 <a href="alunos_listagem">
+                     <span class="icon" ><i class="fa-solid fa-graduation-cap"></i></span>
+                     <span class="title" >Alunos</span>
+                 </a>
+             </li>
+             <li class="list">
+                 <a href="#">
+                     <span class="icon" ><i class="fa-solid fa-comments"></i></span>
+                     <span class="title" >Menssagens</span>
+                 </a>
+             </li>
+             <li class="list">
+                 <a href="#">
+                     <span class="icon" ><i class="fa-solid fa-gear"></i></span>
+                     <span class="title" >Configurações</span>
+                 </a>
+             </li>
+             <li class="list">
+                 <a href="#">
+                     <span class="icon" ><i class="fa-solid fa-circle-info"></i></span>
+                     <span class="title" >Ajuda</span>
+                 </a>
+             </li>
+             <li class="list">
+                 <a href="#">
+                     <span class="icon" ><i class="fa-solid fa-lock"></i></span>
+                     <span class="title" >Senha</span>
+                 </a>
+             </li>
+             <li style="margin-top: 100%;" class="list">
+                 <a onclick="sair();">
+                     <span class="icon" ><i class="fa-solid fa-right-from-bracket"></i></span>
+                     <span class="title" >Sair</span>
+                 </a>
+             </li>
+         </ul>
+     </div>
+     
+     <script src="js/menu/scriptMenu.js"></script>
+     <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('active'));
+            this.classList.add('active');
+        }
+            list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+     
+ </div><!--sidebar-->
 </body>
 </html>

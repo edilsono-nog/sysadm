@@ -21,28 +21,30 @@ public class IndexController {
 		return "login";
 	}
 	
-	@GetMapping("listacad")
+	@GetMapping("alunos_listagem")
 	private String listacad() {
-		return "cadastro/listacad";
+		return "alunos/listagem";
 	}
 	
-	@GetMapping("alunoscad")
-	private String alunoscad() {
-		return "cadastro/alunoscad";
-	}
-	
-	@GetMapping("fichaaluno")
+	@GetMapping("alunos_ficha")
 	private String fichaaluno() {
-		return "cadastro/fichaaluno";
+		return "alunos/ficha";
 	}
 	
-	@GetMapping("responsaveis")
+	@GetMapping("alunos_cadastro")
+	private String alunoscad() {
+		return "alunos/cadastro";
+	}
+	
+	
+	
+	@GetMapping("responsavel_listagem")
 	private String responsaveis() {
-		return "cadastro/responsaveis";
+		return "responsaveis/listagem";
 	}
 	
-	@GetMapping("responsavelcad")
+	@GetMapping("responsavel_cadastro")
 	private String responsavelcad() {
-		return "cadastro/responsavelcad";
+		return "responsaveis/cadastro";
 	}
 }

@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/alunos/styleFicha.css">
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<link rel="stylesheet" href="css/stylefichaaluno.css">
-				
-		<div id="cabecario" class="card">
-			<h1>Ficha do Alunos</h1> 
-		</div>
-		
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Alunos</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-clipboard"></i> / Ficha</p>
+       </div>
+
 		<div class="card" id="conteudo">
+		<br>
 			<div class="title_box" id="subject_dados">
 			  <div id="title">Dados do Aluno</div>
 			  <div id="content">
@@ -64,7 +67,7 @@
 						</table>
 				  </div>
 				 </div>
-				 <div class="title_box" id="subject" style="margin-left: -2px;">
+				 <div class="title_box" id="subject">
 				   <div id="title">Responsáveis</div>
 					  <div id="content">
 					  <button id="novoResponsavel" >+Novo</button>
@@ -78,15 +81,7 @@
 				  </div>
 				</div>
 			</div>
-		<!--  	<div class="title_box" id="subject_dados">
-			   <div id="title">Telefone Responsaveis</div>
-				  <div id="content">
-				  	<label id="labelTitulo"><strong>Telefone:</strong> </label>
-				    <label id="labelTitulo" class="tel">tel</label>
-				    <label id="labelTitulo"><strong>Celular:</strong> </label>
-				    <label id="labelTitulo" class="cel">cel</label>
-			  </div>
-			</div>-->
+
 			<br>
 		</div>
 		<div id="id_button">
@@ -154,9 +149,12 @@
 				<button id="closemodalMensalidade">Cancelar</button>
 			</div>       
 	      </div>
-	    </div>
+	    </div>	
 		
-		<script src="js/scriptfichaaluno.js"></script>
-	</section>
+		
+		
+		<script src="js/alunos/scriptficha.js"></script>
+		
+</div><!--content-->
 </body>
 </html>

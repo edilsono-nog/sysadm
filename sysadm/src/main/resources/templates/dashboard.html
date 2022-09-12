@@ -1,20 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<link rel="stylesheet" href="css/styleDash.css">
-		
-		<div class="card">
-		
-			<h1>Painel de Controle Administrativo</h1> 
-		
-		</div>
-		
-		<script src="js/scriptdash.js"></script>
-	</section>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Painel de Controle</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-house"></i> / Painel de Controle</p>
+       </div>
+
+       <div class="box-info">
+           <div style="background: linear-gradient(45deg, #FF5370, #ff869a);" class="box-info-single">
+            <div class="info-text">
+                <h3>Total Sales</h3>
+                <p>R$ 1.000,00</p>
+            </div>
+            <i class="fa-solid fa-money-check-dollar"></i>
+        </div>
+        <div style="background: linear-gradient(45deg, #4099ff, #73b4ff);" class="box-info-single">
+            <div class="info-text">
+                <h3>Total Sales</h3>
+                <p>R$ 1.000,00</p>
+            </div>
+            <i class="fa-solid fa-money-check-dollar"></i>
+        </div>
+        <div style="background: linear-gradient(45deg, #2ed8b6, #59e0c5);" class="box-info-single">
+            <div class="info-text">
+                <h3>Total Sales</h3>
+                <p>R$ 1.000,00</p>
+            </div>
+            <i class="fa-solid fa-money-check-dollar"></i>
+        </div>
+    </div>
+
+    <div class="feed">
+        <div class="feed-single">
+            <div class="feed-text">
+               <div class="circle-icon"> <i class="fa-solid fa-bell"></i></div>
+                <span>Tutorial novo</span>
+            </div>
+            <div class="feed-time">
+                <h3>30 minutes ago</h3>
+            </div>
+        </div>
+    </div>
+    <script src="js/menu/scriptdash.js"></script>
+</div><!--content-->
 </body>
 </html>

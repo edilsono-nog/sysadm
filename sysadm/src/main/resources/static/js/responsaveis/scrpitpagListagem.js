@@ -21,11 +21,6 @@ $(document).ready(function() {
 		    Authorization: localStorage.getItem("token")
 		 	 },
 	        success: function(response){
-			if(response){
-				$("#add_new").hide();
-			}else{
-				$("#add_new").toggle();
-			}
 			
 			if(response == null && response == ''){
 				document.getElementById("add_new").disabled = false;
@@ -44,15 +39,20 @@ $(document).ready(function() {
 	            $('#responsaveisTable tbody').append(responsavelRow);
 	          });
 
-	          if ($('ul.pagination li').length - 2 != response.totalPages){
+	          if ($('ul.pagination li').length - 1 != response.totalPages){
 	          	  // build pagination list at the first time loading
 	        	  $('ul.pagination').empty();
 	              buildPagination(response);
 	          }
 	        },
 	        error : function(e) {
-	          alert("ERROR: ", e);
-	          console.log("ERROR: ", e);
+	          if (e.status == 403){
+				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				msgError(msg);
+				setTimeout(() => {
+					sair();
+				},5000)
+			}	
 	        }
 	    });
 	}
@@ -165,5 +165,20 @@ function buildPagination(response) {
 	
 });
 	
+function sair(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('userLogado')
+    window.location.href = 'login'
+    eraseCookie('JSESSIONID')
+}
 
+function msgError(msg) {
+    const message = document.createElement("div");
+    message.classList.add("messageError");
+    message.innerText = msg;
+    divMessage.appendChild(message);
 
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
+}

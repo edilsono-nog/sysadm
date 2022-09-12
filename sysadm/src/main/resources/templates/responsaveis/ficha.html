@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/alunos/styleFicha.css">
+</head>
+<body>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Alunos</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-clipboard"></i> / Ficha</p>
+       </div>
+
+		<div class="card" id="conteudo">
+		<br>
+			<div class="title_box" id="subject_dados">
+			  <div id="title">Dados do Aluno</div>
+			  <div id="content">
+			  	  <div>
+			  	  	<label id="labelTitulo" ><strong>Matricula do Aluno:</strong> </label>
+				    <label id="labelTitulo" class="id">id</label>
+				    <label id="labelTitulo" ><strong>Status:</strong> </label>
+				    <label id="labelTitulo" class="status">status</label>
+			  	  </div>
+				  <div>
+				  	<label id="labelTitulo" ><strong>Nome do Aluno:</strong> </label>
+				    <label id="labelTitulo" class="nome">nome</label>
+				    <label id="labelTitulo"><strong>Data de Nascimento:</strong> </label>
+				    <label id="labelTitulo" class="dtnascimento">nasc</label>
+				  </div>
+				  <div>
+			  	  	<label id="labelTitulo" ><strong>E-mail:</strong> </label>
+				    <label id="labelTitulo" class="email">email</label>
+			  	  </div>
+			   	  <div>
+			   	  	<label id="labelTitulo"><strong>Endereço:</strong> </label>
+				    <label id="labelTitulo" class="logradouro">end</label>
+				    <label id="labelTitulo"><strong>Bairro:</strong> </label>
+				    <label id="labelTitulo" class="bairro">bairro</label>
+				    <label id="labelTitulo"><strong>Cidade:</strong> </label>
+				    <label id="labelTitulo" class="cidade">cidade</label>
+				    <label id="labelTitulo"><strong>Estado:</strong> </label>
+				    <label id="labelTitulo" class="uf">estado</label>
+			   	  </div>
+			   	  <div>
+			   	  	<label id="labelTitulo"><strong>Telefone:</strong> </label>
+				    <label id="labelTitulo" class="telefone">tel</label>
+				    <label id="labelTitulo"><strong>Celular:</strong> </label>
+				    <label id="labelTitulo" class="celular">cel</label>
+			   	  </div>
+			  </div>
+			</div>
+			<div>
+				<div class="title_box" id="subject">
+				  <div id="title">Matriculas</div>
+				  	<button id="novoMatricula">+Novo</button>
+					  <div id="content">
+					  	 <table id="matriculaTable" class="table_section table table-hover table-sm">
+						  <thead class="thead-dark">
+						  </thead>
+						  <tbody>
+						    
+						  </tbody>
+						</table>
+				  </div>
+				 </div>
+				 <div class="title_box" id="subject">
+				   <div id="title">Responsáveis</div>
+					  <div id="content">
+					  <button id="novoResponsavel" >+Novo</button>
+					  	<table id="responsavelTable" class="table_section table table-hover table-sm">
+						  <thead class="thead-dark">
+						  </thead>
+						  <tbody>
+						    
+						  </tbody>
+						</table>
+				  </div>
+				</div>
+			</div>
+
+			<br>
+		</div>
+		<div id="id_button">
+			<button id="voltar" >Voltar</button>
+		</div>
+		
+		<!-- Modal Matricula -->
+		<div id="fade" class="hide"></div>
+		<div class="alert"></div>
+	    <div id="modal" class="hide">
+	      <div class="modal-header">
+	        <h2>Cadastro de Matricula</h2>
+	        
+	      </div>
+	      
+	      <div class="modal-body">
+	      <form action="" id="formMatriculaAluno" name="formMatriculaAluno">	
+	        <div>
+	        	<select name="selectAno" id="selectAno" >
+		        	<option>Selecione o ano Letivo</option>
+		        </select>
+		        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+	        </div>
+	        <div>
+	        	<select name="selectEscola" id="selectEscola" >
+		        	<option>Selecione a escola</option>
+		        </select>
+		        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+	        </div>
+	        <div >
+		        <div class="label-float" id="div_turma">
+	                <input type="text" id="turma" placeholder="" name="turma" required> 
+	                <label id="labelTurma" for="turma">Turma: </label>
+	            </div>
+	        </div>
+	        <div>
+	        	<select name="selectTurno" id="selectTurno" >
+		        	<option>Selecione o Turno</option>
+		        	<option value="Manhã">Manhã</option>
+		        	<option value="Tarde">Tarde</option>
+		        </select>
+		        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+	        </div>
+	        <div id="salMatricula">
+	        	<button id="salvaMatricula">Salvar</button>
+	        	<button id="close-modal">Cancelar</button>
+	        </div>
+	        </form>
+	      </div>
+	    </div>
+	    
+	    <!-- Modal Mensalidades -->
+		<div id="fadeMensalidade" class="hide"></div>
+	    <div id="modalMensalidade" class="hide">
+	      <div class="modalMensalidade-header">
+	        <h2>Cadastro de Mensalidades</h2>
+	        
+	      </div>
+	      <div class="modalMensalidade-body">
+	      	
+	      	<label id="labelMatriculaAluno" >Aluno: </label>
+	      
+			<div id="salMatricula">
+				<button id="salvaMensalidade">Salvar</button>
+				<button id="closemodalMensalidade">Cancelar</button>
+			</div>       
+	      </div>
+	    </div>	
+		
+		
+		
+		<script src="js/alunos/scriptficha.js"></script>
+		
+</div><!--content-->
+</body>
+</html>

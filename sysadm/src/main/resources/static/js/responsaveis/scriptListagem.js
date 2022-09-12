@@ -4,7 +4,10 @@ let idAluno = JSON.parse(localStorage.getItem("idFicha"))
 
 let logado = document.querySelector('#logado')
 
-$("#add_new").hide();
+let adicionar = document.querySelector('#add_new')
+adicionar.disabled = true;
+
+let tipo = '';
 
 if (userLogado != null) {
     logado.innerHTML = userLogado.name
@@ -41,9 +44,14 @@ localiza.addEventListener('keyup', ()=>{
 	
 })
 
+document.querySelector('#voltar').addEventListener('click', ()=>{
+	window.location.href='alunos_ficha'
+})
+
 let totalPages = 1;
 
 function pegaResponsaveis(startPage) {
+	tipo = 'pega';
     $.ajax({
         type : "GET",
         url : "responsavel/pesqResponsaveis?sort=id",
@@ -57,10 +65,10 @@ function pegaResponsaveis(startPage) {
 	    Authorization: localStorage.getItem("token")
 	 	 },
         success: function(response){
-		  if(response.length == 0){
-				$("#add_new").hide();
-			}else{
-				$("#add_new").toggle();
+		 if (response.content.length == 0 ){
+				adicionar.disabled = false;
+			}else {
+				adicionar.disabled = true;
 			}
           $('#responsaveisTable tbody').empty();
 	          // add table rows
@@ -76,7 +84,7 @@ function pegaResponsaveis(startPage) {
 	            $('#responsaveisTable tbody').append(responsavelRow);
           });
 
-          if ($('ul.pagination li').length - 2 != response.totalPages){
+          if ($('ul.pagination li').length - 1 != response.totalPages){
           	  // build pagination list at the first time loading
         	  $('ul.pagination').empty();
               buildPagination(response);
@@ -90,10 +98,7 @@ function pegaResponsaveis(startPage) {
 }
 
 function listResponsaveis(startPage) {
-	//console.log('startPage: ' +startPage);
-	/**
-	 * get data from Backend's REST API
-	 */
+	tipo = 'list';
     $.ajax({
         type : "GET",
         url : "responsavel?sort=id&",
@@ -106,10 +111,10 @@ function listResponsaveis(startPage) {
 	    Authorization: localStorage.getItem("token")
 	 	 },
         success: function(response){
-		if(response.length == 0){
-				$("#add_new").hide();
-			}else{
-				$("#add_new").toggle();
+		 if (response.content.length == 0 ){
+				adicionar.disabled = false;
+			}else {
+				adicionar.disabled = true;
 			}
           $('#responsaveisTable tbody').empty();
 	          // add table rows
@@ -125,7 +130,7 @@ function listResponsaveis(startPage) {
 	            $('#responsaveisTable tbody').append(responsavelRow);
           });
 
-          if ($('ul.pagination li').length - 2 != response.totalPages){
+          if ($('ul.pagination li').length - 1 != response.totalPages){
           	  // build pagination list at the first time loading
         	  $('ul.pagination').empty();
               buildPagination(response);
@@ -198,12 +203,20 @@ function buildPagination(response) {
 		// click on the NEXT tag
 		if(val.toUpperCase() === "« FIRST") {
 			let currentActive = $("li.active");
-			fetchNotes(0);
+			if (tipo == 'pega'){
+				pegaResponsaveis(0);
+			}else if (tipo == 'lista'){
+				listResponsaveis(0);
+			}
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
 		} else if(val.toUpperCase() === "LAST »") {
-			fetchNotes(totalPages - 1);
+			if (tipo == 'pega'){
+				pegaResponsaveis(totalPages - 1);
+			}else if (tipo == 'lista'){
+				listResponsaveis(totalPages - 1);
+			}
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
@@ -212,7 +225,11 @@ function buildPagination(response) {
 	  		if(activeValue < totalPages){
 	  			let currentActive = $("li.active");
 				startPage = activeValue;
-				fetchNotes(startPage);
+				if (tipo == 'pega'){
+					pegaResponsaveis(startPage);
+				}else if (tipo == 'lista'){
+					listResponsaveis(startPage);
+				}
 	  			// remove .active class for the old li tag
 	  			$("li.active").removeClass("active");
 	  			// add .active to next-pagination li
@@ -223,7 +240,11 @@ function buildPagination(response) {
 	  		if(activeValue > 1) {
 	  			// get the previous page
 				startPage = activeValue - 2;
-				fetchNotes(startPage);
+				if (tipo == 'pega'){
+					pegaResponsaveis(startPage);
+				}else if (tipo == 'lista'){
+					listResponsaveis(startPage);
+				}
 	  			let currentActive = $("li.active");
 	  			currentActive.removeClass("active");
 	  			// add .active to previous-pagination li
@@ -231,7 +252,11 @@ function buildPagination(response) {
 	  		}
 	  	} else {
 			startPage = parseInt(val - 1);
-			fetchNotes(startPage);
+			if (tipo == 'pega'){
+					pegaResponsaveis(startPage);
+				}else if (tipo == 'lista'){
+					listResponsaveis(startPage);
+				}
 	  		// add focus to the li tag
 	  		$("li.active").removeClass("active");
 	  		$(this).parent().addClass("active");
@@ -241,7 +266,7 @@ function buildPagination(response) {
 
 
 function cadastrar(){
-	window.location.href='responsavelcad'
+	window.location.href='responsavel_cadastro'
 }
 
 function associar(id){
@@ -255,22 +280,26 @@ function associar(id){
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success: function (response) {
-			if(response.length == 0){
-				const msg = "Responsável já Associado .... ";
-				msgError(msg);
-			}else{
-				const msg = "Associando Responsável / Aluno .... ";
-				msgSuccess(msg);			
-				setTimeout(() => {
+			
+			msgSuccess(response);			
+			setTimeout(() => {
 					window.location.href='fichaaluno'
-				},3000)
-			}
-			
-			
+			},3000)
 		}
+		
 	}).fail(function (xhr, status, errorThrown) {
-		const msg = "Error ao realizar a Associação.... " + xhr.responseText;
-		msgError(msg);
+	
+		if (xhr.status == 403){
+			const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+			msgError(msg);
+			sair();
+		}	
+		
+		if (xhr.status == 400){
+			const msg = xhr.responseText;
+			msgError(msg);
+		}		
+		
 	});
 }
 
@@ -296,4 +325,11 @@ function msgError(msg) {
     setTimeout(() => {
         message.style.display = "none";
     }, 3000);
+}
+
+function sair(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('userLogado')
+    window.location.href = 'login'
+    eraseCookie('JSESSIONID')
 }

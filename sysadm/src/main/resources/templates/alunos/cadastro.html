@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/alunos/styleCadastro.css">
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<link rel="stylesheet" href="css/styleresponsavelcad.css">
-				
-		<div id="cabecario" class="card">
-			<h1>Cadastro de Responsável</h1> 
-		</div>
-		<div class="alert"></div>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Alunos</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-graduation-cap"></i> / Cadastro</p>
+       </div>
+       
+       <div class="alert"></div>
 		<div class="card" id="conteudo">
+		<br>
 		<form action="" id="formCadastroAluno">
 			<div class="label-float" id="div_id">
                 <input type="text" id="id" placeholder="" name="id" required readonly="readonly"> 
                 <label id="labelId" for="id">ID: </label>
             </div>
             <div class="label-float1" id="div_status">
-            	<label id="labelstatus" for="status">Tipo: </label>
+            	<label id="labelstatus" for="status">Status: </label>
             	<select name="status" id="status" required>
             	  <option selected>Abra este menu de seleção</option>
-				  <option value="Pai">Pai</option>
-				  <option value="Mãe">Mãe</option>
-				  <option value="Tio">Tio</option>
-				  <option value="Tia">Tia</option>
-				  <option value="Outros">Outros</option>
+				  <option value="Ativo">Ativo</option>
+				  <option value="Inativo">Inativo</option>
 				</select>
             </div>
 			<div class="label-float" id="div_nome">
@@ -91,7 +92,7 @@
 		</div>
 		
 		
-		<script src="js/scriptresponsavelcad.js"></script>
+		<script src="js/alunos/scriptCadastro.js"></script>
 		<script type="text/javascript">
  
 			 $(document).ready(function() {
@@ -158,6 +159,8 @@
 			     });
 			 });
 	 </script>	
-	</section>
+
+	
+</div><!--content-->
 </body>
 </html>

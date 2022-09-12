@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/responsaveis/styleCadastro.css">
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<link rel="stylesheet" href="css/stylealunoscad.css">
-				
-		<div id="cabecario" class="card">
-			<h1>Cadastro de Alunos</h1> 
-		</div>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Responsáveis</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-people-group"></i> / Cadastro</p>
+       </div>
 		<div class="alert"></div>
 		<div class="card" id="conteudo">
-		<form action="" id="formCadastroAluno">
+		<br>
+		<form action="" id="formCadastroResponsavel">
 			<div class="label-float" id="div_id">
                 <input type="text" id="id" placeholder="" name="id" required readonly="readonly"> 
                 <label id="labelId" for="id">ID: </label>
             </div>
             <div class="label-float1" id="div_status">
-            	<label id="labelstatus" for="status">Status: </label>
+            	<label id="labelstatus" for="status">Tipo: </label>
             	<select name="status" id="status" required>
             	  <option selected>Abra este menu de seleção</option>
-				  <option value="Ativo">Ativo</option>
-				  <option value="Inativo">Inativo</option>
+				  <option value="Pai">Pai</option>
+				  <option value="Mãe">Mãe</option>
+				  <option value="Tio">Tio</option>
+				  <option value="Tia">Tia</option>
+				  <option value="Outros">Outros</option>
 				</select>
             </div>
 			<div class="label-float" id="div_nome">
@@ -83,12 +89,12 @@
 	</div>
 		
 		<div class="btn">
-			<button class="save" onclick="salvarAluno()">Salvar</button>
+			<button class="save" onclick="salvarResponsavel()">Salvar</button>
 			<button class="cancel">Cancelar</button>
 		</div>
 		
 		
-		<script src="js/scriptalunoscad.js"></script>
+		<script src="js/responsaveis/scriptCadastro.js"></script>
 		<script type="text/javascript">
  
 			 $(document).ready(function() {

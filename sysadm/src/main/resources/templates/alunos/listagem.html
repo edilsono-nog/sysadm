@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/alunos/styleListagem.css">
+</head>
+<body>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Alunos</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-graduation-cap"></i> / Listagem</p>
+       </div>
+
+	<div class="tables">
+		<div class="table_header">
+			<p></p>
+			<div id="div_header">
+            	<label id="labelstatus" for="status">Status: </label>
+            	<select name="status" id="status" required>
+            	  <option value="Todos">Todos</option>
+				  <option value="Ativo">Ativo</option>
+				  <option value="Inativo">Inativo</option>
+				</select>
+				<input id="localiza" placeholder="Localizar Aluno"/>
+				<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add New</button>
+			</div>
+		</div>
+	</div>
+		
+		<div class="card" id="conteudo">
+			<br>
+			<table id="alunoTable" class="table_section table table-hover table-sm">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col" id="td_id">#</th>
+			      <th scope="col" id="td_nome">Nome</th>
+			      <th scope="col" >Data de Nascimento</th>
+			      <th scope="col">Celular</th>
+			      <th scope="col" id="td_nasc">Status</th>
+			      <th scope="col">Ações</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    
+			  </tbody>
+			</table>
+			<br>
+		</div>
+		
+		<ul class="pagination justify-content-center" style="margin:20px 0; cursor: pointer;"></ul>
+		
+		
+		<script src="js/alunos/scriptListagem.js"></script>
+		<!-- <script src="js/alunos/scrpitpagListagem.js"></script> -->
+		
+</div><!--content-->
+</body>
+</html>

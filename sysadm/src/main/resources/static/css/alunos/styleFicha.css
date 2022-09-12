@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-*{
-	box-sizing: border-box;
-}
-
 #logado{
 	font-size: 15px;
 	margin-top: 0;
@@ -27,9 +23,10 @@ h1{
 #conteudo{
 	margin-top: 20px;
 	margin-left: 0;
-	width: 95%;
+	width: 100%;
 	border-radius: 11px;
 	box-shadow: 2px 5px 4px 3px #00000080;
+	background-color: white;
 }
 
 .title_box {
@@ -66,7 +63,7 @@ h1{
 
 #subject{
 	display: inline-block;
-    width: 49%;
+    width: 48%;
     margin-top: 5px;
     margin-bottom: 10px;
 }
@@ -83,7 +80,7 @@ h1{
 #novoMatricula,
 #novoResponsavel{
 	font-size: 12px;
-	margin-left: 85%;
+	margin-left: 83%;
 	position: relative;
     top: -2em;
     display: inline;

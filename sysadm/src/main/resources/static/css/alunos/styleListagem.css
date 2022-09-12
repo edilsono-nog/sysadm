@@ -1,35 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-#logado{
-	font-size: 15px;
-	margin-top: 0;
-	margin-bottom: 10px;
-	font-family: cursive;
-}
-
-#cabecario {
-    background-color: rgb(192, 192, 192);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 4px 4px 6px 0px #00000080;
-    width: 95%;
-    left: 10px;
-}
-
-h1{
-	font-size: 25px;
-}
-
-#conteudo{
-	margin-top: 20px;
-	margin-left: 15px;
-	width: 95%;
-	box-shadow: 4px 4px 6px 0px #00000080;
-}
-
-.table {
-	width: 95%;
-	margin-left: 15px;
+.tables {
+	width: 100%;
 	margin-top: 10px;
 	font-size: 14px;
 }
@@ -40,6 +12,12 @@ h1{
 	align-items: center;
 	padding: 20px;
 	background-color: rgb(240, 240, 240);
+	border-radius: 10px;
+}
+
+#div_header{
+	width: 55%;
+	margin-left: 40%;
 }
 
 .table_header p{
@@ -54,14 +32,6 @@ button{
 	padding: 10px;
 	color: #ffffff;
 	margin-left: 5px;
-}
-
-td button:nth-child(1){
-	background-color: #0298cf;
-}
-
-td button:nth-child(2){
-	background-color: #f80000;
 }
 
 .add_new{
@@ -81,11 +51,6 @@ input{
 	color: #0298cf;
 }
 
-#div_header{
-	width: 75%;
-	margin-left: 50%;
-}
-
 #status {
 	width: 25%;
 	-webkit-appearance: none;
@@ -98,7 +63,7 @@ input{
     /* Imagem de fundo (Seta) */
     background-position: 218px center;
     /* Tamanho do select, maior que o tamanho da div "div-select" */
-    height: 36px;
+    height: 40px;
     /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
     border: 1px solid #0298cf;
     background-color: #fff;
@@ -106,6 +71,15 @@ input{
 	color: #0298cf;
     padding-left: 15px;
     font-family:Verdana, Trebuchet,sans-serif;
+}
+
+#conteudo{
+	margin-top: 10px;
+	width: 100%;
+	box-shadow: 4px 7px 6px 0px #00000080;
+	border-radius: 10px;
+	background-color: white;
+	font-size: 14px;
 }
 
 table{
@@ -130,6 +104,14 @@ th, td{
 	text-align: center;
 }
 
+td button:nth-child(1){
+	background-color: #0298cf;
+}
+
+td button:nth-child(2){
+	background-color: #f80000;
+}
+
 #td_id{
 	width: 100px;
 }
@@ -150,7 +132,7 @@ tr:hover td {
 	text-align: center;
 }
 
-li {
+.page-item {
     list-style-type: none;
     display: inline-block;
     font-size: 13px;
@@ -158,7 +140,7 @@ li {
     width: 50px;
     border-radius: 10px;
 }
-li:hover{
+.page-item:hover{
     background-color:#fff;
     color:black;
 }

@@ -1,5 +1,6 @@
 let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
 
+let idFicha = JSON.parse(localStorage.getItem("idFicha")) 
 let idEdit = JSON.parse(localStorage.getItem("idEdit")) 
 
 let logado = document.querySelector('#logado')
@@ -140,7 +141,7 @@ function validarCPF(cpf) {
 let cancel = document.querySelector('.cancel')
 
 cancel.addEventListener('click', ()=>{
-	window.location.href='listacad'
+	window.location.href='responsavel_listagem'
 })
 
 function formatDate(data, formato) {
@@ -151,7 +152,7 @@ function formatDate(data, formato) {
   }
 }
 
-function salvarAluno(){
+function salvarResponsavel(){
 	var id = $("#id").val();
 	var nome = $("#nome").val();
 	var dtnascimento = $("#dtnascimento").val();
@@ -174,10 +175,16 @@ function salvarAluno(){
 		alert('Informe o nome');
 		return;
 	}
+	
+	if (status == "Abra este menu de seleção"){
+		$("#status").focus();
+		alert('Selecione um item para o Status correto');
+		return;
+	}
 		
 	$.ajax({
 		method: "POST",
-		url : "aluno/salvar",
+		url : "responsavel/salvar?idAluno="+idFicha,
 		data : JSON.stringify({
 			id: id,
 			nome: nome,
@@ -193,7 +200,7 @@ function salvarAluno(){
 			celular: celular,
 			cpf: cpf,
 			rg: rg,
-			status: status
+			tipo: status
 		}),
 		contentType: "application/json; charset=utf-8",
 		timeout: 0,
@@ -206,8 +213,8 @@ function salvarAluno(){
 			const msg = "Realizando cadatro.... ";
 			msgSuccess(msg);			
 			setTimeout(() => {
-				window.location.href='listacad'
-				document.getElementById('formCadastroAluno').reset();
+				window.location.href='alunos_ficha'
+				document.getElementById('formCadastroResponsavel').reset();
 			},3000)
 		}
 	}).fail(function (xhr, status, errorThrown) {
@@ -239,41 +246,3 @@ function msgError(msg) {
         message.style.display = "none";
     }, 3000);
 }
-
-function colocarEmEdicao(id) {
-
-	$.ajax({
-		method : "GET",
-		url : "aluno/buscaralunoid",
-		data : "iduser=" + id,
-		timeout: 0,
-	    headers: {
-	    Authorization: localStorage.getItem("token")
-	 	 },
-		success : function(response) {
-			var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
-			
-			$("#id").val(response.id);
-			$("#nome").val(response.nome);
-			$("#dtnascimento").val(dataFormatada);
-			$("#email").val(response.email);
-			$("#cep").val(response.cep);
-			$("#logradouro").val(response.logradouro);
-			$("#complemento").val(response.complemento);
-			$("#bairro").val(response.bairro);
-			$("#cidade").val(response.localidade);
-			$("#uf").val(response.uf);
-			$("#telefone").val(response.telefone);
-			$("#celular").val(response.celular);
-			$("#cpf").val(response.cpf);
-			$("#rg").val(response.rg);
-			$("#status").val(response.status);
-
-			localStorage.removeItem('idEdit')
-		}
-	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar usuário por id : " + xhr.responseText);
-	});
-
-}
-

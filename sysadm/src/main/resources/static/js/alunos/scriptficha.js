@@ -37,7 +37,7 @@ function eraseCookie(nome) {
 
 document.querySelector('#voltar').addEventListener('click', ()=>{
 	localStorage.removeItem('idFicha')
-	window.location.href='listacad'
+	window.location.href='alunos_listagem'
 })
 
 function autFicha(id) {
@@ -134,7 +134,7 @@ document.getElementById("closemodalMensalidade").addEventListener("click", funct
 });
 
 document.getElementById("novoResponsavel").addEventListener("click", function(event){
-	window.location.href='responsaveis'
+	window.location.href='responsavel_listagem'
 });
 
 function verificaStatusMens(){

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,8 @@ public class ResponsaveisController {
 	
 	@PostMapping(value = "salvar")
 	 @ResponseBody
-	 public ResponseEntity<Alunos> salvar(@RequestParam(name = "idAluno") String idAluno, @RequestBody Responsaveis responsaveis ){
+	 public ResponseEntity<Alunos> salvar(@RequestParam(name = "idAluno") String idAluno, 
+			 								@RequestBody Responsaveis responsaveis ){
 		
 		Alunos aluno = alunosRepository.findById(Long.parseLong( idAluno )).get();
 		
@@ -60,7 +62,7 @@ public class ResponsaveisController {
 		 return alunosService.salvar(aluno);
 	 }
 	
-	@GetMapping(value = "buscaralunoid")
+	@GetMapping(value = "buscaresponsavelid")
     @ResponseBody
     public ResponseEntity<Responsaveis> buscaruserid (@RequestParam(name = "idResponsavel") Long idResponsavel){
 		 return responsaveisService.pegaResponsavelId(idResponsavel);
@@ -68,7 +70,7 @@ public class ResponsaveisController {
 	
 	@PostMapping(value = "associar")
 	@ResponseBody
-	public ResponseEntity<Alunos> associar(@RequestParam(name = "idAluno") String idAluno, 
+	public ResponseEntity<String> associar(@RequestParam(name = "idAluno") String idAluno, 
 													@RequestParam(name = "idResponsavel") String idResponsavel){
 	
 			Alunos aluno = alunosRepository.findById(Long.parseLong( idAluno )).get();
@@ -79,7 +81,7 @@ public class ResponsaveisController {
 			for(int i = 0; i < alunoresp.size(); i++) {
 				
 				if(alunoresp.get(i).getId() == idresp)  {
-					return null;
+					return new ResponseEntity<String> ("Responsável já associado ...", HttpStatus.BAD_REQUEST);
 				}
 			}
 		
@@ -88,7 +90,9 @@ public class ResponsaveisController {
 			aluno.getResponsaveis().add(responsaveis);
 			aluno.setResponsaveis(aluno.getResponsaveis());
 			
-			return alunosService.salvar(aluno);		
+			alunosService.salvar(aluno);	
+			
+			return new ResponseEntity<String> ("Associando Responsável / Aluno .... ", HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "pesqResponsaveis")

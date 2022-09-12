@@ -33,7 +33,7 @@ $(document).ready(function() {
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +
 			                		'<td> <button onclick=edit('+aluno.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
-			      						 '<button onclick=ficha('+aluno.id+') title="Ficha"><i class="fa fa-eye" aria-hidden="true"></i></button> </td>' +
+			      						 '<button onclick=ficha('+aluno.id+') title="Ficha"><i class="fa-solid fa-clipboard"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });
@@ -45,8 +45,13 @@ $(document).ready(function() {
 	          }
 	        },
 	        error : function(e) {
-	          alert("ERROR: ", e);
-	          console.log("ERROR: ", e);
+	          if (e.status == 403){
+				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				msgError(msg);
+				setTimeout(() => {
+					sair();
+				},5000)
+			}	
 	        }
 	    });
 	}
@@ -62,7 +67,7 @@ function buildPagination(response) {
 		var first = '';
 		var prev = '';
 		if (pageNumber > 0) {
-			if(pageNumber !== 0) {
+			if(pageNumber != 0) {
 				first = '<li class="page-item"><a class="page-link">« First</a></li>';
 			}
 			prev = '<li class="page-item"><a class="page-link">‹ Prev</a></li>';
@@ -75,7 +80,7 @@ function buildPagination(response) {
 		var next = '';
 		var last = '';
 		if (pageNumber < totalPages) {
-			if(pageNumber !== totalPages - 1) {
+			if(pageNumber != totalPages - 1) {
 				next = '<li class="page-item"><a class="page-link">Next ›</a></li>';				
 				last = '<li class="page-item"><a class="page-link">Last »</a></li>';
 			}
@@ -109,18 +114,18 @@ function buildPagination(response) {
 	//	console.log('val: ' + val);
 
 		// click on the NEXT tag
-		if(val.toUpperCase() === "« FIRST") {
+		if(val.toUpperCase() == "« FIRST") {
 			let currentActive = $("li.active");
 			fetchNotes(0);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
-		} else if(val.toUpperCase() === "LAST »") {
+		} else if(val.toUpperCase() == "LAST »") {
 			fetchNotes(totalPages - 1);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
-		} else if(val.toUpperCase() === "NEXT ›") {
+		} else if(val.toUpperCase() == "NEXT ›") {
 	  		let activeValue = parseInt($("ul.pagination li.active").text());
 	  		if(activeValue < totalPages){
 	  			let currentActive = $("li.active");
@@ -131,7 +136,7 @@ function buildPagination(response) {
 	  			// add .active to next-pagination li
 	  			currentActive.next().addClass("active");
 	  		}
-	  	} else if(val.toUpperCase() === "‹ PREV") {
+	  	} else if(val.toUpperCase() == "‹ PREV") {
 	  		let activeValue = parseInt($("ul.pagination li.active").text());
 	  		if(activeValue > 1) {
 	  			// get the previous page
@@ -151,13 +156,23 @@ function buildPagination(response) {
 			//$(this).addClass("active");
 	  	}
     });
-	(function(){
-	    	// get first-page at initial time
-	    	fetchNotes(0);
-	    })();
-
-	
 });
 	
+function sair(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('userLogado')
+    window.location.href = 'login'
+    eraseCookie('JSESSIONID')
+}
 
+function msgError(msg) {
+    const message = document.createElement("div");
+    message.classList.add("messageError");
+    message.innerText = msg;
+    divMessage.appendChild(message);
+
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
+}
 

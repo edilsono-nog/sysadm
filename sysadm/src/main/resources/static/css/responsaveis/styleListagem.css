@@ -21,15 +21,16 @@ h1{
 }
 
 #conteudo{
-	margin-top: 20px;
-	margin-left: 15px;
-	width: 95%;
-	box-shadow: 4px 4px 6px 0px #00000080;
+	margin-top: 10px;
+	width: 100%;
+	box-shadow: 4px 7px 6px 0px #00000080;
+	border-radius: 10px;
+	background-color: white;
+	font-size: 14px;
 }
 
 .table {
-	width: 95%;
-	margin-left: 15px;
+	width: 100%;
 	margin-top: 10px;
 	font-size: 14px;
 }
@@ -40,6 +41,7 @@ h1{
 	align-items: center;
 	padding: 20px;
 	background-color: rgb(240, 240, 240);
+	border-radius: 10px;
 }
 
 .table_header p{
@@ -54,6 +56,11 @@ button{
 	padding: 10px;
 	color: #ffffff;
 	margin-left: 5px;
+	background-color: #0298cf;
+}
+
+#add_new:disabled{
+	background-color: rgb(240, 240, 240);
 }
 
 #btn{
@@ -91,7 +98,7 @@ input{
 
 #div_header{
 	width: 75%;
-	margin-left: 69%;
+	margin-left: 65%;
 }
 
 #status {
@@ -158,7 +165,7 @@ tr:hover td {
 	text-align: center;
 }
 
-li {
+.page-item {
     list-style-type: none;
     display: inline-block;
     font-size: 13px;
@@ -166,7 +173,7 @@ li {
     width: 50px;
     border-radius: 10px;
 }
-li:hover{
+.page-item:hover{
     background-color:#fff;
     color:black;
 }
@@ -232,4 +239,16 @@ li:hover{
     100%{
         width: 100%;
     }
+}
+
+.pag{
+	display: inline-block;
+	width: 79%;
+}
+
+#id_button {
+	display: inline-block;
+	margin-top: 20px;
+	width: 20%;
+	text-align: center;
 }

@@ -140,7 +140,7 @@ function validarCPF(cpf) {
 let cancel = document.querySelector('.cancel')
 
 cancel.addEventListener('click', ()=>{
-	window.location.href='responsaveis'
+	window.location.href='alunos_listagem'
 })
 
 function formatDate(data, formato) {
@@ -150,3 +150,136 @@ function formatDate(data, formato) {
     return (data.substr(0, 10).split('/').reverse().join('-'));
   }
 }
+
+function salvarAluno(){
+	var id = $("#id").val();
+	var nome = $("#nome").val();
+	var dtnascimento = $("#dtnascimento").val();
+	var formtDate = formatDate(dtnascimento)
+	var email = $("#email").val();
+	var cep = $("#cep").val();
+	var logradouro = $("#logradouro").val();
+	var complemento = $("#complemento").val();
+	var bairro = $("#bairro").val();
+	var cidade = $("#cidade").val();
+	var uf = $("#uf").val();
+	var telefone = $("#telefone").val();
+	var celular = $("#celular").val();
+	var cpf = $("#cpf").val();
+	var rg = $("#rg").val();
+	var status = $("#status").val();
+	
+	if (nome == null || nome != null && nome.trim() == ''){
+		$("#nome").focus();
+		alert('Informe o nome');
+		return;
+	}
+	
+	if (status == "Abra este menu de seleção"){
+		$("#status").focus();
+		alert('Selecione um item para o Status correto');
+		return;
+	}
+		
+	$.ajax({
+		method: "POST",
+		url : "aluno/salvar",
+		data : JSON.stringify({
+			id: id,
+			nome: nome,
+			dt_nasc: formtDate,
+			email: email,
+			cep: cep,
+			logradouro: logradouro,
+			complemento: complemento,
+			bairro: bairro,
+			localidade: cidade,
+			uf: uf,
+			telefone: telefone,
+			celular: celular,
+			cpf: cpf,
+			rg: rg,
+			status: status
+		}),
+		contentType: "application/json; charset=utf-8",
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success: function (response) {
+			
+			$("#id").val(response.id);
+			const msg = "Realizando cadatro.... ";
+			msgSuccess(msg);			
+			setTimeout(() => {
+				window.location.href='alunos_listagem'
+				document.getElementById('formCadastroAluno').reset();
+			},3000)
+		}
+	}).fail(function (xhr, status, errorThrown) {
+		const msg = "Error ao cadatrar.... " + xhr.responseText;
+		msgError(msg);
+	});
+}
+
+const divMessage = document.querySelector(".alert");
+
+function msgSuccess(msg) {
+    const message = document.createElement("div");
+    message.classList.add("messageSucesso");
+    message.innerText = msg;
+    divMessage.appendChild(message);
+
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
+}
+
+function msgError(msg) {
+    const message = document.createElement("div");
+    message.classList.add("messageError");
+    message.innerText = msg;
+    divMessage.appendChild(message);
+
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
+}
+
+function colocarEmEdicao(id) {
+
+	$.ajax({
+		method : "GET",
+		url : "aluno/buscaralunoid",
+		data : "iduser=" + id,
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
+			
+			$("#id").val(response.id);
+			$("#nome").val(response.nome);
+			$("#dtnascimento").val(dataFormatada);
+			$("#email").val(response.email);
+			$("#cep").val(response.cep);
+			$("#logradouro").val(response.logradouro);
+			$("#complemento").val(response.complemento);
+			$("#bairro").val(response.bairro);
+			$("#cidade").val(response.localidade);
+			$("#uf").val(response.uf);
+			$("#telefone").val(response.telefone);
+			$("#celular").val(response.celular);
+			$("#cpf").val(response.cpf);
+			$("#rg").val(response.rg);
+			$("#status").val(response.status);
+
+			localStorage.removeItem('idEdit')
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+	});
+
+}
+

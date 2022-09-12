@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/responsaveis/styleListagem.css">
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<link rel="stylesheet" href="css/styleresponsaveislist.css">
-				
-		<div id="cabecario" class="card">
-			<h1>Listagam de Responsaveis</h1> 
-		</div>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Responsáveis</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-people-group"></i> / Listagem</p>
+       </div>
 		
 		<div class="alert"></div>
 		<div class="table">
@@ -24,6 +26,7 @@
 		</div>
 		
 		<div class="card" id="conteudo">
+			<br>
 			<table id="responsaveisTable" class="table_section table table-hover table-sm">
 			  <thead class="thead-dark">
 			    <tr>
@@ -40,11 +43,18 @@
 			</table>
 		</div>
 		<div>
-			<ul class="pagination">	</ul>
+			<div id="id_button">
+				<button id="voltar" >Voltar</button>
+			</div>
+			<div class="pag">
+				<ul class="pagination">	</ul>
+			</div>
 		</div>
 		
-		<script src="js/scriptresponsaveislist.js"></script>
-		<script src="js/table-paginationresp.js"></script>
-	</section>
+		
+		<script src="js/responsaveis/scriptListagem.js"></script>
+		<script src="js/responsaveis/scrpitpagListagem.js"></script>
+	
+</div><!--content-->
 </body>
 </html>
