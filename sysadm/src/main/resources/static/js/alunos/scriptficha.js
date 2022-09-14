@@ -1,6 +1,7 @@
 let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
 
 let idFicha = JSON.parse(localStorage.getItem("idFicha")) 
+let idFichaAluno = JSON.parse(localStorage.getItem("idFichaAluno")) 
 
 let logado = document.querySelector('#logado')
 
@@ -11,8 +12,11 @@ if (userLogado != null) {
     logado.innerHTML = userLogado.name
 }
 
-if (idFicha != null) {
+if (idFicha != null && idFicha == idFichaAluno || idFichaAluno == null) {
     autFicha(idFicha);
+}else {
+	autFicha(idFichaAluno);
+	localStorage.removeItem('idFichaAluno')
 }
 
 if (getCookie('JSESSIONID') == null) {
@@ -51,7 +55,11 @@ function autFicha(id) {
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success : function(response) {
-			var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
+			if(response.dt_nasc != null || response.dt_nasc != ''){
+				var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
+			}else {
+				dataFormatada = '';
+			}
 			
 			document.querySelector('.id').innerHTML = response.id;
 			idAluno = response.id;
@@ -96,7 +104,8 @@ function autFicha(id) {
 					'<td>'+  response.responsaveis[i].nome + '</td>'+
 					'<td>'+  response.responsaveis[i].celular + '</td>'+
 					'<td>'+  response.responsaveis[i].tipo + '</td>'+
-					'<td><button class="btn" onclick=edit('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-pen-to-square"></i></button>'+
+					'<td><!--<button class="btn" onclick=edit('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-pen-to-square"></i></button>-->'+
+						'<button class="btn" onclick=ficha('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-clipboard"></i></button> </td>' +
 					'</tr>');
 			}
 			
@@ -106,6 +115,11 @@ function autFicha(id) {
 		alert("Erro ao buscar aluno por id : " + xhr.responseText);
 	});
 
+}
+
+function ficha(id){
+	localStorage.setItem('idFichaResp',JSON.stringify(id))
+	window.location.href='responsavel_ficha'
 }
 
 /*Modal Mensalidades*/
@@ -168,7 +182,7 @@ document.getElementById("close-modal").addEventListener("click", function(event)
 });
 
 document.getElementById("salvaMatricula").addEventListener("click", function(event){
-	salvaMatricula()
+	salvaMatricula()	
 	event.preventDefault();
 	setTimeout(() => {
 		modal.classList.toggle('hide')
@@ -258,6 +272,7 @@ function salvaMatricula() {
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success : function(response) {
+			localStorage.setItem('idFichaAluno',JSON.stringify(idAluno))
 			const msg = "Realizando Matricula .... ";
 			msgSuccess(msg);			
 			

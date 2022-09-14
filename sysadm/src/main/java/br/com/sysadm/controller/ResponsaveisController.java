@@ -52,14 +52,18 @@ public class ResponsaveisController {
 	 public ResponseEntity<Alunos> salvar(@RequestParam(name = "idAluno") String idAluno, 
 			 								@RequestBody Responsaveis responsaveis ){
 		
-		Alunos aluno = alunosRepository.findById(Long.parseLong( idAluno )).get();
-		
 		responsaveisService.salvar(responsaveis);
+		Long idresp = responsaveis.getId();
 		
-		aluno.getResponsaveis().add(responsaveis);
-		aluno.setResponsaveis(aluno.getResponsaveis());
+		if (String.valueOf(idresp) == "" || String.valueOf(idresp) == null) {
+			Alunos aluno = alunosRepository.findById(Long.parseLong( idAluno )).get();
 		
-		 return alunosService.salvar(aluno);
+			aluno.getResponsaveis().add(responsaveis);
+			aluno.setResponsaveis(aluno.getResponsaveis());
+			
+			 return alunosService.salvar(aluno);
+		}
+		return null;
 	 }
 	
 	@GetMapping(value = "buscaresponsavelid")
@@ -101,5 +105,13 @@ public class ResponsaveisController {
 		 
 		return responsaveisService.pesqResponsavel(name, pageable); 
     }
+	
+	@GetMapping(value = "pegaalunos")
+	@ResponseBody
+	public List<?> pegaAlunos(@RequestParam(name = "idResponsavel") String idResponsavel){
+		
+		return responsaveisRepository.listAlunos(Long.parseLong( idResponsavel ));
+
+	}
 
 }

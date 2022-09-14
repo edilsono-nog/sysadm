@@ -1,6 +1,8 @@
 package br.com.sysadm.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +16,12 @@ public interface ResponsaveisRepository extends JpaRepository<Responsaveis, Long
 
 	@Query(value = "select r from Responsaveis r where upper(trim(r.nome)) like %?1%")
 	Page<Responsaveis> pesqResponsavel(String upperCase, Pageable pageable);
+
+	@Query(value= "select b.* from aluno_responsavel a, Alunos b "
+			+ "where a.aluno_id = b.id and a.responsavel_id = ?1", nativeQuery = true)
+	/*@Query(nativeQuery = true, value= "select * from alunos "
+			+ "inner join aluno_responsavel on alunos.id = aluno_responsavel.aluno_id "
+			+ "where aluno_responsavel.responsavel_id = ?1")*/
+	List<?> listAlunos(long parseLong);
 
 }

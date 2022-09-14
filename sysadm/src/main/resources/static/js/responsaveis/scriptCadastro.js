@@ -1,7 +1,7 @@
 let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
 
 let idFicha = JSON.parse(localStorage.getItem("idFicha")) 
-let idEdit = JSON.parse(localStorage.getItem("idEdit")) 
+let idEditResp = JSON.parse(localStorage.getItem("idEditResp")) 
 
 let logado = document.querySelector('#logado')
 
@@ -9,10 +9,10 @@ if (userLogado != null) {
     logado.innerHTML = userLogado.name
 }
 
-if (idEdit != null) {
-    colocarEmEdicao(idEdit);
+if (idEditResp != null) {
+    colocarEmEdicao(idEditResp);
 }else{
-	idEdit='';
+	idEditResp='';
 }
 
 if (getCookie('JSESSIONID') == null) {
@@ -141,7 +141,13 @@ function validarCPF(cpf) {
 let cancel = document.querySelector('.cancel')
 
 cancel.addEventListener('click', ()=>{
-	window.location.href='responsavel_listagem'
+	if (idEditResp == '' | idEditResp == null){
+		window.location.href='responsavel_listagem'
+	}else {
+		window.location.href='responsavel_ficha'
+		localStorage.removeItem('idEditResp')
+	}
+	
 })
 
 function formatDate(data, formato) {
@@ -213,7 +219,12 @@ function salvarResponsavel(){
 			const msg = "Realizando cadatro.... ";
 			msgSuccess(msg);			
 			setTimeout(() => {
-				window.location.href='alunos_ficha'
+				if (idEditResp == '' | idEditResp == null){
+					window.location.href='alunos_ficha'
+				}else {
+					window.location.href='responsavel_ficha'
+					localStorage.removeItem('idEditResp')
+				}				
 				document.getElementById('formCadastroResponsavel').reset();
 			},3000)
 		}
@@ -221,6 +232,43 @@ function salvarResponsavel(){
 		const msg = "Error ao cadatrar.... " + xhr.responseText;
 		msgError(msg);
 	});
+}
+
+function colocarEmEdicao(id) {
+
+	$.ajax({
+		method : "GET",
+		url : "responsavel/buscaresponsavelid",
+		data : "idResponsavel=" + id,
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
+			
+			$("#id").val(response.id);
+			$("#nome").val(response.nome);
+			$("#dtnascimento").val(dataFormatada);
+			$("#email").val(response.email);
+			$("#cep").val(response.cep);
+			$("#logradouro").val(response.logradouro);
+			$("#complemento").val(response.complemento);
+			$("#bairro").val(response.bairro);
+			$("#cidade").val(response.localidade);
+			$("#uf").val(response.uf);
+			$("#telefone").val(response.telefone);
+			$("#celular").val(response.celular);
+			$("#cpf").val(response.cpf);
+			$("#rg").val(response.rg);
+			$("#status").val(response.tipo);
+
+			localStorage.removeItem('idEdit')
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+	});
+
 }
 
 const divMessage = document.querySelector(".alert");

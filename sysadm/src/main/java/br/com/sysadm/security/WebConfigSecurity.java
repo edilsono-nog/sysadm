@@ -33,7 +33,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		.disable().authorizeRequests().antMatchers("/").permitAll()
 		.antMatchers("/index", "/login","/templates/**","/dashboard").permitAll()
 		.antMatchers("/alunos/**", "/alunos_listagem", "/alunos_ficha", "/alunos_cadastro").permitAll()
-		.antMatchers("/responsaveis/**", "/responsavel_listagem", "/responsavel_cadastro").permitAll()
+		.antMatchers("/responsaveis/**", "/responsavel_listagem", "/responsavel_cadastro", "/responsavel_ficha").permitAll()
 		.antMatchers("/config/**", "/anoletivo", "/anoletivocad", "/escolaslist", "/escolascad").permitAll()
 		.antMatchers("/css/**","/js/**", "/imagem/**").permitAll()
 		.antMatchers("/assets/css/**","/assets/js/**", "/assets/imagem/**").permitAll()

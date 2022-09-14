@@ -45,6 +45,13 @@ h1{
   background-color: white;
 }
 
+#edit{
+	margin-left: 90%;
+	position: relative;
+    top: -2em;
+    background-color: red;
+}
+
 #matriculaTable,
 #responsavelTable{
 	font-size: 13px;
