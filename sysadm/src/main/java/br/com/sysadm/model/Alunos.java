@@ -56,6 +56,9 @@ public class Alunos implements Serializable {
 	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Matricula> matricula = new ArrayList<Matricula>();	
 	
+	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Mensalidades> mensalidades = new ArrayList<Mensalidades>();	
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="aluno_responsavel",
 				joinColumns = {@JoinColumn(name="aluno_id")},

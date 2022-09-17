@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,6 +58,9 @@ public class Responsaveis implements Serializable {
 	@ManyToMany(mappedBy = "responsaveis", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Alunos> alunos = new ArrayList<Alunos>();
+	
+	@OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Mensalidades> mensalidades = new ArrayList<Mensalidades>();
 	
 
 }

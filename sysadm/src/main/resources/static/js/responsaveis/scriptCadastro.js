@@ -175,6 +175,7 @@ function salvarResponsavel(){
 	var cpf = $("#cpf").val();
 	var rg = $("#rg").val();
 	var status = $("#status").val();
+	var financeiro = $("#financeiro").val();
 	
 	if (nome == null || nome != null && nome.trim() == ''){
 		$("#nome").focus();
@@ -206,7 +207,8 @@ function salvarResponsavel(){
 			celular: celular,
 			cpf: cpf,
 			rg: rg,
-			tipo: status
+			tipo: status,
+			financeiro: financeiro
 		}),
 		contentType: "application/json; charset=utf-8",
 		timeout: 0,

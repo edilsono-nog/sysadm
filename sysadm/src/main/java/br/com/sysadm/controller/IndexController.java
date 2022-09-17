@@ -10,17 +10,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 public class IndexController {
 
-	@GetMapping("dashboard")
-	private String dashboard() {
-		return "dashboard";
-	}
-	
+	/*Login*/
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String inicio() {
 		return "login";
 	}
 	
+	/*Pagina Inicial*/
+	@GetMapping("dashboard")
+	private String dashboard() {
+		return "dashboard";
+	}
+	
+	/*Telas de Alunos*/
 	@GetMapping("alunos_listagem")
 	private String listacad() {
 		return "alunos/listagem";
@@ -36,8 +39,7 @@ public class IndexController {
 		return "alunos/cadastro";
 	}
 	
-	
-	
+	/*Telas de Responsáveis*/
 	@GetMapping("responsavel_listagem")
 	private String responsaveis() {
 		return "responsaveis/listagem";

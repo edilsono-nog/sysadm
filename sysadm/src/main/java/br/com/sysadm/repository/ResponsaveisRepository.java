@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import br.com.sysadm.model.Alunos;
 import br.com.sysadm.model.Responsaveis;
 
 @Repository
@@ -23,5 +24,12 @@ public interface ResponsaveisRepository extends JpaRepository<Responsaveis, Long
 			+ "inner join aluno_responsavel on alunos.id = aluno_responsavel.aluno_id "
 			+ "where aluno_responsavel.responsavel_id = ?1")*/
 	List<?> listAlunos(long parseLong);
+
+	@Query(value = "SELECT a.* FROM Responsaveis a, aluno_responsavel b "
+			+ "where b.responsavel_id = a.id and b.aluno_id = ?1 and a.financeiro = 'Sim'", nativeQuery = true)
+	Responsaveis pegaResp(long idAluno);
+
+	
+
 
 }

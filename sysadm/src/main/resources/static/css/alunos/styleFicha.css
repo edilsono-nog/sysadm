@@ -99,6 +99,15 @@ button{
 	transition: 0.4s;
 	opacity: 0.8;
 }
+
+#gerarMensalidade:disabled{
+	background-color: rgb(240, 240, 240);
+}
+
+#excluirMensalidade:disabled{
+	background-color: rgb(240, 240, 240);
+}
+
 .btn{
 	padding: 5px 10px;
 	color: #ffffff;
@@ -202,7 +211,8 @@ button:hover,
 
 #selectAno,
 #selectEscola,
-#selectTurno{
+#selectTurno,
+#selectfinanceiro{
 	width: 40%;
 	-webkit-appearance: none;
     /* Remove estilo padrão do Chrome */
@@ -236,7 +246,8 @@ selectEscola{
 .label-float input,
 #selectAno,
 #selectEscola,
-#selectTurno {
+#selectTurno,
+#selectfinanceiro {
     padding: 5px;
     display: inline-block;
     border: 0;
@@ -356,4 +367,40 @@ td button:nth-child(2){
     100%{
         width: 100%;
     }
+}
+
+#labelAnoLetivo{
+	margin-left: 20px;
+}
+
+#labelAno{
+	margin-left: 35px;
+}
+
+#selectfinanceiro{
+	width: 55%;
+    font-size: 12px;
+}
+
+#gerarMensalidade{
+	margin-left: 80%;
+}
+
+#excluirMensalidade{
+	margin-left: 80%;
+	background-color: red;
+}
+
+tr td{
+	text-align: center;
+}
+
+tr td#respfin{
+	white-space: nowrap;
+    text-align: left;
+}
+
+#div_parcelas{
+	width: 30%;
+    font-size: 13px;
 }

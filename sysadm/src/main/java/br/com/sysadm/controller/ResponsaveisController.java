@@ -111,7 +111,6 @@ public class ResponsaveisController {
 	public List<?> pegaAlunos(@RequestParam(name = "idResponsavel") String idResponsavel){
 		
 		return responsaveisRepository.listAlunos(Long.parseLong( idResponsavel ));
-
 	}
 
 }

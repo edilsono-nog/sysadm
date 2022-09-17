@@ -78,8 +78,6 @@ function autFicha(id) {
 				return x.anoletivo - y.anoletivo;
 			})
 			
-		//	console.log(response.matricula)
-			
 			$('#matriculaTable > tbody > tr').remove();
 	          // add table rows
 	          for (var i = 0; i < response.matricula.length; i++) {
@@ -90,7 +88,7 @@ function autFicha(id) {
 					'<td>'+  response.matricula[i].turma + '</td>'+
 					'<td>'+  response.matricula[i].turno + '</td>'+
 					'<td><button class="btn" onclick=edit('+response.matricula[i].id+') title="Edita Matricula"><i class="fa-solid fa-pen-to-square"></i></button>'+
-					'<button class="btn" onclick="openModalMensalidade()" title="Mensalidades"><i class="fa-solid fa-sack-dollar"></i></button></td>'+
+					'<button class="btn" onclick="openModalMensalidade('+response.matricula[i].anoletivo+')" title="Mensalidades"><i class="fa-solid fa-sack-dollar"></i></button></td>'+
 					'</tr>');
 			}
 			
@@ -108,8 +106,6 @@ function autFicha(id) {
 						'<button class="btn" onclick=ficha('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-clipboard"></i></button> </td>' +
 					'</tr>');
 			}
-			
-		//	localStorage.removeItem('idEdit')
 		}
 	}).fail(function(xhr, status, errorThrown) {
 		alert("Erro ao buscar aluno por id : " + xhr.responseText);
@@ -135,16 +131,9 @@ const toggleModalMens = () => {
 	});
 }
 
-const openModalMensalidade = () => {
-	modalMensalidade.classList.toggle('hide')
-	fadeMensalidade.classList.toggle('hide')
-	autDados();
-}
-
 document.getElementById("closemodalMensalidade").addEventListener("click", function(event){
 	modalMensalidade.classList.toggle('hide')
 	fadeMensalidade.classList.toggle('hide')
-//  	event.preventDefault()
 });
 
 document.getElementById("novoResponsavel").addEventListener("click", function(event){
@@ -159,8 +148,181 @@ function verificaStatusMens(){
 	  }
 }
 
-function autDados(){
-	document.querySelector('#labelMatriculaAluno').innerHTML = "Id Aluno:  " + idAluno;
+/*Modal Mensalidades*/
+
+let gerar = document.querySelector('#gerarMensalidade');
+let exclui = document.querySelector('#excluirMensalidade');
+gerar.disabled = true;
+excluirMensalidade = false;
+
+const openModalMensalidade = (anoletivo) => {
+	modalMensalidade.classList.toggle('hide')
+	fadeMensalidade.classList.toggle('hide')
+	autDados(anoletivo);
+}
+
+let aluno = '';
+let ano = '';
+
+function autDados(anoletivo){
+	aluno = document.querySelector('#labelMatriculaAluno').innerHTML = idAluno;
+	ano = document.querySelector('#labelAnoLetivo').innerHTML = anoletivo;
+	autMensalidades(aluno, ano);
+}
+
+function formatDate(data, formato) {
+  if (formato == 'pt-br') {
+    return (data.substr(0, 10).split('-').reverse().join('/'));
+  } else {
+    return (data.substr(0, 10).split('/').reverse().join('-'));
+  }
+}
+
+gerar.addEventListener("click", function(event){
+	gerarMensalidade();
+});
+
+document.querySelector('#excluirMensalidade').addEventListener('click', function(){
+	limpaMensalidade();
+});
+
+function gerarMensalidade(){
+	//var id = $("#labelMatriculaAluno").val();
+	//var anoletivo = $("#labelAnoLetivo").val();
+	var responsavel = $("#selectfinanceiro").val();
+	var dtvencimento = $("#dtvencimento").val();
+	var valor = $("#valor").val();
+	var parcelas = $("#parcelas").val();
+	
+	$.ajax({
+		method: "POST",
+		url : "mensalidade/incMensalidade",
+		data : JSON.stringify({
+			idAluno: aluno,
+			anoletivo: ano,
+			valor: valor,
+			parcelas: parcelas,
+			vencimento: dtvencimento,
+			responsavel: responsavel
+		}),
+		contentType: "application/json; charset=utf-8",
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success: function (response) {
+			
+			$("#id").val(response.id);
+			const msg = "Gerando mensalidades.... ";
+			msgSuccess(msg);
+			setTimeout(() => {
+				autMensalidades(aluno, ano);
+				limpa();
+			},3000)
+					
+		}
+	}).fail(function (xhr, status, errorThrown) {
+		const msg = "Error ao cadatrar.... " + xhr.responseText;
+		msgError(msg);
+	});
+}
+
+function limpaMensalidade(){
+		
+	$.ajax({
+		method: "DELETE",
+		url : "mensalidade/removeparcelas?idAluno="+aluno+"&anoletivo="+ano,
+		contentType: "application/json; charset=utf-8",
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success: function (response) {
+			
+			$("#id").val(response.id);
+			const msg = "Removendo parcelas.... ";
+			msgSuccess(msg);
+			setTimeout(() => {
+				autMensalidades(aluno, ano);
+				limpa();
+			},3000)
+					
+		}
+	}).fail(function (xhr, status, errorThrown) {
+		const msg = "Error ao cadatrar.... " + xhr.responseText;
+		msgError(msg);
+	});
+}
+
+function autMensalidades(aluno, ano) {
+
+	$.ajax({
+		method : "GET",
+		url : "mensalidade/listamensalidades?idAluno="+aluno+"&anoletivo="+ano,
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			if (response.length == 0 ){
+				gerar.disabled = false;
+				exclui.disabled = true;
+			}else {
+				gerar.disabled = true;
+				exclui.disabled = false;
+			}
+			
+			response.sort(function (x, y) {
+				return x.id - y.id;
+			})
+			$('#tableMensalidades > tbody > tr').remove();
+	          // add table rows
+	          for (var i = 0; i < response.length; i++) {
+				var ts = new Date(response[i][6]);
+				var atual = response[i][5];
+				var valor = atual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+				//console.log(ts.toLocaleDateString());
+
+				$('#tableMensalidades > tbody').append(					
+					'<tr>'+
+					'<td id="aluno">'+  response[i][4] + '</td>'+
+					'<td id="venc">'+  ts.toLocaleDateString() + '</td>'+
+					'<td>'+  valor + '</td>'+
+					'<td id="respfin">'+  response[i][9] + '</td>'+
+					'<td>'+
+					'</tr>');
+			}
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao buscar aluno por id : " + xhr.responseText);
+	});
+
+}
+
+function formatarMoeda() {
+        var elemento = document.getElementById('valor');
+        var valor = elemento.value;
+
+        valor = valor + '';
+        valor = parseInt(valor.replace(/[\D]+/g, ''));
+        valor = valor + '';
+        valor = valor.replace(/([0-9]{2})$/g, ".$1");
+
+        if (valor.length > 6) {
+            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+        }
+
+        elemento.value = valor;
+        if(valor == 'NaN') elemento.value = '';
+    }
+    
+function limpa(){
+	$("#labelMatriculaAluno").val('');
+	$("#labelAnoLetivo").val('');
+	$("#selectfinanceiro").val('');
+	$("#dtvencimento").val('');
+	$("#valor").val('');
+	$("#parcelas").val('');
 }
 
 

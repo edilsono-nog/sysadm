@@ -60,10 +60,12 @@ function autFicha(id) {
 				dataFormatada = '';
 			}
 			
+			//console.log(response)
 			
 			document.querySelector('.id').innerHTML = response.id;
 			idAluno = response.id;
 			document.querySelector('.status').innerHTML = response.tipo;
+			document.querySelector('.financeiro').innerHTML = response.financeiro;
 			document.querySelector('.nome').innerHTML = response.nome;
 			document.querySelector('.dtnascimento').innerHTML = dataFormatada;
 			document.querySelector('.email').innerHTML = response.email;
@@ -95,7 +97,6 @@ function pegaAlunos(id) {
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success : function(response) {
-			//console.log(response)
 			response.sort(function (x, y) {
 				return x.id - y.id;
 			})
@@ -108,7 +109,7 @@ function pegaAlunos(id) {
 					'<td>'+  response[i][10] + '</td>'+
 					'<td><button class="btn" onclick=fichaAluno('+response[i][0]+') title="Dados do Aluno"><i class="fa-solid fa-clipboard"></i></button> </td>'+
 					'</tr>');
-				}					
+				}			
 		}
 	}).fail(function(xhr, status, errorThrown) {
 		alert("Erro ao buscar aluno por id : " + xhr.responseText);

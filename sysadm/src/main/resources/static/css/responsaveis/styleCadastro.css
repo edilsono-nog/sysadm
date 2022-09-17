@@ -55,14 +55,33 @@ h1{
 
 #div_id{
 	display: inline-block;
-    width: 49%;
+    width: 30%;
     margin-top: 0;
     margin-bottom: 0px;
     margin-left: 15px;
 }
 
 #status {
-	width: 55%;
+	width: 50%;
+	-webkit-appearance: none;
+    /* Remove estilo padrão do Chrome */
+    -moz-appearance: none;
+    /* Remove estilo padrão do FireFox */
+    appearance: none;
+    /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
+    /* Imagem de fundo (Seta) */
+    background-position: 218px center;
+    /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 30px;
+    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 0px solid #ddd;
+    padding-left: 15px;
+    font-family:Verdana, Trebuchet,sans-serif;
+}
+
+#financeiro {
+	width: 35%;
 	-webkit-appearance: none;
     /* Remove estilo padrão do Chrome */
     -moz-appearance: none;
@@ -82,7 +101,15 @@ h1{
 
 #div_status{
 	display: inline-block;
-    width: 45%;
+    width: 15%;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+#div_statusFin{
+	display: inline-block;
+    width: 30%;
     margin-top: 5px;
     margin-bottom: 0px;
     margin-left: 15px;
