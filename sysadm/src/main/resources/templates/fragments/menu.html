@@ -6,8 +6,9 @@
 </head>
 <body>
 <div class="sidebar" th:fragment="menu">
-     <div class="navigation">
+     <div class="navigation" style="overflow: auto;">
          <ul>
+         	<h3>Inicio</h3>
              <li class="list active">
                  <a href="dashboard">
                      <span class="icon" ><i class="fa-solid fa-house"></i></span>
@@ -20,31 +21,56 @@
                      <span class="title" >Alunos</span>
                  </a>
              </li>
+             <div class="separator"></div>
+             <h3>Financiero</h3>
              <li class="list">
                  <a href="#">
-                     <span class="icon" ><i class="fa-solid fa-comments"></i></span>
-                     <span class="title" >Menssagens</span>
+                     <span class="icon" ><i class="fa-solid fa-cash-register"></i></i></span>
+                     <span class="title" >Caixa</span>
                  </a>
              </li>
              <li class="list">
                  <a href="#">
-                     <span class="icon" ><i class="fa-solid fa-gear"></i></span>
-                     <span class="title" >Configurações</span>
+                     <span class="icon" ><i class="fa-solid fa-comments-dollar"></i></span>
+                     <span class="title" >Contas a Receber</span>
                  </a>
              </li>
              <li class="list">
                  <a href="#">
-                     <span class="icon" ><i class="fa-solid fa-circle-info"></i></span>
-                     <span class="title" >Ajuda</span>
+                     <span class="icon" ><i class="fa-solid fa-money-check-dollar"></i></i></span>
+                     <span class="title" >Contas a Pagar</span>
+                 </a>
+             </li>
+             <div class="separator"></div>
+             <h3>Configurações</h3>
+             <li class="list">
+                 <a href="anoletivo">
+                     <span class="icon" ><i class="fa-solid fa-chalkboard-user"></i></span>
+                     <span class="title" >Ano Letivo</span>
+                 </a>              
+             </li>
+             <li class="list">
+                 <a href="escolaslist">
+                     <span class="icon" ><i class="fa-solid fa-school"></i></span>
+                     <span class="title" >Escolas</span>
                  </a>
              </li>
              <li class="list">
                  <a href="#">
-                     <span class="icon" ><i class="fa-solid fa-lock"></i></span>
-                     <span class="title" >Senha</span>
+                     <span class="icon" ><i class="fa-solid fa-user-secret"></i></span>
+                     <span class="title" >Usuários</span>
                  </a>
              </li>
-             <li style="margin-top: 100%;" class="list">
+             <div class="separator"></div>
+             <h3>Relatórios</h3>
+             <li class="list">
+                 <a href="#">
+                     <span class="icon" ><i class="fa-solid fa-print"></i></i></span>
+                     <span class="title" >Gerador de Relatórios</span>
+                 </a>              
+             </li>
+             <div class="separator"></div>
+             <li class="list">
                  <a onclick="sair();">
                      <span class="icon" ><i class="fa-solid fa-right-from-bracket"></i></span>
                      <span class="title" >Sair</span>

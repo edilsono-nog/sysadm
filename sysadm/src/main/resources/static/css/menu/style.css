@@ -7,7 +7,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
-html,body{height: 100%;}
+html,body{
+	height: 100%;
+	overflow: auto;
+}
 
 #logado{
 	font-size: 15px;
@@ -16,23 +19,30 @@ html,body{height: 100%;}
 	font-family: cursive;
 }
 
+h3{
+	font-size: 15px;
+	/*font-family: cursive;*/
+}
+
 header{
     background-color: #73b4ff;
     padding: 0 2%;
     display: flex;
-    justify-content: space-between;
+    height: 10%;
+    position: fixed;
+    overflow: hidden;
+    top:0;
+    width: 100%;
+    z-Index:1;
 }
 
-/*.logo{
-    margin-top: 15px;
-}*/
-
 .logo{
-	margin-top: 15px;
+	margin-top: 8px;
 }
 
 .logo h3{
     cursor: pointer;
+    font-size: 30px;
 }
 
 .logo h3:hover{
@@ -77,14 +87,19 @@ header{
 .main{
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
+	height: 100%;
+	margin-top: 65px;
 }
 
 .sidebar{
     padding: 0 8px;
-    width: 20%;
+    width: 17%;
     background-color: white;
+    position: fixed;
+    /* overflow: hidden; */
+    /* top: 0; */
     height: 100%;
+    z-Index: 1;
 }
 
 .navigation{
@@ -100,7 +115,7 @@ header{
     left: 0;
     width: 100%;
     padding-left: 5px;
-    padding-top: 30px;
+    /*padding-top: 30px;*/
 }
 
 .navigation ul .list{
@@ -143,7 +158,7 @@ header{
     height: 60px;
     line-height: 40px;
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .navigation ul .list.active{
@@ -175,9 +190,10 @@ header{
 }
 
 .content{
-    width: 80%;
+    width: 83%;
     background-color: rgb(201, 201, 201);
     padding: 10px;
+    margin-left: 17%;
 }
 
 .titulo-secao{

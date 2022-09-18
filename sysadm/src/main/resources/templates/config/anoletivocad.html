@@ -1,41 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/alunos/styleCadastro.css">
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<link rel="stylesheet" href="css/stylealunoscad.css">
-				
-		<div id="cabecario" class="card">
-			<h1>Cadastro de Ano Letivo</h1> 
-		</div>
-		<div class="alert"></div>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Configurações</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-chalkboard-user"></i> / Cadastro de Ano Letivo</p>
+       </div>
+       
+       <div class="alert"></div>
 		<div class="card" id="conteudo">
+		<br>
 		<form action="" id="formCadastroAnoLetivo">
 			<br>
 			<div class="label-float" id="div_id">
                 <input type="text" id="id" placeholder="" name="id" required readonly="readonly"> 
                 <label id="labelId" for="id">ID: </label>
             </div>
-			<div class="label-float" id="div_nome">
+			<div class="label-float" id="div_nome" style="margin-bottom: 20px;">
                 <input type="text" id="anoletivo" placeholder="" name="anoletivo" required> 
                 <label id="labelAnoletivo" for="anoletivo">Ano Letivo: </label>
             </div>
             <br>
         </form>
-        <br>
 	</div>
 		
-		<div class="btn">
-			<button class="save" >Salvar</button>
-			<button class="cancel">Cancelar</button>
-		</div>
+	<div class="btn">
+		<button class="save" >Salvar</button>
+		<button class="cancel">Cancelar</button>
+	</div>
 		
 		
 		<script src="js/config/scriptanoletivocad.js"></script>
-
-	</section>
+</div><!--content-->
 </body>
 </html>

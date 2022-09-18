@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-	  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/config/styleanolist.css">
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
-		<link rel="stylesheet" href="css/config/styleanolist.css">
-				
-		<div id="cabecario" class="card">
-			<h1>Listagam de Anos Letivos</h1> 
-		</div>
-		
-		<div class="table">
-			<div class="table_header">
-				<p></p>
-				<div id="div_header">
-					<input id="localiza" placeholder="Localizar Ano Letivo"/>
-					<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add New</button>
-				</div>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+    <div class="titulo-secao">
+        <h2>Configurações</h2>
+        <div class="separator"></div>
+        <p><i class="fa-solid fa-chalkboard-user"></i> / Listagam de Anos Letivos</p>
+    </div>
+       
+	<div class="tables" >
+		<div class="table_header">
+			<p></p>
+			<div id="div_header">
+				<input id="localiza" placeholder="Localizar Ano Letivo"/>
+				<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add New</button>
 			</div>
 		</div>
+	</div>
 		
-		<div class="card" id="conteudo">
-			<table id="anoTable" class="table_section table table-hover table-sm">
+	<div class="card" id="conteudo">
+		<br>
+	<div style="overflow: auto;">
+		<table id="anoTable" class="table_section table table-hover table-sm">
 			  <thead class="thead-dark">
 			    <tr>
 			      <th scope="col" id="td_id">#</th>
@@ -36,12 +40,14 @@
 			  </tbody>
 			</table>
 		</div>
-		<div>
-			<ul class="pagination">	</ul>
-		</div>
+		<br>
+	</div>
 		
-		<script src="js/config/scriptanolist.js"></script>
-		<script src="js/config/table-paginationano.js"></script>
-	</section>
+	<ul class="pagination justify-content-center" style="margin:20px 0; cursor: pointer;"></ul>
+	
+	<script src="js/config/scriptanolist.js"></script>
+	<script src="js/config/table-paginationano.js"></script>
+	
+</div><!--content-->
 </body>
 </html>
