@@ -26,5 +26,14 @@ public class ConfiguracaoController {
 		return "config/escolascad";
 	}
 	
+	@GetMapping("configuracoes")
+	private String configuracoes() {
+		return "config/configuracoes";
+	}
+	
+	@GetMapping("configemail")
+	private String configemail() {
+		return "config/configemail";
+	}
 	
 }

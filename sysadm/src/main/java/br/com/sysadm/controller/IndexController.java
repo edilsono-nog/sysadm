@@ -55,4 +55,6 @@ public class IndexController {
 		return "responsaveis/ficha";
 	}
 	
+	/*Telas de Configurações*/
+	
 }

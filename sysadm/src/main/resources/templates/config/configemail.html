@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/config/styleConfigemail.css">
+</head>
+<body>
+<div class="content" layout:fragment="corpo">
+	<h1 id="logado"></h1>
+       <div class="titulo-secao">
+           <h2>Configurações</h2>
+           <div class="separator"></div>
+           <p><i class="fa-solid fa-gears"></i> / Outras Configurações</p>
+       </div>
+       
+		<div class="alert"></div>
+		<div class="card" id="conteudo">
+		<br>
+		<form action="" id="formCadastroAnoLetivo">
+			<br>
+			<div class="label-float" id="div_id" style="margin-bottom: 10px;">
+                <input type="text" id="id" placeholder="" name="id" required readonly="readonly"> 
+                <label id="labelId" for="id">ID: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="servidor" placeholder="" name="servidor" required> 
+                <label id="labelServidor" for="servidor">Servidor: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="email" placeholder="" name="email" required> 
+                <label id="labelEmail" for="email">E-mail: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="password" id="senha" placeholder="" name="senha" required> 
+                <label id="labelSenha" for="senha">Senha: </label>
+            </div>
+			<div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="auth" placeholder="" name="auth" required> 
+                <label id="labelauth" for="auth">Auth: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="host" placeholder="" name="host" required> 
+                <label id="labelhost" for="host">Host: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="port" placeholder="" name="port" required> 
+                <label id="labelPort" for="port">Port: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="factory_class" placeholder="" name="factory_class" required> 
+                <label id="labelFactory_Class" for="factory_class">Factory_Class: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="factory_port" placeholder="" name="factory_port" required> 
+                <label id="labelFactory_Port" for="factory_port">Factory_Port: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="starttls" placeholder="" name="starttls" required> 
+                <label id="labelStarttls" for="starttls">Starttls: </label>
+            </div>
+            <div class="label-float" id="div_nome" style="margin-bottom: 10px;">
+                <input type="text" id="trust" placeholder="" name="trust" required> 
+                <label id="labelTrust" for="trust">Trust: </label>
+            </div>
+            <br>
+            <br>
+        </form>
+	</div>
+		
+	<div class="btn">
+		<button class="save" >Salvar</button>
+		<button class="cancel">Cancelar</button>
+	</div>
+		
+		
+		<script src="js/config/scriptconfigemail.js"></script>
+</div><!--content-->
+</body>
+</html>
