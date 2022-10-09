@@ -37,7 +37,7 @@ public class Responsaveis implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_alunos")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_responsaveis")
 	private Long id;
 	private String tipo;
 	private String financeiro;
