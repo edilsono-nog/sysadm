@@ -10,8 +10,7 @@
 	</parent>
 	<groupId>br.com.sysadm</groupId>
 	<artifactId>sysadm</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<version>1.0</version>
 	<name>sysadm</name>
 	<description>Api de Administração</description>
 	<properties>
