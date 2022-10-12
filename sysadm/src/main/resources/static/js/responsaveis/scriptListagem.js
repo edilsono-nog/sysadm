@@ -283,7 +283,7 @@ function associar(id){
 			
 			msgSuccess(response);			
 			setTimeout(() => {
-					window.location.href='fichaaluno'
+					window.location.href='alunos_ficha'
 			},3000)
 		}
 		
