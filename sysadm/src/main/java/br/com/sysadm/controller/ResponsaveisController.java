@@ -49,13 +49,15 @@ public class ResponsaveisController {
 	
 	@PostMapping(value = "salvar")
 	 @ResponseBody
-	 public ResponseEntity<Alunos> salvar(@RequestParam(name = "idAluno") String idAluno, 
+	 public ResponseEntity<?> salvar(@RequestParam(name = "idAluno") String idAluno, 
 			 								@RequestBody Responsaveis responsaveis ){
 		
-		responsaveisService.salvar(responsaveis);
-		Long idresp = responsaveis.getId();
+		Responsaveis resp = responsaveisService.salvar(responsaveis);
+		Long idresp = resp.getId();
 		
-		if (String.valueOf(idresp) == "" || String.valueOf(idresp) == null) {
+		String verif = responsaveisRepository.verifica(Long.parseLong( idAluno ), idresp);
+		
+		if (verif == "" || verif == null) {
 			Alunos aluno = alunosRepository.findById(Long.parseLong( idAluno )).get();
 		
 			aluno.getResponsaveis().add(responsaveis);

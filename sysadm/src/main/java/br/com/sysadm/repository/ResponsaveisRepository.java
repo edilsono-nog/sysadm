@@ -29,6 +29,9 @@ public interface ResponsaveisRepository extends JpaRepository<Responsaveis, Long
 			+ "where b.responsavel_id = a.id and b.aluno_id = ?1 and a.financeiro = 'Sim'", nativeQuery = true)
 	Responsaveis pegaResp(long idAluno);
 
+	@Query(value= "select * from aluno_responsavel where aluno_id = ?1 and responsavel_id = ?2", nativeQuery = true)
+	String verifica(long parseLong, Long idresp);
+
 	
 
 

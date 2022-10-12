@@ -33,11 +33,11 @@ public class ResponsaveisService {
   	return pages;
 	}
 
-	public ResponseEntity<Responsaveis> salvar(Responsaveis responsaveis) {
+	public Responsaveis salvar(Responsaveis responsaveis) {
 		
 		Responsaveis newresponsavel = responsaveisRepository.save(responsaveis);
 		 
-		 return new ResponseEntity<Responsaveis>(newresponsavel, HttpStatus.OK);
+		 return newresponsavel;
 	}
 
 	public ResponseEntity<Responsaveis> pegaResponsavelId(Long iduser) {
