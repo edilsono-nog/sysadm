@@ -32,6 +32,9 @@ public interface ResponsaveisRepository extends JpaRepository<Responsaveis, Long
 	@Query(value= "select * from aluno_responsavel where aluno_id = ?1 and responsavel_id = ?2", nativeQuery = true)
 	String verifica(long parseLong, Long idresp);
 
+	@Query(value= "select * from aluno_responsavel where aluno_id = ?1 and responsavel_id = ?2", nativeQuery = true)
+	Boolean verificar(long parseLong, Long idresp);
+
 	
 
 

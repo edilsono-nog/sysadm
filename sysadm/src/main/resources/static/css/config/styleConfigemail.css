@@ -296,12 +296,21 @@ input {
 .save{
 	padding: 10px 20px;
 	color: #ffffff;
-	background-color: #0298cf;
+	background-color: #008000;
 	border-radius: 6px;
 	cursor: pointer;
 }
 
-.cancel{
+.delete{
+	padding: 10px 20px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.fechar{
 	padding: 10px 20px;
 	color: #ffffff;
 	background-color: #ef2131;
