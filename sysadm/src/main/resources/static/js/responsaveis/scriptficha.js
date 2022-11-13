@@ -107,7 +107,7 @@ function pegaAlunos(id) {
 					$('#alunosTable > tbody').append(					
 					'<tr>'+
 					'<td>'+  response[i][10] + '</td>'+
-					'<td><button class="btn" onclick=fichaAluno('+response[i][0]+') title="Dados do Aluno"><i class="fa-solid fa-clipboard"></i></button> </td>'+
+					'<td><button class="btn" onclick=fichaAluno('+response[i][0]+') title="Dados do Aluno"><i class="bi bi-pencil-square"></i></button> </td>'+
 					'</tr>');
 				}			
 		}

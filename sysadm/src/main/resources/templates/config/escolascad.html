@@ -2,43 +2,60 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/alunos/styleCadastro.css">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/alunos/styleCadastro.css">
 </head>
 <body>
-<div class="content" layout:fragment="corpo">
-	<h1 id="logado"></h1>
-       <div class="titulo-secao">
-           <h2>Configurações</h2>
-           <div class="separator"></div>
-           <p><i class="fa-solid fa-chalkboard-user"></i> / Cadastro de Escola</p>
-       </div>
-       
-       <div class="alert"></div>
-		<div class="card" id="conteudo">
-		<br>
-		<form action="" id="formCadastroEscolas">
-			<br>
-			<div class="label-float" id="div_id">
-                <input type="text" id="id" placeholder="" name="id" required readonly="readonly"> 
-                <label id="labelId" for="id">ID: </label>
-            </div>
-			<div class="label-float" id="div_nome" style="margin-bottom: 20px;">
-                <input type="text" id="escola" placeholder="" name="escola" required> 
-                <label id="labelEscola" for="escola">Nome da Escola: </label>
-            </div>
-            <br>
-        </form>
-	</div>
-		
-	<div class="btn">
-		<button class="save" >Salvar</button>
-		<button class="cancel">Cancelar</button>
-	</div>
-		
-		
-	<script src="js/config/scriptescolascad.js"></script>
-</div><!--content-->
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="titulo-secao">
+				<h2>Configurações</h2>
+				<div class="separator"></div>
+				<p>
+					<i class="bi bi-building"></i> / Cadastro de Escola
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="alert"></div>
+			<div class="card" id="conteudo">
+				<br>
+				<form action="" id="formCadastroAnoLetivo">
+					<br>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 14%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+							<input type="text" class="form-control" id="id" name="id"
+								aria-label="Sizing input" readonly="readonly"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 60%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Nome da Escola: </span>
+							<input type="text" class="form-control" id="escola" name="escola"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<br>
+				</form>
+			</div>
+
+			<div class="btn" style="margin: 20px 0;">
+				<button class="save btn btn-primary">Salvar</button>
+				<button class="cancel btn btn-danger">Cancelar</button>
+			</div>
+		</div>
+		<script src="js/config/scriptescolascad.js"></script>
+	</main>
 </body>
 </html>
 

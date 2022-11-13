@@ -27,7 +27,7 @@ $(document).ready(function() {
 				 let anoRow = '<tr>' +
 	      	  						'<td >' + ano.id + '</td>' +
 			                		'<td id="td_nome">' + ano.ano +
-			                		'<td> <button onclick=edit('+ano.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
+			                		'<td> <button onclick=edit('+ano.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
 			                   '</tr>';
 	            $('#anoTable tbody').append(anoRow);
 	          });
@@ -61,7 +61,7 @@ function buildPagination(response) {
 		var first = '';
 		var prev = '';
 		if (pageNumber > 0) {
-			if(pageNumber !== 0) {
+			if(pageNumber != 0) {
 				first = '<li class="page-item"><a class="page-link">« First</a></li>';
 			}
 			prev = '<li class="page-item"><a class="page-link">‹ Prev</a></li>';
@@ -74,7 +74,7 @@ function buildPagination(response) {
 		var next = '';
 		var last = '';
 		if (pageNumber < totalPages) {
-			if(pageNumber !== totalPages - 1) {
+			if(pageNumber != totalPages - 1) {
 				next = '<li class="page-item"><a class="page-link">Next ›</a></li>';				
 				last = '<li class="page-item"><a class="page-link">Last »</a></li>';
 			}
@@ -108,18 +108,18 @@ function buildPagination(response) {
 	//	console.log('val: ' + val);
 
 		// click on the NEXT tag
-		if(val.toUpperCase() === "« FIRST") {
+		if(val.toUpperCase() == "« FIRST") {
 			let currentActive = $("li.active");
 			fetchNotes(0);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
-		} else if(val.toUpperCase() === "LAST »") {
+		} else if(val.toUpperCase() == "LAST »") {
 			fetchNotes(totalPages - 1);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
-		} else if(val.toUpperCase() === "NEXT ›") {
+		} else if(val.toUpperCase() == "NEXT ›") {
 	  		let activeValue = parseInt($("ul.pagination li.active").text());
 	  		if(activeValue < totalPages){
 	  			let currentActive = $("li.active");
@@ -130,7 +130,7 @@ function buildPagination(response) {
 	  			// add .active to next-pagination li
 	  			currentActive.next().addClass("active");
 	  		}
-	  	} else if(val.toUpperCase() === "‹ PREV") {
+	  	} else if(val.toUpperCase() == "‹ PREV") {
 	  		let activeValue = parseInt($("ul.pagination li.active").text());
 	  		if(activeValue > 1) {
 	  			// get the previous page
@@ -150,12 +150,7 @@ function buildPagination(response) {
 			//$(this).addClass("active");
 	  	}
     });
-	(function(){
-	    	// get first-page at initial time
-	    	fetchNotes(0);
-	    })();
-
-});
+});    
 
 function sair(){
     localStorage.removeItem('token')

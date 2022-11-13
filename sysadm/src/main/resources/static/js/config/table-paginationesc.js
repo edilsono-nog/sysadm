@@ -27,7 +27,7 @@ $(document).ready(function() {
 				 let anoRow = '<tr>' +
 	      	  						'<td >' + escola.id + '</td>' +
 			                		'<td id="td_nome">' + escola.escola +
-			                		'<td> <button onclick=edit('+escola.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
+			                		'<td> <button onclick=edit('+escola.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
 			                   '</tr>';
 	            $('#escolasTable tbody').append(anoRow);
 	          });
@@ -150,11 +150,6 @@ function buildPagination(response) {
 			//$(this).addClass("active");
 	  	}
     });
-	(function(){
-	    	// get first-page at initial time
-	    	fetchNotes(0);
-	    })();
-
 });
 
 function sair(){

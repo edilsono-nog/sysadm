@@ -87,8 +87,8 @@ function autFicha(id) {
 					'<td>'+  response.matricula[i].escolas + '</td>'+
 					'<td>'+  response.matricula[i].turma + '</td>'+
 					'<td>'+  response.matricula[i].turno + '</td>'+
-					'<td><button class="btn" onclick=edit('+response.matricula[i].id+') title="Edita Matricula"><i class="fa-solid fa-pen-to-square"></i></button>'+
-					'<button class="btn" onclick="openModalMensalidade('+response.matricula[i].anoletivo+')" title="Mensalidades"><i class="fa-solid fa-sack-dollar"></i></button></td>'+
+					'<td><button class="btn" onclick=edit('+response.matricula[i].id+') title="Edita Matricula"><i class="bi bi-pencil-square"></i></button>'+
+					'<button class="btn" onclick="openModalMensalidade('+response.matricula[i].anoletivo+')" title="Mensalidades"><i class="bi bi-cash-coin"></i></button></td>'+
 					'</tr>');
 			}
 			
@@ -103,7 +103,7 @@ function autFicha(id) {
 					'<td>'+  response.responsaveis[i].celular + '</td>'+
 					'<td>'+  response.responsaveis[i].tipo + '</td>'+
 					'<td><!--<button class="btn" onclick=edit('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-pen-to-square"></i></button>-->'+
-						'<button class="btn" onclick=ficha('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-clipboard"></i></button> </td>' +
+						'<button class="btn" onclick=ficha('+response.responsaveis[i].id+') title="Dados Responsável"><i class="bi bi-person-lines-fill"></i></button> </td>' +
 					'</tr>');
 			}
 		}
@@ -443,8 +443,6 @@ function salvaMatricula() {
 		alert("Erro ao cadastrar matricula: " + xhr.responseText);
 	});
 }
-
-
 
 function pegaMatricula (id){
 	

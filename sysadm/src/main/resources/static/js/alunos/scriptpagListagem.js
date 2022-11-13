@@ -32,8 +32,8 @@ $(document).ready(function() {
 			                		'<td>' + aluno.dt_nasc + '</td>' +
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +
-			                		'<td> <button onclick=edit('+aluno.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
-			      						 '<button onclick=ficha('+aluno.id+') title="Ficha"><i class="fa-solid fa-clipboard"></i></button> </td>' +
+			                		'<td> <button class="btn btn-primary" onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
+			      						 '<button class="btn btn-danger" onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });

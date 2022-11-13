@@ -36,8 +36,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		.antMatchers("/responsaveis/**", "/responsavel_listagem", "/responsavel_cadastro", "/responsavel_ficha").permitAll()
 		.antMatchers("/config/**", "/anoletivo", "/anoletivocad", "/escolaslist", "/escolascad", "/configuracoes").permitAll()
 		.antMatchers("/configemail").permitAll()
-		.antMatchers("/css/**","/js/**", "/imagem/**").permitAll()
-		.antMatchers("/assets/css/**","/assets/js/**", "/assets/imagem/**").permitAll()
+		.antMatchers("/css/**","/js/**", "/img/**").permitAll()
 		
 		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 		

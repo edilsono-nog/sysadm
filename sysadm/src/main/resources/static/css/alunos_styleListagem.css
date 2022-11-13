@@ -39,7 +39,6 @@ body{
     margin-bottom: 5px;
 }
 
-
 #div_header{
 	width: 76%;
 	margin-left: 40%;
@@ -59,16 +58,6 @@ body{
 	border-radius: 10px;
 }
 
-button{
-	outline: none;
-	border: none;
-	border-radius: 6px;
-	cursor: pointer;
-	padding: 10px;
-	color: #ffffff;
-	margin-left: 5px;
-}
-
 .add_new{
 	padding: 8px 15px;
 	color: #ffffff;
@@ -77,17 +66,9 @@ button{
 	border-color: #0298cf;
 	cursor: pointer;
 }
-input{
-	padding: 10px 20px;
-	margin: 0 10px;
-	outline: none;
-	border: 1px solid #0298cf;
-	border-radius: 6px;
-	color: #0298cf;
-}
 
 #status {
-	width: 25%;
+	width: 15%;
 	-webkit-appearance: none;
     /* Remove estilo padr�o do Chrome */
     -moz-appearance: none;
@@ -108,6 +89,15 @@ input{
     font-family:Verdana, Trebuchet,sans-serif;
 }
 
+input{
+	padding: 10px 20px;
+	margin: 0 10px;
+	outline: none;
+	border: 1px solid #0298cf;
+	border-radius: 6px;
+	color: #0298cf;
+}
+
 #conteudo{
 	margin-top: 10px;
 	width: 98%;
@@ -121,8 +111,15 @@ input{
 table{
 	width: 100%;
 	table-layout: fixed;
-	min-width: 1000px;
+	min-width: 994px;
 	border-collapse: collapse;
+}
+
+th, td{
+	border-bottom: 1px solid #dddddd;
+	padding: 2px 7px;
+	word-break: break-all;
+	text-align: center;
 }
 
 thead th{
@@ -133,23 +130,18 @@ thead th{
 	font-size: 15�x;
 }
 
-th, td{
-	border-bottom: 1px solid #dddddd;
-	padding: 2px 7px;
-	word-break: break-all;
-	text-align: center;
-}
-
 td button:nth-child(1){
 	background-color: #0298cf;
+	border-color: #0298cf;
 }
 
 td button:nth-child(2){
 	background-color: #f80000;
+	border-color: #f80000;
 }
 
 #td_id{
-	width: 100px;
+	width: 70px;
 }
 
 tr:hover td {
@@ -179,4 +171,13 @@ tr:hover td {
 .page-item:hover{
     background-color:#fff;
     color:black;
+}
+
+#td_nome{
+	text-align: left;
+	width: 250px;
+}
+#td_nasc{
+	text-align: left;
+	width: 60px;
 }

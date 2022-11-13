@@ -34,7 +34,7 @@ $(document).ready(function() {
 			                		'<p style="font-size: 11px; margin-top: 5px;" >' + responsavel.email+'</p></td>' +
 			                		'<td>' + responsavel.dt_nasc + '</td>' +
 			                		'<td>' + responsavel.celular + '</td>' +
-			                		'<td> <button id="btn" onclick=associar('+responsavel.id+') title="Associar"><i class="fa-solid fa-hand-holding-medical"></i></button></td>' +
+			                		'<td> <button id="btn" onclick=associar('+responsavel.id+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
 			                   '</tr>';
 	            $('#responsaveisTable tbody').append(responsavelRow);
 	          });

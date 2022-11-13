@@ -3,7 +3,12 @@ let userLogado = JSON.parse(localStorage.getItem("userLogado"))
 let logado = document.querySelector('#logado')
 
 let localiza = document.querySelector('#localiza')
+
 let totalPages = 1;
+
+fetchNotes(0);
+
+let tipo = '';
 
 if (userLogado != null) {
     logado.innerHTML = userLogado.name
@@ -40,18 +45,17 @@ function edit(id){
 
 localiza.addEventListener('keyup', ()=>{
 	if(localiza.value != ""){
-		fetchAnoLetivo(0)
+		fetchEscolas(0)
 	}else {
 		fetchNotes(0);
 	}
 	
 })
 
-function fetchAnoLetivo(startPage) {
-		//console.log('startPage: ' +startPage);
-		/**
-		 * get data from Backend's REST API
-		 */
+function fetchEscolas(startPage) {
+
+		tipo = 'escola';		
+
 	    $.ajax({
 	        type : "GET",
 	        url : "escolas/pesqEscola?sort=id",
@@ -68,15 +72,15 @@ function fetchAnoLetivo(startPage) {
 	          $('#escolasTable tbody').empty();
 	          // add table rows
 	          $.each(response.content, (i, escola) => {
-				 let anoRow = '<tr>' +
+				 let escolaRow = '<tr>' +
 	      	  						'<td >' + escola.id + '</td>' +
 			                		'<td id="td_nome">' + escola.escola +
-			                		'<td> <button onclick=edit('+escola.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
+			                		'<td> <button onclick=edit('+escola.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
 			                   '</tr>';
-	            $('#escolasTable tbody').append(anoRow);
+	            $('#escolasTable tbody').append(escolaRow);
 	          });
 
-	          if ($('ul.pagination li').length - 2 != response.totalPages){
+	          if ($('ul.pagination li').length - 1 != response.totalPages){
 	          	  // build pagination list at the first time loading
 	        	  $('ul.pagination').empty();
 	              buildPagination(response);
@@ -109,15 +113,15 @@ function fetchNotes(startPage) {
 	          $('#escolasTable tbody').empty();
 	          // add table rows
 	          $.each(response.content, (i, escola) => {
-				 let anoRow = '<tr>' +
+				 let escolaRow = '<tr>' +
 	      	  						'<td >' + escola.id + '</td>' +
 			                		'<td id="td_nome">' + escola.escola +
-			                		'<td> <button onclick=edit('+escola.id+') title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>'+
+			                		'<td> <button onclick=edit('+escola.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
 			                   '</tr>';
-	            $('#escolasTable tbody').append(anoRow);
+	            $('#escolasTable tbody').append(escolaRow);
 	          });
 
-	          if ($('ul.pagination li').length - 2 != response.totalPages){
+	          if ($('ul.pagination li').length - 1 != response.totalPages){
 	          	  // build pagination list at the first time loading
 	        	  $('ul.pagination').empty();
 	              buildPagination(response);
@@ -190,12 +194,20 @@ function buildPagination(response) {
 		// click on the NEXT tag
 		if(val.toUpperCase() === "« FIRST") {
 			let currentActive = $("li.active");
-			fetchNotes(0);
+			if (tipo == 'escola'){
+				fetchEscolas(0);
+			}else {
+				fetchNotes(0);
+			}
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
 		} else if(val.toUpperCase() === "LAST »") {
-			fetchNotes(totalPages - 1);
+			if (tipo == 'escola'){
+				fetchEscolas(totalPages - 1);
+			}else {
+				fetchNotes(totalPages - 1);
+			}
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
@@ -204,7 +216,11 @@ function buildPagination(response) {
 	  		if(activeValue < totalPages){
 	  			let currentActive = $("li.active");
 				startPage = activeValue;
-				fetchNotes(startPage);
+				if (tipo == 'escola'){
+					fetchEscolas(startPage);
+				}else {
+					fetchNotes(startPage);
+				}
 	  			// remove .active class for the old li tag
 	  			$("li.active").removeClass("active");
 	  			// add .active to next-pagination li
@@ -215,7 +231,11 @@ function buildPagination(response) {
 	  		if(activeValue > 1) {
 	  			// get the previous page
 				startPage = activeValue - 2;
-				fetchNotes(startPage);
+				if (tipo == 'escola'){
+					fetchEscolas(startPage);
+				}else {
+					fetchNotes(startPage);
+				}
 	  			let currentActive = $("li.active");
 	  			currentActive.removeClass("active");
 	  			// add .active to previous-pagination li
@@ -223,7 +243,11 @@ function buildPagination(response) {
 	  		}
 	  	} else {
 			startPage = parseInt(val - 1);
-			fetchNotes(startPage);
+			if (tipo == 'escola'){
+					fetchEscolas(startPage);
+				}else {
+					fetchNotes(startPage);
+				}
 	  		// add focus to the li tag
 	  		$("li.active").removeClass("active");
 	  		$(this).parent().addClass("active");
