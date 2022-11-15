@@ -23,6 +23,11 @@ public class IndexController {
 		return "dashboard";
 	}
 	
+	@GetMapping("recuperacode")
+	private String recuperacode() {
+		return "confrecupera";
+	}
+	
 	/*Telas de Alunos*/
 	@GetMapping("alunos_listagem")
 	private String listacad() {

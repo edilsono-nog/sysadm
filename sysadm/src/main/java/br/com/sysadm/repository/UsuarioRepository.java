@@ -24,4 +24,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Query(value = "select u from Usuario u where upper(trim(u.login)) like %?1%")
 	List<Usuario> buscarPorNome (String name);
 
+	@Query(value = "select u from Usuario u where u.login = ?1")
+	Usuario buscarUser(String user);
+
+	@Query(value = "Select u from Usuario u where u.login = ?1 and u.code = ?2")
+	Usuario verifcodigo(String user, String codigo);
+
 }

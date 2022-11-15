@@ -97,6 +97,25 @@ form.sign-in-form {
   color: #333;
 }
 
+.rec{
+	margin-top: 10px;
+}
+p span a {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #6a5c5c;
+  display: contents;
+}
+
+p i{
+  color: #6a5c5c;
+  font-size: 1.1rem;
+}
+
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
@@ -132,7 +151,7 @@ form.sign-in-form {
   border-color: #4481eb;
 }
 
-.btn {
+.btn, .btn-verif, .btn-alt {
   width: 150px;
   background-color: #5995fd;
   border: none;
@@ -147,9 +166,45 @@ form.sign-in-form {
   transition: 0.5s;
 }
 
+.btn i, .btn-verif i, .btn-alt i{
+	color: #fff;
+	margin-right: 10px;
+    height: 14px;
+    width: 14px;
+    font-size: 1rem;
+}
+
+.btn-can{
+	width: 150px;
+    background-color: #cf4343;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn-can i{
+	color: #fff;
+	margin-right: 10px;
+    height: 14px;
+    width: 14px;
+    font-size: 1rem;
+}
+
 .btn:hover {
   background-color: #4d84e2;
 }
+
+.btn-can:hover {
+  background-color: #ff0000;
+}
+
 .panels-container {
   position: absolute;
   height: 100%;
@@ -444,4 +499,60 @@ form.sign-in-form {
   right: 20px;
   cursor: pointer;
   color: #272262;
+}
+
+.messageSucesso {
+    padding: 19px 60px;
+    position: fixed;
+    top: 65px;
+    right: 20px;
+    background-color: #008040;
+    border-radius: 3px;
+    color: #fff;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    z-index: 1;
+}
+
+.messageError {
+    padding: 19px 60px;
+    position: fixed;
+    top: 65px;
+    right: 20px;
+    background-color: #ff0000;
+    border-radius: 3px;
+    color: #fff;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    z-index: 1;
+}
+
+@keyframes slidein {
+    0%{
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.messageSucesso::before,
+.messageError::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: time 3s forwards;
+}
+
+@keyframes time {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
 }

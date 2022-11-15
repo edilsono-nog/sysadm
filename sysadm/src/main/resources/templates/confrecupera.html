@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://kit.fontawesome.com/64d58efce2.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="shortcut icon" href="img/adm.png" type="image/x-icon" />
+<link rel="stylesheet" href="css/stylelogin.css" />
+<title>Login</title>
+</head>
+<body>
+	<div class="container">
+		<div id="conf" style="display: block;">
+			<div class="forms-container">
+				<div class="alert"></div>
+				<div class="signin-signup">
+					<form class="sign-in-form" id="form">
+						<h2 class="title">Confirmação de Login</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i> <input type="text" id="username"
+								name="username" placeholder="Username" />
+						</div>
+						<div>
+							<button class="btn solid">
+								<i class="fa-solid fa-right-to-bracket"></i>Envia Código
+							</button>
+							<button class="btn-can solid">
+								<i class="fa-solid fa-xmark"></i>Cancelar
+							</button>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="verif" style="display: none;">
+			<div class="forms-container">
+				<div class="alert"></div>
+				<div class="signin-signup">
+					<form class="sign-in-form" id="form-verif">
+						<h2 class="title">Confirmação de Codigo</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i> <input type="text" id="codigo"
+								name="codigo" placeholder="Digite o Codigo " />
+						</div>
+						<button class="btn-verif solid">
+							<i class="fa-solid fa-right-to-bracket"></i>Verificar
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="alt" style="display: none;">
+			<div class="forms-container">
+				<div class="alert"></div>
+				<div class="signin-signup">
+					<form class="sign-in-form" id="form-alt">
+						<h2 class="title">Altera a Senha</h2>
+						<div class="input-field">
+							<i class="fas fa-lock"></i> <input type="password"
+								id="newPassword" name="newPassword" placeholder="Novo Password" />
+							<i class="fa fa-eye" aria-hidden="true"></i>
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i> <input type="password"
+								id="confPassword" name="confPassword"
+								placeholder="Confirma o Password" /> <i class="fa fa-eye fa1"
+								aria-hidden="true"></i>
+						</div>
+						<button class="btn-alt solid">
+							<i class="fa-solid fa-right-to-bracket"></i>Altera
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="panels-container">
+			<div class="panel left-panel">
+				<div class="content"></div>
+				<img src="img/register.svg" class="image" alt="" />
+			</div>
+		</div>
+	</div>
+
+	<script src="js/apprecupera.js"></script>
+</body>
+</html>
