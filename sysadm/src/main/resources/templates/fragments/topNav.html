@@ -3,6 +3,12 @@
 	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
+<script src="https://kit.fontawesome.com/64d58efce2.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,14 +24,15 @@
 				<span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
 			</button>
 			<!-- offcanvas trigger -->
-			<a class="navbar-brand fw-bold text-uppercase me-auto top" href="#" >
-				<!-- <img src="img/adm.png" class="log"> -->
-				SysAdm - Gestão Administrativa </a>
-			
+			<a class="navbar-brand fw-bold text-uppercase me-auto top" href="#">
+				<!-- <img src="img/adm.png" class="log"> --> SysAdm - Gestão
+				Administrativa
+			</a>
+
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-				 <form class="d-flex ms-auto">
-				<!-- 	<div class="input-group my-3 my-lg-0">
+				<form class="d-flex ms-auto">
+					<!-- 	<div class="input-group my-3 my-lg-0">
 						<input type="text" class="form-control"
 							placeholder="Recipient's username"
 							aria-label="Recipient's username"
@@ -45,13 +52,48 @@
 						<ul class="dropdown-menu dropdown-menu-end" id="opt"
 							aria-labelledby="navbarDropdown">
 							<!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
-							<li><a class="dropdown-item" href="#" style="cursor: pointer;">Alterar Senha</a></li>
+							<li><a class="dropdown-item" id="altSenha" href="#"
+								style="cursor: pointer;">Alterar Senha</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" onclick="sair();" style="cursor: pointer;">Sair</a></li>
+							<li><a class="dropdown-item" onclick="sair();"
+								style="cursor: pointer;">Sair</a></li>
 						</ul></li>
 				</ul>
 			</div>
 		</div>
+
+		<!-- Modal Altera senha -->
+		<div id="fade" class="hide"></div>
+		<div class="alert"></div>
+		<div id="modal" class="hide">
+			<div class="modal-header">
+				<h2>Altera Senha</h2>
+
+			</div>
+
+			<div class="modal-body">
+				<form name="form-alttela" id="form-alttela">
+					<div class="input-field">
+							<i class="fas fa-lock"></i> <input type="password"
+								id="newPassword" name="newPassword" placeholder="Novo Password" />
+							<i class="fa fa-eye" aria-hidden="true"></i>
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i> <input type="password"
+								id="confPassword" name="confPassword"
+								placeholder="Confirma o Password" /> <i class="fa fa-eye fa1"
+								aria-hidden="true"></i>
+						</div>
+					<div id="salMatricula">
+						<button class="btn solid" id="alterar">Salvar</button>
+						<button class="btn-can solid" id="close-modal">Cancelar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<script src="js/config/scriptNav.js"></script>
+
 	</nav>
 	<!--NavBar-->
 

@@ -140,4 +140,24 @@ public class UsuarioController {
 		
 		return new ResponseEntity<String>("Senha atualizada com sucesso...", HttpStatus.OK);
 	}
+	
+	@PutMapping(value = "autsenhatela")
+	@ResponseBody
+	public ResponseEntity<String> autsenhatela(@RequestParam(name = "user") String user,
+			 @RequestParam(name = "password") String password) {
+	
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String result = encoder.encode(password);
+		
+		Usuario usuario = usuarioRepository.pegauser(user);
+		
+		usuario.setCode("");
+		usuario.setSenha(result);
+		
+		
+		usuarioRepository.save(usuario);
+		
+		
+		return new ResponseEntity<String>("Senha atualizada com sucesso...", HttpStatus.OK);
+	}
 }

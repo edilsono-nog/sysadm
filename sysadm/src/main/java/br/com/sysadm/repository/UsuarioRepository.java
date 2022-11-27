@@ -30,4 +30,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	@Query(value = "Select u from Usuario u where u.login = ?1 and u.code = ?2")
 	Usuario verifcodigo(String user, String codigo);
 
+	@Query(value = "Select u from Usuario u where u.login = ?1")
+	Usuario pegauser(String user);
+
 }
