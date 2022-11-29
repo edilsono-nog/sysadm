@@ -46,6 +46,10 @@ button {
   }
 }
 
+#navbarSupportedContent{
+  	display: contents;
+  }
+
 @media (max-width: 1100px){
 	.top{
   	font-size: 10px !important;

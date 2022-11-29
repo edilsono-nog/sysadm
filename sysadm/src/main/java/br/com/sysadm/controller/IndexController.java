@@ -62,4 +62,44 @@ public class IndexController {
 	
 	/*Telas de Configurações*/
 	
+	@GetMapping("anoletivo")
+	private String anoletivo() {
+		return "config/anoletivo";
+	}
+	
+	@GetMapping("anoletivocad")
+	private String anoletivocad() {
+		return "config/anoletivocad";
+	}
+	
+	@GetMapping("escolaslist")
+	private String escolaslist() {
+		return "config/escolaslist";
+	}
+	
+	@GetMapping("escolascad")
+	private String escolascad() {
+		return "config/escolascad";
+	}
+	
+	@GetMapping("configuracoes")
+	private String configuracoes() {
+		return "config/configuracoes";
+	}
+	
+	@GetMapping("configemail")
+	private String configemail() {
+		return "config/configemail";
+	}
+	
+	@GetMapping("usuarios")
+	private String usuarios() {
+		return "config/usuariolist";
+	}
+	
+	@GetMapping("usuarioscad")
+	private String usuarioscad() {
+		return "config/usuariocad";
+	}
+	
 }

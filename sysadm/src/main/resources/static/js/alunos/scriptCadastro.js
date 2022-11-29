@@ -1,11 +1,11 @@
-let userLogado = JSON.parse(localStorage.getItem("userLogado"))
+let userLogados = JSON.parse(localStorage.getItem("userLogado"))
 
 let idEdit = JSON.parse(localStorage.getItem("idEdit"))
 
 let logado = document.querySelector('#logado')
 
-if (userLogado != null) {
-	logado.innerHTML = userLogado.name
+if (userLogados != null) {
+	logado.innerHTML = userLogados.name
 }
 
 if (idEdit != null) {

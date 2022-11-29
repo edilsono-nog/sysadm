@@ -1,4 +1,4 @@
-let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
+let userLogados = JSON.parse(localStorage.getItem("userLogado")) 
 
 let logado = document.querySelector('#logado')
 
@@ -6,8 +6,8 @@ let status = document.querySelector('#status')
 let $select = document.querySelector('#status');
 let localiza = document.querySelector('#localiza')
 
-if (userLogado != null) {
-    logado.innerHTML = userLogado.name
+if (userLogados != null) {
+    logado.innerHTML = userLogados.name
 }
 
 let totalPages = 1;
@@ -82,8 +82,8 @@ function fetchAlunos(startPage) {
 			                		'<td>' + aluno.dt_nasc + '</td>' +
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +
-			                		'<td> <button class="btn btn-primary" onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
-			      						 '<button class="btn btn-danger" onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
+			                		'<td> <button  onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
+			      						 '<button  onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });
@@ -136,8 +136,8 @@ function fetchNotes(startPage) {
 			                		'<td>' + aluno.dt_nasc + '</td>' +
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +
-			                		'<td> <button class="btn btn-primary" onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
-			      						 '<button class="btn btn-danger" onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
+			                		'<td> <button  onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
+			      						 '<button  onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });

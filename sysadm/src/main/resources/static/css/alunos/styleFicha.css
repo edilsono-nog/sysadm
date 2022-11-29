@@ -192,7 +192,7 @@ button:hover,
 	background-color: #888;
 }
 
-#fade,
+#fades,
 #fadeMensalidade{
 	position: fixed;
 	top: 0;
@@ -203,7 +203,7 @@ button:hover,
 	z-index: 5;
 }
 
-#modal,
+#modals,
 #modalMensalidade{
 	position: fixed;
 	left: 50%;
@@ -217,8 +217,8 @@ button:hover,
 	z-index: 10;
 }
 
-#fade,
-#modal,
+#fades,
+#modals,
 #fadeMensalidade,
 #modalMensalidade {
   transition: 0.5s;
@@ -226,7 +226,7 @@ button:hover,
   pointer-events: all;
 }
 
-.modal-header,
+.modals-header,
 .modalMensalidade-header{
 	display: flex;
 	justify-content: space-between;
@@ -236,15 +236,15 @@ button:hover,
 	padding-bottom: 1rem;
 }
 
-#modal.hide,
-#fade.hide,
+#modals.hide,
+#fades.hide,
 #modalMensalidade.hide,
 #fadeMensalidade.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-#modal.hide,
+#modals.hide,
 #modalMensalidade.hide {
   top: 0;
 }
@@ -304,7 +304,6 @@ selectEscola{
 .label-float{
     position: relative;
     padding-top: 13px;
-    margin-top: 2%;
     margin-bottom: 2%;
     display: inline-block;
     width: 49%;
@@ -332,7 +331,7 @@ selectEscola{
 }
 
 #salMatricula{
-	margin-top: 20px;
+	margin-top: -46px;
 }
 
 #labelId{
@@ -429,6 +428,7 @@ td button:nth-child(2){
 #excluirMensalidade{
 	margin-left: 80%;
 	background-color: red;
+	margin-top: 10px;
 }
 
 tr td{

@@ -1,41 +1,38 @@
 $(document).ready(function() {
 	
-		
 	let totalPages = 1;
 	
 	function fetchNotes(startPage) {
 		
-		//console.log('startPage: ' +startPage);
-		/**
-		 * get data from Backend's REST API
-		 */
 	    $.ajax({
 	        type : "GET",
-	        url : "aluno/listatodos?sort=id&",
+	        url : "usuario/listatodos?sort=id&",
 	        data: { 
 				page: startPage, 
-				size: 5, 
-				status: $select.value  
+				size: 5  
 			},
 	        timeout: 0,
 		    headers: {
 		    Authorization: localStorage.getItem("token")
 		 	 },
 	        success: function(response){
-	          $('#alunoTable tbody').empty();
+			console.log(response)
+	          $('#usuariosTable tbody').empty();
 	          // add table rows
-	          $.each(response.content, (i, aluno) => {
-				 let alunoRow = '<tr>' +
-	      	  						'<td >' + aluno.id + '</td>' +
-			                		'<td id="td_nome">' + aluno.nome + 
-			                		'<p style="font-size: 11px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
-			                		'<td>' + aluno.dt_nasc + '</td>' +
-			                		'<td>' + aluno.celular + '</td>' +
-			                		'<td>' + aluno.status + '</td>' +
-			                		'<td> <button  onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
-			      						 '<button  onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
+	          $.each(response.content, (i, user) => {
+				for (var i = 0; i < user.authorities.length; i++) {
+							var descricao = user.authorities[i].descricao;
+				}
+				 let userRow = '<tr>' +
+	      	  						'<td >' + user.id + '</td>' +
+			                		'<td id="td_nome">' + user.nome + 
+			                		'<p style="font-size: 11px; margin-top: 5px;" >' + user.email+'</p></td>'+
+			                		'<td >' + user.cpf + '</td>' +
+			                		'<td >' + descricao + '</td>' +
+			                		'<td> <button onclick=edit('+user.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
+			                			  '<!--<button  onclick=ficha('+user.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
 			                   '</tr>';
-	            $('#alunoTable tbody').append(alunoRow);
+	            $('#usuariosTable tbody').append(userRow);
 	          });
 
 	          if ($('ul.pagination li').length - 2 != response.totalPages){
@@ -67,7 +64,7 @@ function buildPagination(response) {
 		var first = '';
 		var prev = '';
 		if (pageNumber > 0) {
-			if(pageNumber != 0) {
+			if(pageNumber !== 0) {
 				first = '<li class="page-item"><a class="page-link">« First</a></li>';
 			}
 			prev = '<li class="page-item"><a class="page-link">‹ Prev</a></li>';
@@ -80,7 +77,7 @@ function buildPagination(response) {
 		var next = '';
 		var last = '';
 		if (pageNumber < totalPages) {
-			if(pageNumber != totalPages - 1) {
+			if(pageNumber !== totalPages - 1) {
 				next = '<li class="page-item"><a class="page-link">Next ›</a></li>';				
 				last = '<li class="page-item"><a class="page-link">Last »</a></li>';
 			}
@@ -114,18 +111,18 @@ function buildPagination(response) {
 	//	console.log('val: ' + val);
 
 		// click on the NEXT tag
-		if(val.toUpperCase() == "« FIRST") {
+		if(val.toUpperCase() === "« FIRST") {
 			let currentActive = $("li.active");
 			fetchNotes(0);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
-		} else if(val.toUpperCase() == "LAST »") {
+		} else if(val.toUpperCase() === "LAST »") {
 			fetchNotes(totalPages - 1);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
-		} else if(val.toUpperCase() == "NEXT ›") {
+		} else if(val.toUpperCase() === "NEXT ›") {
 	  		let activeValue = parseInt($("ul.pagination li.active").text());
 	  		if(activeValue < totalPages){
 	  			let currentActive = $("li.active");
@@ -136,7 +133,7 @@ function buildPagination(response) {
 	  			// add .active to next-pagination li
 	  			currentActive.next().addClass("active");
 	  		}
-	  	} else if(val.toUpperCase() == "‹ PREV") {
+	  	} else if(val.toUpperCase() === "‹ PREV") {
 	  		let activeValue = parseInt($("ul.pagination li.active").text());
 	  		if(activeValue > 1) {
 	  			// get the previous page
@@ -157,7 +154,7 @@ function buildPagination(response) {
 	  	}
     });
 });
-	
+
 function sair(){
     localStorage.removeItem('token')
     localStorage.removeItem('userLogado')
@@ -175,4 +172,3 @@ function msgError(msg) {
         message.style.display = "none";
     }, 3000);
 }
-

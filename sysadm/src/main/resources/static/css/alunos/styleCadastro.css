@@ -49,6 +49,10 @@ body{
 	margin-left: 15px;
 }
 
+form {
+	display: contents;
+}
+
 button{
 	outline: none;
 	border: none;
@@ -56,6 +60,11 @@ button{
 	cursor: pointer;
 	padding: 10px;
 	color: #ffffff;
+}
+
+.btns {
+	display: flex;
+	margin-top: 20px;
 }
 
 

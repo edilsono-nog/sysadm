@@ -6,7 +6,7 @@ let btn1 = document.querySelector('.fa1');
 let btn = document.querySelector('.fa-eye');
 let userLogado = JSON.parse(localStorage.getItem("userLogado"))
 let btnalt = document.querySelector('.btn');
-const divMessage = document.querySelector(".alert");
+const divMessages = document.querySelector(".alert");
 
 btnalt.disabled = true;
 
@@ -54,8 +54,7 @@ btn1.addEventListener('click', () => {
 	}
 })
 
-formalt.addEventListener("submit", function(event) {
-	event.preventDefault();
+document.getElementById("alterar").addEventListener("click", function(event) {
 	var myHeaders = new Headers();
 	myHeaders.append("Authorization", localStorage.getItem("token"));
 
@@ -84,13 +83,18 @@ formalt.addEventListener("submit", function(event) {
 		.catch(error => {
 			console.log(error);
 		});
+});
+
+formalt.addEventListener("submit", function(event) {
+	event.preventDefault();
+	
 })
 
 function msgSuccess(msg) {
 	const message = document.createElement("div");
 	message.classList.add("messageSucesso");
 	message.innerText = msg;
-	divMessage.appendChild(message);
+	divMessages.appendChild(message);
 
 	setTimeout(() => {
 		message.style.display = "none";

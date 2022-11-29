@@ -1,4 +1,4 @@
-let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
+let userLogados = JSON.parse(localStorage.getItem("userLogado")) 
 
 let logado = document.querySelector('#logado')
 
@@ -10,8 +10,8 @@ fetchNotes(0);
 
 let tipo = '';
 
-if (userLogado != null) {
-    logado.innerHTML = userLogado.name
+if (userLogados != null) {
+    logado.innerHTML = userLogados.name
 }
 
 if (getCookie('JSESSIONID') == null) {

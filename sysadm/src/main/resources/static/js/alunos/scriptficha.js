@@ -1,4 +1,4 @@
-let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
+let userLogados = JSON.parse(localStorage.getItem("userLogado")) 
 
 let idFicha = JSON.parse(localStorage.getItem("idFicha")) 
 let idFichaAluno = JSON.parse(localStorage.getItem("idFichaAluno")) 
@@ -8,8 +8,8 @@ let logado = document.querySelector('#logado')
 let idAluno = "";
 let idMat = "";
 
-if (userLogado != null) {
-    logado.innerHTML = userLogado.name
+if (userLogados!= null) {
+    logado.innerHTML = userLogados.name
 }
 
 if (idFicha != null && idFicha == idFichaAluno || idFichaAluno == null) {
@@ -87,8 +87,8 @@ function autFicha(id) {
 					'<td>'+  response.matricula[i].escolas + '</td>'+
 					'<td>'+  response.matricula[i].turma + '</td>'+
 					'<td>'+  response.matricula[i].turno + '</td>'+
-					'<td><button class="btn" onclick=edit('+response.matricula[i].id+') title="Edita Matricula"><i class="bi bi-pencil-square"></i></button>'+
-					'<button class="btn" onclick="openModalMensalidade('+response.matricula[i].anoletivo+')" title="Mensalidades"><i class="bi bi-cash-coin"></i></button></td>'+
+					'<td><button  onclick=edit('+response.matricula[i].id+') title="Edita Matricula" style="margin-right: 10px;"><i class="bi bi-pencil-square"></i></button>'+
+					'<button  onclick="openModalMensalidade('+response.matricula[i].anoletivo+')" title="Mensalidades"><i class="bi bi-cash-coin"></i></button></td>'+
 					'</tr>');
 			}
 			
@@ -103,7 +103,7 @@ function autFicha(id) {
 					'<td>'+  response.responsaveis[i].celular + '</td>'+
 					'<td>'+  response.responsaveis[i].tipo + '</td>'+
 					'<td><!--<button class="btn" onclick=edit('+response.responsaveis[i].id+') title="Dados Responsável"><i class="fa-solid fa-pen-to-square"></i></button>-->'+
-						'<button class="btn" onclick=ficha('+response.responsaveis[i].id+') title="Dados Responsável"><i class="bi bi-person-lines-fill"></i></button> </td>' +
+						'<button  onclick=ficha('+response.responsaveis[i].id+') title="Dados Responsável"><i class="bi bi-person-lines-fill"></i></button> </td>' +
 					'</tr>');
 			}
 		}
@@ -187,8 +187,6 @@ document.querySelector('#excluirMensalidade').addEventListener('click', function
 });
 
 function gerarMensalidade(){
-	//var id = $("#labelMatriculaAluno").val();
-	//var anoletivo = $("#labelAnoLetivo").val();
 	var responsavel = $("#selectfinanceiro").val();
 	var dtvencimento = $("#dtvencimento").val();
 	var valor = $("#valor").val();
@@ -327,19 +325,19 @@ function limpa(){
 
 
 /*Modal Matricula*/
-let modal = document.querySelector('#modal');
-let fade = document.querySelector('#fade');
+let modals = document.querySelector('#modals');
+let fades = document.querySelector('#fades');
 
 document.getElementById("novoMatricula").addEventListener("click", function(event){
-	modal.classList.toggle('hide')
-	fade.classList.toggle('hide')
+	modals.classList.toggle('hide')
+	fades.classList.toggle('hide')
 	autAno();
 	autEscolas();
 });
 
 document.getElementById("close-modal").addEventListener("click", function(event){
-	modal.classList.toggle('hide')
-	fade.classList.toggle('hide')
+	modals.classList.toggle('hide')
+	fades.classList.toggle('hide')
 	window.location.reload(true);
 });
 
@@ -347,16 +345,16 @@ document.getElementById("salvaMatricula").addEventListener("click", function(eve
 	salvaMatricula()	
 	event.preventDefault();
 	setTimeout(() => {
-		modal.classList.toggle('hide')
-		fade.classList.toggle('hide')
+		modals.classList.toggle('hide')
+		fades.classList.toggle('hide')
 		window.location.reload(true);
 	},3000)
 	
 });
 
 const edit = (id) => {
-	modal.classList.toggle('hide')
-	fade.classList.toggle('hide')
+	modals.classList.toggle('hide')
+	fades.classList.toggle('hide')
 	autAno();
 	autEscolas();
 	pegaMatricula(id)
@@ -466,13 +464,13 @@ function pegaMatricula (id){
 	});
 }
 
-const divMessage = document.querySelector(".alert");
+let divMsg = document.querySelector(".alert");
 
 function msgSuccess(msg) {
     const message = document.createElement("div");
     message.classList.add("messageSucesso");
     message.innerText = msg;
-    divMessage.appendChild(message);
+    divMsg.appendChild(message);
 
     setTimeout(() => {
         message.style.display = "none";
@@ -483,7 +481,7 @@ function msgError(msg) {
     const message = document.createElement("div");
     message.classList.add("messageError");
     message.innerText = msg;
-    divMessage.appendChild(message);
+    divMsg.appendChild(message);
 
     setTimeout(() => {
         message.style.display = "none";

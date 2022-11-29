@@ -1,4 +1,4 @@
-let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
+let userLogados = JSON.parse(localStorage.getItem("userLogado")) 
 
 let idAluno = JSON.parse(localStorage.getItem("idFicha")) 
 
@@ -9,8 +9,8 @@ adicionar.disabled = true;
 
 let tipo = '';
 
-if (userLogado != null) {
-    logado.innerHTML = userLogado.name
+if (userLogados != null) {
+    logado.innerHTML = userLogados.name
 }
 
 if (getCookie('JSESSIONID') == null) {

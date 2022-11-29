@@ -1,4 +1,4 @@
-let userLogado = JSON.parse(localStorage.getItem("userLogado")) 
+let userLogados = JSON.parse(localStorage.getItem("userLogado")) 
 
 let idFichaResp = JSON.parse(localStorage.getItem("idFichaResp")) 
 let idFicha = JSON.parse(localStorage.getItem("idFicha")) 
@@ -8,8 +8,8 @@ let logado = document.querySelector('#logado')
 let idAluno = "";
 let idMat = "";
 
-if (userLogado != null) {
-    logado.innerHTML = userLogado.name
+if (userLogados!= null) {
+    logado.innerHTML = userLogados.name
 }
 
 if (idFichaResp != null) {
@@ -107,7 +107,7 @@ function pegaAlunos(id) {
 					$('#alunosTable > tbody').append(					
 					'<tr>'+
 					'<td>'+  response[i][10] + '</td>'+
-					'<td><button class="btn" onclick=fichaAluno('+response[i][0]+') title="Dados do Aluno"><i class="bi bi-pencil-square"></i></button> </td>'+
+					'<td><button onclick=fichaAluno('+response[i][0]+') title="Dados do Aluno"><i class="bi bi-pencil-square"></i></button> </td>'+
 					'</tr>');
 				}			
 		}

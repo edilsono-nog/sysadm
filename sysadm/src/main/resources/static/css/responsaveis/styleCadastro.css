@@ -49,6 +49,19 @@ body{
 	margin-left: 15px;
 }
 
+.btns {
+	display: flex;
+	margin-top: 20px;
+}
+
+button {
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px;
+	color: #ffffff;
+}
 
 .messageSucesso {
     padding: 19px 60px;

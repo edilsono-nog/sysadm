@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+	  xmlns:th="http://www.w3.org/1999/xhtml" 
+	  layout:decorate="~{layout}"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 </head>
@@ -38,13 +40,13 @@
 						<div class="collapse" id="collapseExample">
 							<div>
 								<ul class="navbar-nav ps-3">
-									<li><a href="anoletivo" class="nav-link px-3"> <span
+									<li sec:authorize="hasRole('ROLE_USER')"><a href="anoletivo" class="nav-link px-3"> <span
 											class="me-2"><i class="bi bi-person-video3"></i></span> <span>Ano Letivo</span>
 									</a></li>
 									<li><a href="escolaslist" class="nav-link px-3"> <span
 											class="me-2"><i class="bi bi-building"></i></span> <span>Escolas</span>
 									</a></li>
-									<li><a href="#" class="nav-link px-3"> <span
+									<li><a href="usuarios" class="nav-link px-3"> <span
 											class="me-2"><i class="bi bi-people-fill"></i></span> <span>Usuários</span>
 									</a></li>
 									<li><a href="configuracoes" class="nav-link px-3"> <span

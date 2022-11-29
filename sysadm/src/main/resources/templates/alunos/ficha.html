@@ -93,41 +93,44 @@
 		</div>
 
 		<!-- Modal Matricula -->
-		<div id="fade" class="hide"></div>
+		<div id="fades" class="hide"></div>
 		<div class="alert"></div>
-		<div id="modal" class="hide">
-			<div class="modal-header">
+		<div id="modals" class="hide" style="height: 55%; width: 29%;">
+			<div class="modals-header">
 				<h2>Cadastro de Matricula</h2>
 
 			</div>
 
 			<div class="modal-body">
-				<form action="" id="formMatriculaAluno" name="formMatriculaAluno">
+				<form action="" id="formMatriculaAluno" name="formMatriculaAluno" style="display: contents;">
 					<div>
+					<label style="font-size: 13px;">Ano Letivo :</label>
 						<select name="selectAno" id="selectAno">
 							<option>Selecione o ano Letivo</option>
 						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
 					</div>
 					<div>
+					<label style="font-size: 13px;">Escola :</label>
 						<select name="selectEscola" id="selectEscola">
 							<option>Selecione a escola</option>
 						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
 					</div>
 					<div>
+					<label style="font-size: 13px;">Turma :</label>
 						<div class="label-float" id="div_turma">
 							<input type="text" id="turma" placeholder="" name="turma"
-								required> <label id="labelTurma" for="turma">Turma:
-							</label>
+								required> 
 						</div>
 					</div>
 					<div>
+					<label style="font-size: 13px;">Turno :</label>
 						<select name="selectTurno" id="selectTurno">
 							<option>Selecione o Turno</option>
 							<option value="Manhã">Manhã</option>
 							<option value="Tarde">Tarde</option>
 						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
 					</div>
-					<div id="salMatricula">
+					<div class="justify-content-center" id="salMatricula" style="margin-top: 30px;">
 						<button id="salvaMatricula">Salvar</button>
 						<button id="close-modal">Cancelar</button>
 					</div>
@@ -137,9 +140,9 @@
 
 		<!-- Modal Mensalidades -->
 		<div id="fadeMensalidade" class="hide"></div>
-		<div id="modalMensalidade" class="hide">
+		<div id="modalMensalidade" class="hide" style="height: 79%; width: 41%;">
 			<div class="modalMensalidade-header">
-				<h2>Controle de Mensalidades</h2>
+				<h2 style="margin-bottom: -12px;">Controle de Mensalidades</h2>
 
 			</div>
 			<div class="modalMensalidade-body">
