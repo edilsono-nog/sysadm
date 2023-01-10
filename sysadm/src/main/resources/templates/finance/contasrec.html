@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/finance/stylecontasreclist.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+			<div class="row">
+				<div class="titulo-secao">
+					<h2>Financeiro</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-currency-exchange"></i>/ Listagam de Contas a
+						Receber
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="tables">
+					<div class="table_header" align="right">
+						<input id="localiza" placeholder="Localizar Registro" />
+						<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add
+							New</button>
+					</div>
+				</div>
+				<div id="div_header" align="left">
+							<div class="radio" >
+								<input class="radios" type="radio" id="radio" name="fav_language"
+									value="mensalidade" checked> <label for="cns">Mensalidades</label><br>
+							</div>
+							<div class="radio">
+								<input class="radioss" type="radio" id="radio" name="fav_language" value="outros">
+								<label for="cpf">Outros</label><br>
+							</div>
+						</div>
+			</div>
+
+			<div class="row">
+				<div class="card" id="conteudo">
+					<br>
+					<div style="overflow: auto;">
+						<table id="contasTable" class="table_section table-hover">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col" id="td_id">#</th>
+									<th scope="col" style="width: 100px;">Emissão</th>
+									<th scope="col" style="width: 70px;">Parcela</th>
+									<th scope="col">Descrição</th>
+									<th scope="col">Valor</th>
+									<th scope="col" style="width: 105px;">Vencimento</th>
+									<th scope="col">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+				</div>
+				<ul class="pagination justify-content-center"
+					style="margin: 20px 0; cursor: pointer;"></ul>
+			</div>
+		</div>
+
+		<script src="js/finance/contasrecscriptlist.js"></script>
+	</main>
+</body>
+</html>

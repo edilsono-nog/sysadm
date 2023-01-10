@@ -36,6 +36,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		.antMatchers("/alunos/**", "/alunos_listagem", "/alunos_ficha", "/alunos_cadastro", "/mensalidade/**", "/listamensalidades").permitAll()
 		.antMatchers("/responsaveis/**", "/responsavel_listagem", "/responsavel_cadastro", "/responsavel_ficha").permitAll()
 		.antMatchers("/config/**", "/anoletivo", "/anoletivocad", "/escolaslist", "/escolascad", "/configuracoes").permitAll()
+		.antMatchers("/finance/**","/caixas", "/caixascad", "/contasareceber", "/contasarecebercad").permitAll()
 		.antMatchers("/usuarios", "/usuarioscad").permitAll()
 		.antMatchers("/configemail").permitAll()
 		.antMatchers("/css/**","/js/**", "/img/**").permitAll()

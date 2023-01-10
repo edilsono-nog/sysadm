@@ -102,4 +102,25 @@ public class IndexController {
 		return "config/usuariocad";
 	}
 	
+	/*Financeiro*/
+	@GetMapping("caixas")
+	private String caixas() {
+		return "finance/caixalist";
+	}
+	
+	@GetMapping("caixascad")
+	private String caixascad() {
+		return "finance/caixacad";
+	}
+	
+	@GetMapping("contasareceber")
+	private String contasareceber() {
+		return "finance/contasrec";
+	}
+	
+	@GetMapping("contasarecebercad")
+	private String contasarecebercad() {
+		return "finance/contasreccad";
+	}
+	
 }

@@ -455,7 +455,7 @@ function pegaMatricula (id){
 		success : function(response) {
 			idMat = response.id;
 			$("#selectAno").val(response.anoletivo);
-			$("#selectEscola").val(response.escolas);
+			$("#selectEscola option:selected").text(response.escolas);
 			$("#turma").val(response.turma);
 			$("#selectTurno").val(response.turno);
 		}

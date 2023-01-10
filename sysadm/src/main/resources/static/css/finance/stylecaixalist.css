@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body{
+	 background-color: rgb(201, 201, 201);
+}
+
+#logado{
+	font-size: 15px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-family: cursive;
+}
+
+.titulo-secao{
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    width: 98%;
+    margin-left: 8px;
+}
+
+.titulo-secao h2{
+    font-size: 19px;
+}
+
+.titulo-secao p{
+    font-size: 14px;
+}
+
+.titulo-secao svg{
+    color: #73b4ff;
+}
+
+.separator{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(235, 235, 235);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+#div_header{
+	width: 76%;
+	margin-left: 40%;
+}
+
+.tables {
+	width: 100%;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.table_header{
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px;
+	background-color: rgb(240, 240, 240);
+	border-radius: 10px;
+}
+
+button{
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px;
+	color: #ffffff;
+	margin-left: 5px;
+}
+
+.add_new{
+	padding: 8px 15px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	border-color: #0298cf;
+	cursor: pointer;
+}
+input{
+	padding: 10px 20px;
+	margin: 0 10px;
+	outline: none;
+	border: 1px solid #0298cf;
+	border-radius: 6px;
+	color: #0298cf;
+}
+
+#status {
+	width: 25%;
+	-webkit-appearance: none;
+    /* Remove estilo padr�o do Chrome */
+    -moz-appearance: none;
+    /* Remove estilo padr�o do FireFox */
+    appearance: none;
+    /* Remove estilo padr�o do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
+    /* Imagem de fundo (Seta) */
+    background-position: 218px center;
+    /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 40px;
+    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+	color: #0298cf;
+    padding-left: 15px;
+    font-family:Verdana, Trebuchet,sans-serif;
+}
+
+#conteudo{
+	margin-top: 10px;
+	width: 98%;
+	box-shadow: 4px 7px 6px 0px #00000080;
+	border-radius: 10px;
+	background-color: white;
+	font-size: 14px;
+	margin-left: 8px;
+}
+
+table{
+	width: 100%;
+	table-layout: fixed;
+	min-width: 1000px;
+	border-collapse: collapse;
+}
+
+thead th{
+	position: sticky;
+	top: 0;
+	background-color: #f6f9fc;
+	color: #8493a5;
+	font-size: 15�x;
+}
+
+th, td{
+	border-bottom: 1px solid #dddddd;
+	padding: 2px 7px;
+	word-break: break-all;
+	text-align: center;
+}
+
+td button:nth-child(1){
+	background-color: #0298cf;
+}
+
+td button:nth-child(2){
+	background-color: #f80000;
+}
+
+#td_id{
+	width: 100px;
+}
+
+tr:hover td {
+	color: #0298cf;
+	cursor: pointer;
+	background-color: #f6f9fc;
+}
+
+::placeholder{
+	color: #0298cf;
+}
+
+.pagination {
+	margin:20px 0; 
+	cursor: pointer;
+	text-align: center;
+}
+
+.page-item {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 13px;
+    height: 100%;
+    width: 50px;
+    border-radius: 10px;
+}
+.page-item:hover{
+    background-color:#fff;
+    color:black;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/finance/stylecaixacad.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="titulo-secao">
+				<h2>Financeiro</h2>
+				<div class="separator"></div>
+				<p>
+					<i class="bi bi-wallet2"></i>/ Cadastro de Caixas
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="alert"></div>
+			<div class="card" id="conteudo">
+				<br>
+				<form action="" id="formCadastroCaixa">
+					<br>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 16%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+							<input type="text" class="form-control" id="id" name="id"
+								aria-label="Sizing input" readonly="readonly"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Banco :</span>
+							<input type="text" class="form-control" id="banco"
+								name="banco" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Agencia :</span>
+							<input type="text" class="form-control" id="agencia"
+								name="agencia" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Conta :</span>
+							<input type="text" class="form-control" id="conta"
+								name="conta" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 60%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Descrição:</span>
+							<input type="text" class="form-control" id="descricao"
+								name="descricao" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Saldo:</span>
+							<input type="text" class="form-control" id="saldo" onkeyup="formatarMoeda()"
+								name="saldo" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<br>
+				</form>
+			</div>
+
+			<div class="btns justify-content-center">
+				<button class="save btn-primary">Salvar</button>
+				<button class="cancel btn-danger" style="margin-left: 10px;">Cancelar</button>
+			</div>
+		</div>
+		<script src="js/finance/caixascrpitcad.js"></script>
+	</main>
+
+
+
+
+
+
+	</div>
+	<!--content-->
+</body>
+</html>
