@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.w3.org/1999/xhtml" 
+	  layout:decorate="~{layout}"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<!-- offcanvas -->
+	<div class="offcanvas offcanvas-start bg-dark text-white sidebar-nav"
+		tabindex="-1" id="offcanvasExample"
+		aria-labelledby="offcanvasExampleLabel"
+		th:fragment="menu">
+		<div class="offcanvas-body p-0">
+			<nav class="navbar-dark">
+				<ul class="navbar-nav">
+					<li>
+						<div class="text-muted small fw-bold text-uppercase px-3">Home</div>
+					</li>
+					<li><a href="dashboard" class="nav-link px-3 active"> <span
+							class="me-2"><i class="bi bi-speedometer2"></i></span> <span>Inicio</span>
+					</a></li>
+					<li class="my-4">
+						<hr class="dropdown-divider" />
+					</li>
+					<li>
+						<div class="text-muted small fw-bold text-uppercase px-3">interface</div>
+					</li>
+					<li><a href="alunos_listagem" class="nav-link px-3"> <span
+							class="me-2"><i class="bi bi-mortarboard-fill"></i></span> <span>Cadastros</span>
+					</a></li>
+					<li><a class="nav-link px-3 sidebar-link"
+						data-bs-toggle="collapse" href="#collapseExample" role="button"
+						aria-expanded="false" aria-controls="collapseExample"> <span
+							class="me-2"><i class="bi bi-gear-fill"></i></span> <span>Configurações</span>
+							<span class="right-icon ms-auto"><i
+								class="bi bi-chevron-down"></i></span>
+					</a>
+						<div class="collapse" id="collapseExample">
+							<div>
+								<ul class="navbar-nav ps-3">
+									<li sec:authorize="hasRole('ROLE_USER')"><a href="anoletivo" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-person-video3"></i></span> <span>Ano Letivo</span>
+									</a></li>
+									<li><a href="escolaslist" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-building"></i></span> <span>Escolas</span>
+									</a></li>
+									<li><a href="usuarios" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-people-fill"></i></span> <span>Usuários</span>
+									</a></li>
+									<li><a href="configuracoes" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-sliders"></i></span> <span>Outras Configurações</span>
+									</a></li>
+								</ul>
+							</div>
+						</div></li>
+						<li><a class="nav-link px-3 sidebar-link"
+						data-bs-toggle="collapse" href="#collapseFinanceiro" role="button"
+						aria-expanded="false" aria-controls="collapseFinanceiro"> <span
+							class="me-2"><i class="bi bi-coin"></i></span> <span>Financeiro</span>
+							<span class="right-icon ms-auto"><i
+								class="bi bi-chevron-down"></i></span>
+					</a>
+						<div class="collapse" id="collapseFinanceiro">
+							<div>
+								<ul class="navbar-nav ps-3">
+									<li><a href="caixas" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-wallet2"></i></span> <span>Caixa</span>
+									</a></li>
+									<li><a href="contasareceber" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-currency-exchange"></i></span> <span>Contas a Receber</span>
+									</a></li>
+									<li><a href="#" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-cash-coin"></i></span> <span>Contas a Pagar</span>
+									</a></li>
+								</ul>
+							</div>
+						</div></li>
+						<li><a class="nav-link px-3 sidebar-link"
+						data-bs-toggle="collapse" href="#collapseRel" role="button"
+						aria-expanded="false" aria-controls="collapseRel"> <span
+							class="me-2"><i class="bi bi-printer-fill"></i></span> <span>Relatórios</span>
+							<span class="right-icon ms-auto"><i
+								class="bi bi-chevron-down"></i></span>
+					</a>
+						<div class="collapse" id="collapseRel">
+							<div>
+								<ul class="navbar-nav ps-3">
+									<!--  <li><a href="#" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-person-video3"></i></span> <span>Ano Letivo</span>
+									</a></li>
+									<li><a href="#" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-building"></i></span> <span>Escolas</span>
+									</a></li>
+									<li><a href="#" class="nav-link px-3"> <span
+											class="me-2"><i class="bi bi-people-fill"></i></span> <span>Usuários</span>
+									</a></li>-->
+								</ul>
+							</div>
+						</div></li>
+						
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- offcanvas -->
+</body>
+</html>

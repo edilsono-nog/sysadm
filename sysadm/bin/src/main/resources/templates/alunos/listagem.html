@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<link rel="stylesheet" href="css/alunos/styleListagem.css">
+</head>
+<body>
+	<main class="mt-5 pt-3 topmain" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+			<div class="row">
+				<div class="titulo-secao">
+					<h2>Cadastros</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-mortarboard-fill"></i> / Listagem
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="tables">
+					<div class="table_header" align="right">
+						<form class="d-flex ms-auto"></form>
+						<label id="labelstatus" for="status">Status: </label> <select
+							name="status" id="status" required>
+							<option value="Todos">Todos</option>
+							<option value="Ativo">Ativo</option>
+							<option value="Inativo">Inativo</option>
+						</select> <input id="localiza" placeholder="Localizar Aluno" />
+						<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add
+							New</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="card" id="conteudo">
+					<br>
+					<div style="overflow: auto;">
+						<table id="alunoTable"
+							class="table_section table-hover">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col" id="td_id">#</th>
+									<th scope="col" id="td_nome">Nome</th>
+									<th scope="col" style="width: 170px;">Data de Nascimento</th>
+									<th scope="col" style="width: 135px;">Celular</th>
+									<th scope="col" id="td_nasc">Status</th>
+									<th scope="col" style="width: 150px;">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+				</div>
+				<ul class="pagination justify-content-center" style="margin:20px 0; cursor: pointer;"></ul>
+			</div>
+		</div>
+		
+		<script src="js/alunos/scriptpagListagem.js"></script>
+		<script src="js/alunos/scriptListagem.js"></script>
+	
+	</main>
+</body>
+</html>

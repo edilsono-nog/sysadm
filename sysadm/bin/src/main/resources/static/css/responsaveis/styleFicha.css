@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body{
+	 background-color: rgb(201, 201, 201);
+}
+
+#logado{
+	font-size: 15px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-family: cursive;
+}
+
+.titulo-secao{
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    width: 98%;
+    margin-left: 8px;
+}
+
+.titulo-secao h2{
+    font-size: 19px;
+}
+
+.titulo-secao p{
+    font-size: 14px;
+}
+
+.titulo-secao svg{
+    color: #73b4ff;
+}
+
+.separator{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(235, 235, 235);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#cabecario {
+    background-color: rgb(192, 192, 192);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px 0px #00000080;
+    width: 95%;
+    left: 10px;
+}
+
+h1{
+	font-size: 25px;
+}
+
+#conteudo{
+	margin-top: 20px;
+	margin-left: 10px;
+	width: 98%;
+	border-radius: 11px;
+	box-shadow: 2px 5px 4px 3px #00000080;
+	background-color: white;
+}
+
+.title_box {
+  border: #01658b 2px solid;
+  border-radius: 10px;
+  color: #01658b;
+  margin: 3px 5px 10px 10px;
+}
+
+.title_box #title {
+  position: relative;
+  font-size: 15px;
+  top: -0.5em;
+  margin-left: 1em;
+  display: inline;
+  background-color: white;
+}
+
+#edit{
+	margin-left: 80%;
+	position: relative;
+    top: -1em;
+    background-color: red;
+}
+
+#matriculaTable,
+#responsavelTable{
+	font-size: 13px;
+    margin-left: 5%;
+    position: relative;
+    top: -2em;
+}
+
+.title_box #content {}
+
+#labelTitulo{
+	font-size: 12px;
+	color: black;
+	margin-left: 10px;
+}
+
+#subject{
+	display: inline-block;
+    width: 48%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+@media(max-width: 1100px) {
+	#subject{
+	 width: 97%;
+	}
+}
+
+#labelTitulo_mat{
+	top: -2em;
+	display: inline;
+	position: relative;
+	font-size: 12px;
+	color: black;
+	margin-left: 10px;
+}
+
+#novoMatricula,
+#novoResponsavel{
+	font-size: 12px;
+	margin-left: 83%;
+	position: relative;
+    top: -2em;
+    display: inline;
+    cursor: pointer;
+    color: #000000;
+	background-color: #ffffff;
+}
+
+button{
+	padding: 10px 20px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 0px;
+	transition: 0.4s;
+	opacity: 0.8;
+}
+.btn{
+	padding: 5px 10px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 0px;
+	transition: 0.4s;
+	opacity: 0.8;
+}
+
+button:hover,
+.btn:hover{
+	opacity: 1
+}
+
+#id_button {
+	margin-top: 20px;
+	margin-left: 11px;
+}
+
+.table {
+	width: 95%;
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.table_header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background-color: rgb(240, 240, 240);
+}
+
+.table_header p{
+	color: #000000;
+}
+
+/*modal*/
+#close-modal{
+	background-color: #888;
+}
+
+#fade,
+#fadeMensalidade{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	z-index: 5;
+}
+
+#modal,
+#modalMensalidade{
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	max-width: 90%;
+	background-color: #fff;
+	padding: 1.2rem;
+	border-radius: 0.5rem;
+	z-index: 10;
+}
+
+#fade,
+#modal,
+#fadeMensalidade,
+#modalMensalidade {
+  transition: 0.5s;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-header,
+.modalMensalidade-header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 1rem;
+	padding-bottom: 1rem;
+}
+
+#modal.hide,
+#fade.hide,
+#modalMensalidade.hide,
+#fadeMensalidade.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modal.hide,
+#modalMensalidade.hide {
+  top: 0;
+}
+
+#selectAno,
+#selectEscola,
+#selectTurno{
+	width: 40%;
+	-webkit-appearance: none;
+    /* Remove estilo padrão do Chrome */
+    -moz-appearance: none;
+    /* Remove estilo padrão do FireFox */
+    appearance: none;
+    /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
+    /* Imagem de fundo (Seta) */
+    background-position: 218px center;
+    /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 36px;
+    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+	color: #0298cf;
+    padding-left: 15px;
+    font-family:Verdana, Trebuchet,sans-serif;
+}
+
+.fa-arrow-down{
+	margin-left: -10px;
+}
+
+#selectAno,
+selectEscola{
+	margin-bottom: 15px;
+}
+
+.label-float input,
+#selectAno,
+#selectEscola,
+#selectTurno {
+    padding: 5px;
+    display: inline-block;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    outline: none;
+    min-width: 180px;
+    font-size: 14px;
+    transition: all .3s ease-out;
+    border-radius: 0;
+    color: #01658b;
+}
+
+.label-float{
+    position: relative;
+    padding-top: 13px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: inline-block;
+    width: 49%;
+}
+
+.label-float input:focus {
+    border-bottom: 2px solid #000000;
+}
+
+.label-float label {
+    color: #000000;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 13px;
+    transition: all .3s ease-out;
+}
+
+.label-float input:focus + label,
+.label-float input:valid + label{
+    font-size: 13px;
+    margin-top: 0;
+    color: #000000;
+}
+
+#salMatricula{
+	margin-top: 20px;
+}
+
+#labelId{
+	font-size: 13px;
+    margin-top: 0;
+    color: #000000;
+}
+
+td button:nth-child(1){
+	background-color: #0298cf;
+}
+
+td button:nth-child(2){
+	background-color: #f80000;
+}
+
+.messageSucesso {
+    padding: 19px 60px;
+    position: fixed;
+    top: 20px;
+    right: 105px;
+    background-color: #008040;
+    border-radius: 3px;
+    color: #fff;
+    opacity: 1;
+    z-index: 10;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.messageError {
+    padding: 19px 60px;
+    position: fixed;
+    top: 20px;
+    right: 105px;
+    background-color: #ff0000;
+    border-radius: 3px;
+    color: #fff;
+    opacity: 1;
+    z-index: 10;
+    animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slidein {
+    0%{
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.messageSucesso::before,
+.messageError::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: time 3s forwards;
+    opacity: 1;
+    pointer-events: all;
+}
+
+@keyframes time {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}

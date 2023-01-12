@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/config/styleanolist.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+			<div class="row">
+				<div class="titulo-secao">
+					<h2>Configurações</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-person-video3"></i> / Listagam de Anos Letivos
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="tables">
+					<div class="table_header" align="right">
+						<p></p>
+						<input id="localiza" placeholder="Localizar Ano Letivo" />
+						<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add
+							New</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="card" id="conteudo">
+					<br>
+					<div style="overflow: auto;">
+						<table id="anoTable" class="table_section table-hover">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col" id="td_id">#</th>
+									<th scope="col" id="td_nome">Ano Letivo</th>
+									<th scope="col">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+				</div>
+				<ul class="pagination justify-content-center" style="margin: 20px 0; cursor: pointer;"></ul>
+			</div>
+		</div>
+
+		<script src="js/config/scriptanolist.js"></script>
+		<script src="js/config/table-paginationano.js"></script>
+	</main>
+</body>
+</html>

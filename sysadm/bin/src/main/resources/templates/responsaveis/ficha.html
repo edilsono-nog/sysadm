@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/responsaveis/styleFicha.css">
+</head>
+<body>
+<main class="mt-5 pt-3" layout:fragment="corpo">
+	<h1 id="logado" align="right"></h1>
+       <div class="titulo-secao">
+           <h2>Responsável</h2>
+           <div class="separator"></div>
+           <p><i class="bi bi-person-lines-fill"></i> / Ficha</p>
+       </div>
+
+		<div class="card" id="conteudo">
+		<br>
+			<div class="title_box" id="subject_dados">
+			  <div id="title">Dados do Responsavel</div>
+			  <div id="content">
+			  	  <div>
+			  	  	<label id="labelTitulo" ><strong>Codigo do Responsável:</strong> </label>
+				    <label id="labelTitulo" class="id">id</label>
+				    <label id="labelTitulo" ><strong>Tipo:</strong> </label>
+				    <label id="labelTitulo" class="status">status</label>
+				    <label id="labelTitulo" ><strong>Responsável Financeiro:</strong> </label>
+				    <label id="labelTitulo" class="financeiro">status</label>
+			  	  </div>
+				  <div>
+				  	<label id="labelTitulo" ><strong>Nome do Responsável:</strong> </label>
+				    <label id="labelTitulo" class="nome">nome</label>
+				    <label id="labelTitulo"><strong>Data de Nascimento:</strong> </label>
+				    <label id="labelTitulo" class="dtnascimento">nasc</label>
+				  </div>
+				  <div>
+			  	  	<label id="labelTitulo" ><strong>E-mail:</strong> </label>
+				    <label id="labelTitulo" class="email">email</label>
+				    <label id="labelTitulo" ><strong>CPF:</strong> </label>
+				    <label id="labelTitulo" class="cpf">email</label>
+				    <label id="labelTitulo" ><strong>RG:</strong> </label>
+				    <label id="labelTitulo" class="rg">email</label>
+			  	  </div>
+			   	  <div>
+			   	  	<label id="labelTitulo"><strong>Endereço:</strong> </label>
+				    <label id="labelTitulo" class="logradouro">end</label>
+				    <label id="labelTitulo"><strong>Bairro:</strong> </label>
+				    <label id="labelTitulo" class="bairro">bairro</label>
+				    <label id="labelTitulo"><strong>Cidade:</strong> </label>
+				    <label id="labelTitulo" class="cidade">cidade</label>
+				    <label id="labelTitulo"><strong>Estado:</strong> </label>
+				    <label id="labelTitulo" class="uf">estado</label>
+			   	  </div>
+			   	  <div>
+			   	  	<label id="labelTitulo"><strong>Telefone:</strong> </label>
+				    <label id="labelTitulo" class="telefone">tel</label>
+				    <label id="labelTitulo"><strong>Celular:</strong> </label>
+				    <label id="labelTitulo" class="celular">cel</label>
+			   	  </div>
+			  </div>
+				<button onclick=edit() id="edit">Editar</button>
+			</div>
+			
+			<div class="title_box" id="subject">
+			  <div id="title">Aluno</div>
+				  <div id="content">
+				  	 <table id="alunosTable" class="table_section table table-hover table-sm">
+					  <thead class="thead-dark">
+					  </thead>
+					  <tbody>
+					    
+					  </tbody>
+					</table>
+			  </div>
+			 </div>
+			<br>
+		</div>
+		<div id="id_button">
+			<button id="voltar" >Voltar</button>
+		</div>		
+		<script src="js/responsaveis/scriptficha.js"></script>
+		
+</main><!--content-->
+</body>
+</html>

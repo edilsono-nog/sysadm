@@ -1,61 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="css/alunos/styleCadastro.css">
+	<meta charset="UTF-8">
+	<!--<link rel="stylesheet" href="css/alunos/styleCadastro.css">-->
 </head>
+
 <body>
 	<main class="mt-5 pt-3" layout:fragment="corpo">
 		<div class="container-fluid">
 			<div class="row">
-				<h1 id="logado" align="right"></h1>
+				<div class="titulo-secao">
+					<h2>Configurações</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-building"></i> / Cadastro de Escola
+					</p>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="titulo-secao">
-				<h2>Configurações</h2>
-				<div class="separator"></div>
-				<p>
-					<i class="bi bi-building"></i> / Cadastro de Escola
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="alert"></div>
-			<div class="card" id="conteudo">
-				<br>
-				<form action="" id="formCadastroAnoLetivo">
+			<div class="row" style="margin-top: -40px;">
+				<div class="alert"></div>
+				<div class="card" id="conteudo">
 					<br>
-					<div class="row">
-						<div class="input-group input-group-sm col-md-3 mb-3"
-							style="width: 14%;">
-							<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
-							<input type="text" class="form-control" id="id" name="id"
-								aria-label="Sizing input" readonly="readonly"
-								aria-describedby="inputGroup-sizing-sm">
+					<form action="" id="formCadastroAnoLetivo" style="display: contents;">
+						<br>
+						<div class="row">
+							<div class="input-group input-group-sm col-md-3 mb-3" style="width: 14%;">
+								<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+								<input type="text" class="form-control" id="id" name="id" aria-label="Sizing input"
+									readonly="readonly" aria-describedby="inputGroup-sizing-sm">
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="input-group input-group-sm col-md-3 mb-3"
-							style="width: 60%;">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Nome da Escola: </span>
-							<input type="text" class="form-control" id="escola" name="escola"
-								aria-label="Sizing input"
-								aria-describedby="inputGroup-sizing-sm">
+						<div class="row">
+							<div class="input-group input-group-sm col-md-3 mb-3" style="width: 60%;">
+								<span class="input-group-text" id="inputGroup-sizing-sm">Nome da Escola: </span>
+								<input type="text" class="form-control" id="escola" name="escola"
+									aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
+							</div>
 						</div>
-					</div>
-					<br>
-				</form>
-			</div>
+						<br>
+					</form>
+				</div>
 
-			<div class="btns justify-content-center">
-				<button class="save btn-primary">Salvar</button>
-				<button class="cancel btn-danger" style="margin-left: 10px;">Cancelar</button>
+				<div class="btns justify-content-center" style="margin-top: 20px;">
+					<button class="save btn-primary btns">Salvar</button>
+					<button class="cancel btn-danger btns" style="margin-left: 10px;">Cancelar</button>
+				</div>
 			</div>
 		</div>
 		<script src="js/config/scriptescolascad.js"></script>
 	</main>
 </body>
-</html>
 
+</html>

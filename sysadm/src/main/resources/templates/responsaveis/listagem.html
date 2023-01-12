@@ -9,9 +9,6 @@
 	<main class="mt-5 pt-3" layout:fragment="corpo">
 		<div class="container-fluid">
 			<div class="row">
-				<h1 id="logado" align="right"></h1>
-			</div>
-			<div class="row">
 				<div class="titulo-secao">
 					<h2>Responsáveis</h2>
 					<div class="separator"></div>
@@ -20,13 +17,13 @@
 					</p>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" style="margin-top: -35px;">
 				<div class="alert"></div>
 				<div class="tables">
 					<div class="table_header" align="right">
 						<div id="div_header">
 							<input id="localiza" placeholder="Localizar Responsável" />
-							<button id="add_new" title="Adicionar" onclick="cadastrar()">+Add
+							<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add
 								New</button>
 						</div>
 					</div>
@@ -57,10 +54,10 @@
 			</div>
 			<div>
 				<div id="id_button">
-					<button id="voltar">Voltar</button>
+					<button class="btn-primary btns" style="margin-top: 15px;" id="voltar">Voltar</button>
 				</div>
 				<ul class="pagination justify-content-center"
-					style="margin: 20px 0; cursor: pointer;"></ul>
+					style="margin: 20px 0; cursor: pointer; margin-top: -35px;"></ul>
 			</div>
 
 

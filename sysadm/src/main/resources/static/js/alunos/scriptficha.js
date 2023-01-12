@@ -83,11 +83,11 @@ function autFicha(id) {
 	          for (var i = 0; i < response.matricula.length; i++) {
 				$('#matriculaTable > tbody').append(					
 					'<tr>'+
-					'<td>'+  response.matricula[i].anoletivo + '</td>'+
-					'<td>'+  response.matricula[i].escolas + '</td>'+
-					'<td>'+  response.matricula[i].turma + '</td>'+
-					'<td>'+  response.matricula[i].turno + '</td>'+
-					'<td><button  onclick=edit('+response.matricula[i].id+') title="Edita Matricula" style="margin-right: 10px;"><i class="bi bi-pencil-square"></i></button>'+
+					'<td ">'+  response.matricula[i].anoletivo + '</td>'+
+					'<td >'+  response.matricula[i].escolas + '</td>'+
+					'<td >'+  response.matricula[i].turma + '</td>'+
+					'<td > '+  response.matricula[i].turno + '</td>'+
+					'<td ><button  onclick=edit('+response.matricula[i].id+') title="Edita Matricula" style="margin-right: 10px;"><i class="bi bi-pencil-square"></i></button>'+
 					'<button  onclick="openModalMensalidade('+response.matricula[i].anoletivo+')" title="Mensalidades"><i class="bi bi-cash-coin"></i></button></td>'+
 					'</tr>');
 			}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<link rel="stylesheet" href="css/alunos/styleCadastro.css">
+</head>
+<body>
+	<main class="mt-5 pt-5" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="titulo-secao">
+				<h2>Cadastros</h2>
+				<div class="separator"></div>
+				<p>
+					<i class="bi bi-mortarboard-fill"></i> / Cadastro
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="alert"></div>
+			<div class="card" id="conteudo">
+				<br>
+				<form action="" id="formCadastroAluno" style="display: contents;">
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 14%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+							<input type="text" class="form-control" id="id" name="id"
+								aria-label="Sizing input" readonly="readonly"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<select class="form-select form-select-sm col-md-3 mb-3"
+							name="status" id="status" aria-label=".form-select-sm example"
+							style="width: 20%;">
+							<option selected>Selecione o Status</option>
+							<option value="Ativo">Ativo</option>
+							<option value="Inativo">Inativo</option>
+						</select>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Nome:</span>
+							<input type="text" class="form-control" id="nome" name="nome"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Dt
+								Nasc:</span> <input type="text" class="form-control" id="dtnascimento" 
+								name="dtnascimento" onfocus="(this.type='date')"
+								onblur="if(!this.value) this.type='text'"
+								aria-label="Sizing input" maxlength="10"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">E-mail:</span>
+							<input type="email" class="form-control" id="email" name="email"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 20%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Cep:</span>
+							<input type="text" class="form-control" id="cep" name="cep" maxlength="9"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Endereço:</span>
+							<input type="text" class="form-control" id="logradouro"
+								name="logradouro" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Complemento:</span>
+							<input type="text" class="form-control" id="complemento"
+								name="complemento" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 35%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Bairro:</span>
+							<input type="text" class="form-control" id="bairro" name="bairro"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 35%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Cidade:</span>
+							<input type="text" class="form-control" id="cidade" name="cidade"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Estado:</span>
+							<input type="text" class="form-control" id="uf" name="uf"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Telefone:</span>
+							<input type="text" class="form-control" id="telefone" maxlength="13"
+								name="telefone" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Celular:</span>
+							<input type="text" class="form-control" id="celular" maxlength="14"
+								name="celular" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text labelCpf" id="inputGroup-sizing-sm">CPF:</span>
+							<input type="text" class="form-control" id="cpf" name="cpf" maxlength="14"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">RG:</span>
+							<input type="text" class="form-control" id="rg" name="rg"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			<div class="btns justify-content-center" >
+				<button class="save btn-primary" onclick="salvarAluno()">Salvar</button>
+				<button class="cancel btn-danger" style="margin-left: 10px;">Cancelar</button>
+			</div>
+		</div>
+
+		<script src="js/alunos/scriptCadastro.js"></script>
+		<script type="text/javascript">
+ 
+			 
+	 </script>	
+	</main>
+
+</body>
+</html>

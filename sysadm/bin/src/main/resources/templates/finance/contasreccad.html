@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/finance/stylecontasreccad.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="titulo-secao">
+				<h2>Financeiro</h2>
+				<div class="separator"></div>
+				<p>
+					<i class="bi bi-currency-exchange"></i>/ Cadastro de Contas a
+					Receber
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="alert"></div>
+			<div class="card" id="conteudo">
+				<br>
+				<form action="" id="formCadastroContasRec">
+					<br>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 16%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+							<input type="text" class="form-control" id="id" name="id"
+								aria-label="Sizing input" readonly="readonly"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 50%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Descrição
+								:</span> <input type="text" class="form-control" id="descricao"
+								name="descricao" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Emissão
+								:</span> <input type="text" class="form-control" id="emissao"
+								name="emissao" onfocus="(this.type='date')"
+								onblur="if(!this.value) this.type='text'"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Vencimento
+								:</span> <input type="text" class="form-control" id="vencimento"
+								name="vencimento" onfocus="(this.type='date')"
+								onblur="if(!this.value) this.type='text'"
+								aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-floating" style="width: 60%;">
+							<textarea rows="2" class="form-control" name="observacao"
+								id="observacao"></textarea>
+							<label for="floatingTextarea">Observação: </label>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="input-group input-group-sm col-md-3 mb-3"
+							style="width: 30%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Valor:</span>
+							<input type="text" class="form-control" id="valor"
+								onkeyup="formatarMoeda()" name="valor" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</div>
+					<br>
+				</form>
+			</div>
+
+			<div class="btns justify-content-center">
+				<button class="save btn-primary">Salvar</button>
+				<button class="cancel btn-danger" style="margin-left: 10px;">Cancelar</button>
+			</div>
+		</div>
+		<script src="js/finance/contasrecscriptcad.js"></script>
+	</main>
+
+
+
+
+
+
+	</div>
+	<!--content-->
+</body>
+</html>

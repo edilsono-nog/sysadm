@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/alunos/styleFicha.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<h1 id="logado" align="right"></h1>
+		<div class="titulo-secao">
+			<h2>Cadastro</h2>
+			<div class="separator"></div>
+			<p>
+				<i class="bi bi-mortarboard-fill"></i> / Ficha
+			</p>
+		</div>
+		<div class="alert"></div>
+		<div class="card" id="conteudo">
+			<br>
+			<div class="title_box" id="subject_dados">
+				<div id="title">Dados do Aluno</div>
+				<div id="content">
+					<div>
+						<label id="labelTitulo"><strong>Matricula do
+								Aluno:</strong> </label> <label id="labelTitulo" class="id">id</label> <label
+							id="labelTitulo"><strong>Status:</strong> </label> <label
+							id="labelTitulo" class="status">status</label>
+					</div>
+					<div>
+						<label id="labelTitulo"><strong>Nome do Aluno:</strong> </label>
+						<label id="labelTitulo" class="nome">nome</label> <label
+							id="labelTitulo"><strong>Data de Nascimento:</strong> </label> <label
+							id="labelTitulo" class="dtnascimento">nasc</label>
+					</div>
+					<div>
+						<label id="labelTitulo"><strong>E-mail:</strong> </label> <label
+							id="labelTitulo" class="email">email</label>
+					</div>
+					<div>
+						<label id="labelTitulo"><strong>Endereço:</strong> </label> <label
+							id="labelTitulo" class="logradouro">end</label> <label
+							id="labelTitulo"><strong>Bairro:</strong> </label> <label
+							id="labelTitulo" class="bairro">bairro</label> <label
+							id="labelTitulo"><strong>Cidade:</strong> </label> <label
+							id="labelTitulo" class="cidade">cidade</label> <label
+							id="labelTitulo"><strong>Estado:</strong> </label> <label
+							id="labelTitulo" class="uf">estado</label>
+					</div>
+					<div>
+						<label id="labelTitulo"><strong>Telefone:</strong> </label> <label
+							id="labelTitulo" class="telefone">tel</label> <label
+							id="labelTitulo"><strong>Celular:</strong> </label> <label
+							id="labelTitulo" class="celular">cel</label>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="title_box" id="subject">
+					<div id="title">Matriculas</div>
+					<button id="novoMatricula">+Novo</button>
+					<div id="content">
+						<table id="matriculaTable"
+							class="table_section table table-hover table-sm">
+							<thead class="thead-dark">
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="title_box" id="subject">
+					<div id="title">Responsáveis</div>
+					<div id="content">
+						<button id="novoResponsavel">+Novo</button>
+						<table id="responsavelTable"
+							class="table_section table table-hover table-sm">
+							<thead class="thead-dark">
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<br>
+		</div>
+		<div id="id_button">
+			<button id="voltar">Voltar</button>
+		</div>
+
+		<!-- Modal Matricula -->
+		<div id="fades" class="hide"></div>
+		<div class="alert"></div>
+		<div id="modals" class="hide" style="height: 55%; width: 29%;">
+			<div class="modals-header">
+				<h2>Cadastro de Matricula</h2>
+
+			</div>
+
+			<div class="modal-body">
+				<form action="" id="formMatriculaAluno" name="formMatriculaAluno" style="display: contents;">
+					<div>
+					<label style="font-size: 13px;">Ano Letivo :</label>
+						<select name="selectAno" id="selectAno">
+							<option>Selecione o ano Letivo</option>
+						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+					</div>
+					<div>
+					<label style="font-size: 13px;">Escola :</label>
+						<select name="selectEscola" id="selectEscola">
+							<option>Selecione a escola</option>
+						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+					</div>
+					<div>
+					<label style="font-size: 13px;">Turma :</label>
+						<div class="label-float" id="div_turma">
+							<input type="text" id="turma" placeholder="" name="turma"
+								required> 
+						</div>
+					</div>
+					<div>
+					<label style="font-size: 13px;">Turno :</label>
+						<select name="selectTurno" id="selectTurno">
+							<option>Selecione o Turno</option>
+							<option value="Manhã">Manhã</option>
+							<option value="Tarde">Tarde</option>
+						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+					</div>
+					<div class="justify-content-center" id="salMatricula" style="margin-top: 30px;">
+						<button id="salvaMatricula">Salvar</button>
+						<button id="close-modal">Cancelar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- Modal Mensalidades -->
+		<div id="fadeMensalidade" class="hide"></div>
+		<div id="modalMensalidade" class="hide" style="height: 79%; width: 41%;">
+			<div class="modalMensalidade-header">
+				<h2 style="margin-bottom: -12px;">Controle de Mensalidades</h2>
+
+			</div>
+			<div class="modalMensalidade-body">
+
+				<label id="labelMatricula">Matricula do Aluno:......... </label> <label
+					id="labelMatriculaAluno">Aluno: </label> <label id="labelAno">Ano
+					Letivo:........ </label> <label id="labelAnoLetivo">Ano Letivo: </label>
+
+				<div>
+					<select name="selectfinanceiro" id="selectfinanceiro">
+						<option></option>
+						<option value=""></option>
+					</select> <i class="bi bi-caret-down"></i>
+
+					<div class="label-float" id="div_parcelas">
+						<input type="number" id="parcelas" placeholder="" name="parcelas"
+							required> <label id="labelParcelas" for="parcelas">Qtde
+							de Parcelas: </label>
+					</div>
+				</div>
+				<div class="label-float" id="div_nasc">
+					<input type="text" id="dtvencimento" placeholder=""
+						name="dtvencimento" required> <label
+						id="labeldtvencimento" for="dtnascimento">Data primeiro
+						Vencimento:</label>
+				</div>
+				<div class="label-float" id="div_nome">
+					<input type="text" id="valor" placeholder="" name="valor"
+						onkeyup="formatarMoeda()" required> <label id="labelValor"
+						for="valor">Valor: </label>
+				</div>
+				<button id="gerarMensalidade" title="Gera Mensalidades">Gerar</button>
+				<div style="height: 230px; overflow: auto;">
+					<table class="table" id="tableMensalidades" style="width: 120%;">
+						<thead>
+							<tr>
+								<th scope="col">Parcela</th>
+								<th scope="col">Vencimento</th>
+								<th scope="col">Valor</th>
+								<th scope="col">Aluno</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+				<button id="excluirMensalidade" title="Excluir Mensalidades">Excluir</button>
+
+				<div id="salMatricula">
+					<button id="closemodalMensalidade">Fechar</button>
+				</div>
+			</div>
+		</div>
+
+
+
+		<script src="js/alunos/scriptficha.js"></script>
+
+	</main>
+	<!--content-->
+</body>
+</html>

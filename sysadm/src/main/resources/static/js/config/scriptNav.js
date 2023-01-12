@@ -12,6 +12,10 @@ btnalt.disabled = true;
 
 var user = userLogado.user;
 
+if (userLogado != null) {
+    logado.innerHTML = userLogado.name
+}
+
 document.getElementById("altSenha").addEventListener("click", function(event) {
 	modal.classList.toggle('hide')
 	fade.classList.toggle('hide')

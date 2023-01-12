@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/config/styleescolaslist.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+			<div class="row">
+				<div class="titulo-secao">
+					<h2>Configurações</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-building"></i> / Listagam de Escolas
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="tables">
+					<div class="table_header" align="right">
+						<form class="d-flex ms-auto"></form>
+						<input id="localiza" placeholder="Localizar Escola" />
+						<button class="add_new" title="Adicionar" onclick="cadastrar()">+Add
+							New</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="card" id="conteudo">
+					<br>
+					<div style="overflow: auto;">
+						<table id="escolasTable" class="table_section table-hover">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col" id="td_id">#</th>
+									<th scope="col" >Nome da Escola</th>
+									<th scope="col">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+				</div>
+				<ul class="pagination justify-content-center"
+					style="margin: 20px 0; cursor: pointer;"></ul>
+			</div>
+		</div>
+		<script src="js/config/scriptescolaslist.js"></script>
+		<script src="js/config/table-paginationesc.js"></script>
+	</main>
+</body>
+</html>

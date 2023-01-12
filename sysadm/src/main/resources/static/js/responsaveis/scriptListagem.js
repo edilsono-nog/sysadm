@@ -4,7 +4,7 @@ let idAluno = JSON.parse(localStorage.getItem("idFicha"))
 
 let logado = document.querySelector('#logado')
 
-let adicionar = document.querySelector('#add_new')
+let adicionar = document.querySelector('.add_new')
 adicionar.disabled = true;
 
 let tipo = '';
@@ -75,11 +75,11 @@ function pegaResponsaveis(startPage) {
 	          $.each(response.content, (i, responsavel) => {
 				 let responsavelRow = '<tr>' +
 	      	  						'<td >' + responsavel.id + '</td>' +
-			                		'<td id="td_nome">' + responsavel.nome + 
+			                		'<td style="text-align: left;">' + responsavel.nome + 
 			                		'<p style="font-size: 11px; margin-top: 5px;" >' + responsavel.email+'</p></td>' +
 			                		'<td>' + responsavel.dt_nasc + '</td>' +
 			                		'<td>' + responsavel.celular + '</td>' +
-			                		'<td> <button id="btn" onclick=associar('+responsavel.id+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
+			                		'<td> <button class="btn-primary btns" style="margin-left: 42%;" onclick=associar('+responsavel.id+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
 			                   '</tr>';
 	            $('#responsaveisTable tbody').append(responsavelRow);
           });
@@ -121,11 +121,11 @@ function listResponsaveis(startPage) {
 	          $.each(response.content, (i, responsavel) => {
 				 let responsavelRow = '<tr>' +
 	      	  						'<td >' + responsavel.id + '</td>' +
-			                		'<td id="td_nome">' + responsavel.nome + 
+			                		'<td style="text-align: left;">' + responsavel.nome + 
 			                		'<p style="font-size: 11px; margin-top: 5px;" >' + responsavel.email+'</p></td>' +
 			                		'<td>' + responsavel.dt_nasc + '</td>' +
 			                		'<td>' + responsavel.celular + '</td>' +
-			                		'<td> <button id="btn" onclick=associar('+responsavel.id+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
+			                		'<td> <button class="btn-primary btns" style="margin-left: 42%;" onclick=associar('+responsavel.id+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
 			                   '</tr>';
 	            $('#responsaveisTable tbody').append(responsavelRow);
           });

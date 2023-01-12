@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/config/styleConfiguracao.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="titulo-secao">
+				<h2>Configurações</h2>
+				<div class="separator"></div>
+				<p>
+					<i class="bi bi-sliders"></i> / Outras Configurações
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="card" id="conteudo">
+				<br>
+				<div class="btn">
+					<button class="email">Configura Email</button>
+					<!-- <button class="email">Configura Email</button> -->
+				</div>
+				<br>
+			</div>
+		</div>
+		<script src="js/config/scriptconfiguracao.js"></script>
+	</main>
+</body>
+</html>

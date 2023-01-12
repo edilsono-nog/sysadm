@@ -1,67 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-body{
-	 background-color: rgb(201, 201, 201);
-}
-
-#logado{
-	font-size: 15px;
-	margin-top: 0;
-	margin-bottom: 10px;
-	font-family: cursive;
-}
-
-.titulo-secao{
-    border-radius: 10px;
-    background-color: white;
-    padding: 10px;
-    width: 98%;
-    margin-left: 8px;
-}
-
-.titulo-secao h2{
-    font-size: 19px;
-}
-
-.titulo-secao p{
-    font-size: 14px;
-}
-
-.titulo-secao svg{
-    color: #73b4ff;
-}
-
-.separator{
-    width: 100%;
-    height: 2px;
-    background-color: rgb(235, 235, 235);
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-
-#cabecario {
-    background-color: rgb(192, 192, 192);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 4px 4px 6px 0px #00000080;
-    width: 95%;
-    left: 10px;
-}
-
-h1{
-	font-size: 25px;
-}
-
-#conteudo{
-	margin-top: -30px;
-	margin-left: 9px;
-	width: 98%;
-	border-radius: 11px;
-	box-shadow: 2px 5px 4px 3px #00000080;
-	background-color: white;
-}
-
 .title_box {
   border: #01658b 2px solid;
   border-radius: 10px;
@@ -81,7 +19,7 @@ h1{
 #matriculaTable,
 #responsavelTable{
 	font-size: 13px;
-    margin-left: 5%;
+    margin-left: 1%;
     position: relative;
     top: -2em;
 }
@@ -121,7 +59,7 @@ h1{
 	font-size: 12px;
 	margin-left: 83%;
 	position: relative;
-    top: -2em;
+    top: -1.5em;
     display: inline;
     cursor: pointer;
     color: #000000;
@@ -255,11 +193,11 @@ button:hover,
 #selectfinanceiro{
 	width: 40%;
 	-webkit-appearance: none;
-    /* Remove estilo padrão do Chrome */
+    /* Remove estilo padrï¿½o do Chrome */
     -moz-appearance: none;
-    /* Remove estilo padrão do FireFox */
+    /* Remove estilo padrï¿½o do FireFox */
     appearance: none;
-    /* Remove estilo padrão do FireFox*/
+    /* Remove estilo padrï¿½o do FireFox*/
     background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
     /* Imagem de fundo (Seta) */
     background-position: 218px center;

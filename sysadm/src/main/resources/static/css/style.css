@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 
 html{
-	font-size: 12px;
+	font-size: 13px;
 }
 
 body,
 button {
   font-family: "Inter", sans-serif;
+  background-color: rgb(201, 201, 201);
 }
 :root {
-  --offcanvas-width: 190px;
+  --offcanvas-width: 200px;
   --topNavbarHeight: 50px;
 }
 .sidebar-nav {
@@ -33,6 +34,41 @@ button {
 	font-size: 15px;
 }
 
+#logado{
+	font-size: 15px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-family: cursive;
+	color: rgba(255,255,255,.55);
+}
+
+@media (max-width: 646px){
+  .navUser{
+	margin-top: -53px !important;
+  }
+}
+
+@media (max-width: 1100px){
+  #logado{
+	margin-bottom: -2px;
+	font-size: 13px;
+    margin-left: auto;
+  }
+  
+  .navbar-toggler, .navbar-brand{
+	margin-bottom: 20px;
+  }
+  
+  .navUser{
+	margin-top: -10px;
+  }
+  
+  .navUser-link{
+	margin-left: 145px;
+  }
+}
+
+
 @media(min-width: 992px) {
   body{
     overflow: auto !important;
@@ -49,14 +85,14 @@ button {
     top: var(--topNavbarHeight);
     height: calc(100% - var(--topNavbarHeight));
   }
-}
+ }
 
 #navbarSupportedContent{
   	display: contents;
   }
 
 @media (max-width: 1100px){
-	.top{
+  .top{
   	font-size: 10px !important;
     width: 65%;
   }
@@ -246,4 +282,127 @@ form.sign-in-form {
     color: #fff;
     animation: slidein 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     z-index: 1;
+}
+
+.titulo-secao{
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    width: 98%;
+    margin-left: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.titulo-secao h2{
+    font-size: 19px;
+}
+
+.titulo-secao p{
+    font-size: 14px;
+}
+
+.titulo-secao svg{
+    color: #73b4ff;
+}
+
+.separator{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(235, 235, 235);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tables {
+	width: 100%;
+	margin-bottom: 5px;
+	/*font-size: 14px;*/
+}
+
+.table_header{
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	background-color: rgb(240, 240, 240);
+	border-radius: 10px;
+}
+
+#status {
+	width: 25%;
+	-webkit-appearance: none;
+    /* Remove estilo padr�o do Chrome */
+    -moz-appearance: none;
+    /* Remove estilo padr�o do FireFox */
+    appearance: none;
+    /* Remove estilo padr�o do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
+    /* Imagem de fundo (Seta) */
+    background-position: 218px center;
+    /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 40px;
+    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+	color: #0298cf;
+    padding-left: 15px;
+    font-family:Verdana, Trebuchet,sans-serif;
+}
+
+#localiza{
+	padding: 10px 20px;
+	margin: 0 10px;
+	outline: none;
+	border: 1px solid #0298cf;
+	border-radius: 6px;
+	color: #0298cf;
+}
+
+.add_new{
+	padding: 8px 15px;
+	color: #ffffff;
+	background-color: #0298cf;
+	border-radius: 6px;
+	border-color: #0298cf;
+	cursor: pointer;
+}
+
+#conteudo{
+	margin-top: 5px;
+	width: 98%;
+	box-shadow: 4px 7px 6px 0px #00000080;
+	border-radius: 10px;
+	background-color: white;
+	font-size: 14px;
+	margin-left: 8px;
+}
+
+.pagination {
+	margin:20px 0; 
+	cursor: pointer;
+	text-align: center;
+}
+
+.page-item {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 13px;
+    height: 100%;
+    width: 50px;
+    border-radius: 10px;
+}
+.page-item:hover{
+    background-color:#fff;
+    color:black;
+}
+
+.btns{
+	display: flex;
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px;
+	color: #ffffff;
 }

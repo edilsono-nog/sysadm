@@ -77,8 +77,8 @@ function fetchAlunos(startPage) {
 	          $.each(response.content, (i, aluno) => {
 				 let alunoRow = '<tr>' +
 	      	  						'<td >' + aluno.id + '</td>' +
-			                		'<td id="td_nome">' + aluno.nome + 
-			                		'<p style="font-size: 11px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
+			                		'<td style="text-align: left;" >' + aluno.nome + 
+			                		'<p style="font-size: 10px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
 			                		'<td>' + aluno.dt_nasc + '</td>' +
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +
@@ -131,8 +131,8 @@ function fetchNotes(startPage) {
 	          $.each(response.content, (i, aluno) => {
 				 let alunoRow = '<tr>' +
 	      	  						'<td >' + aluno.id + '</td>' +
-			                		'<td id="td_nome">' + aluno.nome + 
-			                		'<p style="font-size: 11px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
+			                		'<td style="text-align: left;" >' + aluno.nome + 
+			                		'<p style="font-size: 10px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
 			                		'<td>' + aluno.dt_nasc + '</td>' +
 			                		'<td>' + aluno.celular + '</td>' +
 			                		'<td>' + aluno.status + '</td>' +

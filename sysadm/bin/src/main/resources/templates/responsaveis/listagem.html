@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/responsaveis/styleListagem.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<h1 id="logado" align="right"></h1>
+			</div>
+			<div class="row">
+				<div class="titulo-secao">
+					<h2>Responsáveis</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-person-lines-fill"></i> / Listagem
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="alert"></div>
+				<div class="tables">
+					<div class="table_header" align="right">
+						<div id="div_header">
+							<input id="localiza" placeholder="Localizar Responsável" />
+							<button id="add_new" title="Adicionar" onclick="cadastrar()">+Add
+								New</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="card" id="conteudo">
+					<br>
+					<div style="overflow: auto;">
+						<table id="responsaveisTable"
+							class="table_section table table-hover table-sm">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col" id="td_id">#</th>
+									<th scope="col" id="td_nome">Nome</th>
+									<th scope="col" id="td_nasc">Data de Nascimento</th>
+									<th scope="col" id="td_cel">Celular</th>
+									<th scope="col" id="td_acao">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div id="id_button">
+					<button id="voltar">Voltar</button>
+				</div>
+				<ul class="pagination justify-content-center"
+					style="margin: 20px 0; cursor: pointer;"></ul>
+			</div>
+
+
+			<script src="js/responsaveis/scriptListagem.js"></script>
+			<script src="js/responsaveis/scrpitpagListagem.js"></script>
+	</main>
+	<!--content-->
+</body>
+</html>

@@ -1,115 +1,95 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="css/config/styleConfigemail.css">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/config/styleConfigemail.css">
 </head>
+
 <body>
 	<main class="mt-5 pt-3" layout:fragment="corpo">
 		<div class="container-fluid">
 			<div class="row">
-				<h1 id="logado" align="right"></h1>
+				<div class="titulo-secao">
+					<h2>Configurações</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-sliders"></i> / Outras Configurações
+					</p>
+				</div>
+			</div>
+			<div class="row" style="margin-top: -40px;">
+				<div class="alert"></div>
+				<div class="card" id="conteudo">
+					<br>
+					<form action="" id="formCadastroAnoLetivo" style="display: contents;">
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 14%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+							<input type="text" class="form-control" id="id" name="id" aria-label="Sizing input"
+								readonly="readonly" aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Servidor:</span>
+							<input type="text" class="form-control" id="servidor" name="servidor"
+								aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">E-mail:</span>
+							<input type="text" class="form-control" id="email" name="email" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Senha:</span>
+							<input type="password" class="form-control" id="senha" name="senha"
+								aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Auth:</span>
+							<input type="text" class="form-control" id="auth" name="auth" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Host:</span>
+							<input type="text" class="form-control" id="host" name="host" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Port:</span>
+							<input type="text" class="form-control" id="port" name="port" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Factory_Class:</span>
+							<input type="text" class="form-control" id="factory_class" name="factory_class"
+								aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Factory_Port:</span>
+							<input type="text" class="form-control" id="factory_port" name="factory_port"
+								aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Starttls:</span>
+							<input type="text" class="form-control" id="starttls" name="starttls"
+								aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Trust:</span>
+							<input type="text" class="form-control" id="trust" name="trust" aria-label="Sizing input"
+								aria-describedby="inputGroup-sizing-sm">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="btns justify-content-center" style="margin-top: 20px;">
+				<button class="save btn-primary btns">Salvar</button>
+				<button class="delete btn-danger btns" style="margin-left: 10px;">Delete</button>
+				<button class="fechar btn-info btns" style="margin-left: 10px;">Fechar</button>
 			</div>
 		</div>
-		<div class="row">
-			<div class="titulo-secao">
-				<h2>Configurações</h2>
-				<div class="separator"></div>
-				<p>
-					<i class="bi bi-sliders"></i> / Outras Configurações
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="alert"></div>
-			<div class="card" id="conteudo">
-				<br>
-				<form action="" id="formCadastroAnoLetivo">
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 14%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
-						<input type="text" class="form-control" id="id" name="id"
-							aria-label="Sizing input" readonly="readonly"
-							aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Servidor:</span>
-						<input type="text" class="form-control" id="servidor"
-							name="servidor" aria-label="Sizing input"
-							aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">E-mail:</span>
-						<input type="text" class="form-control" id="email" name="email"
-							aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Senha:</span>
-						<input type="password" class="form-control" id="senha" name="senha"
-							aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Auth:</span>
-						<input type="text" class="form-control" id="auth" name="auth"
-							aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Host:</span>
-						<input type="text" class="form-control" id="host" name="host"
-							aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Port:</span>
-						<input type="text" class="form-control" id="port" name="port"
-							aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Factory_Class:</span>
-						<input type="text" class="form-control" id="factory_class"
-							name="factory_class" aria-label="Sizing input"
-							aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Factory_Port:</span>
-						<input type="text" class="form-control" id="factory_port"
-							name="factory_port" aria-label="Sizing input"
-							aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Starttls:</span>
-						<input type="text" class="form-control" id="starttls"
-							name="starttls" aria-label="Sizing input"
-							aria-describedby="inputGroup-sizing-sm">
-					</div>
-					<div class="input-group input-group-sm col-md-3 mb-3"
-						style="width: 70%;">
-						<span class="input-group-text" id="inputGroup-sizing-sm">Trust:</span>
-						<input type="text" class="form-control" id="trust" name="trust"
-							aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
-					</div>
-				</form>
-			</div>
-		</div>
-		<div class="row">
-			<div class="btn">
-				<button class="save">Salvar</button>
-				<button class="delete">Delete</button>
-				<button class="fechar">Fechar</button>
-			</div>
-		</div>
-
 
 		<script src="js/config/scriptconfigemail.js"></script>
 	</main>
 </body>
+
 </html>
