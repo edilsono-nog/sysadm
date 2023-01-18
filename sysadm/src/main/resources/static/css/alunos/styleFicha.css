@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+html{
+	font-size: 13px;
+}
+
 .title_box {
   border: #01658b 2px solid;
   border-radius: 10px;
@@ -126,6 +130,43 @@ button:hover,
 }
 
 /*modal*/
+.modalMatricula {
+	height: 55%; 
+	width: 29%;
+}
+
+.cabecario{
+	width: 100%;
+}
+
+.tabelaParcelas{
+	height: 88%; 
+	overflow: auto;
+}
+
+@media (max-width: 646px){
+	.modalMatricula {
+		height: 55% !important; 
+		width: 75% !important;
+	}
+}
+
+@media (max-width: 1100px){
+	.modalMatricula {
+		height: 57%; 
+		width: 42% !important;
+	}
+	
+	.cabecario{
+		display: none;
+	}
+	
+	.tabelaParcelas{
+		height: 85% !important;
+		overflow: auto;
+	}
+}
+
 #close-modal{
 	background-color: #888;
 }
@@ -139,6 +180,11 @@ button:hover,
 	height: 100%;
 	background-color: rgba(0,0,0,0.6);
 	z-index: 5;
+}
+
+.modalMensalidade{
+	height: 79%; 
+	width: 41%;
 }
 
 #modals,
@@ -185,6 +231,16 @@ button:hover,
 #modals.hide,
 #modalMensalidade.hide {
   top: 0;
+}
+
+.modal-body{
+	overflow: auto;
+	height: 75%;
+}
+
+.modalMensalidade-body{
+	overflow: auto;
+	height: 95%;
 }
 
 #selectAno,
@@ -355,7 +411,7 @@ td button:nth-child(2){
 }
 
 #selectfinanceiro{
-	width: 55%;
+	width: 50%;
     font-size: 12px;
 }
 
@@ -382,3 +438,4 @@ tr td#respfin{
 	width: 30%;
     font-size: 13px;
 }
+

@@ -253,6 +253,9 @@ function limpaMensalidade(){
 }
 
 function autMensalidades(aluno, ano) {
+	
+	let cabecario = document.querySelector('.cabecario')
+	let tabelaParcelas = document.querySelector('.tabelaParcelas')
 
 	$.ajax({
 		method : "GET",
@@ -265,9 +268,13 @@ function autMensalidades(aluno, ano) {
 			if (response.length == 0 ){
 				gerar.disabled = false;
 				exclui.disabled = true;
+				cabecario.setAttribute('style', 'display: block;')
+				tabelaParcelas.setAttribute ('style', 'display: none;')
 			}else {
 				gerar.disabled = true;
 				exclui.disabled = false;
+				cabecario.setAttribute('style', 'display: none;')
+				tabelaParcelas.setAttribute ('style', 'display: blobk;')
 			}
 			
 			response.sort(function (x, y) {

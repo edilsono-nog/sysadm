@@ -19,10 +19,12 @@ $(document).ready(function() {
 				$('#caixaTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, caixa) => {
+					var atual = caixa.saldo;
+					var valor = atual.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 					let caixaRow = '<tr>' +
 						'<td >' + caixa.id + '</td>' +
 						'<td id="td_nome">' + caixa.descricao +
-						'<td >R$ ' + caixa.saldo + '</td>' +
+						'<td >R$ ' + valor + '</td>' +
 						'<td> <button onclick=edit(' + caixa.id + ') title="Editar"><i class="bi bi-pencil-square"></i></button>' +
 						'<!--<button  onclick=ficha(' + caixa.id + ') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
 						'</tr>';

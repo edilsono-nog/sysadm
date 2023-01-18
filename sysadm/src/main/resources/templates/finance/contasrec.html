@@ -45,7 +45,7 @@
 						<table id="contasTable" class="table_section table-hover">
 							<thead class="thead-dark">
 								<tr>
-									<th scope="col" id="td_id">#</th>
+									<th scope="col" id="td_id" style="width: 10%;">#</th>
 									<th scope="col" style="width: 100px;">Emissão</th>
 									<th scope="col" style="width: 70px;">Parcela</th>
 									<th scope="col">Descrição</th>
@@ -63,6 +63,66 @@
 				</div>
 				<ul class="pagination justify-content-center"
 					style="margin: 20px 0; cursor: pointer;"></ul>
+			</div>
+		</div>
+		
+		<!-- Modal Baixa -->
+		<div id="fades" class="hide"></div>
+		<div class="alert"></div>
+		<div id="modals" class="hide modalBaixa" data-backdrop="static">
+			<div class="modals-header">
+				<h2>Baixa de Registro Financeiro</h2>
+
+			</div>
+
+			<div class="modal-body modal-dialog-scrollable">
+				<form action="" id="formBaixa" name="formBaixa" style="display: contents;">
+					<div class="input-group input-group-sm mb-3" style="width: 50%;">
+					  <label class="input-group-text" for="inputGroupSelect01">Caixa</label>
+					  <select class="form-select" id="caixa" name="caixa">
+					    <option selected>Selecione...</option>
+					  </select>
+					</div>
+					<div class="input-group input-group-sm col-md-3 mb-3" style="width: 30%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Nº Parcela</span>
+						<input type="text" class="form-control" id="parcela" name="parcela" aria-label="Sizing input"
+							readonly="readonly" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<div class="input-group input-group-sm col-md-3 mb-3">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Descrição ou Aluno:</span>
+						<input type="text" class="form-control" id="descricao" name="descricao" aria-label="Sizing input"
+							aria-describedby="inputGroup-sizing-sm" disabled>
+					</div>
+					<div class="input-group input-group-sm col-md-3 mb-3" style="width: 40%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Vencimento:</span>
+						<input type="text" class="form-control" id="vencimento" name="vencimento" aria-label="Sizing input"
+							aria-describedby="inputGroup-sizing-sm" disabled>
+					</div>
+					<div class="input-group input-group-sm col-md-3 mb-3" style="width: 30%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Valor:</span>
+						<input type="text" class="form-control" id="valor" onkeyup="formatarMoeda()"
+							name="valor" aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm" disabled>
+					</div>
+					<div class="input-group input-group-sm col-md-3 mb-3" style="width: 40%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Valor pago:</span>
+						<input type="text" class="form-control" id="valorpago" onkeyup="formatarMoeda()"
+							name="valorpago" aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<div class="input-group input-group-sm mb-3" style="width: 50%;">
+					  <label class="input-group-text" for="inputGroupSelect01">Tipo de Pgto</label>
+					  <select class="form-select" id="tipopgto" name="tipopgto">
+					    <option selected>Selecione...</option>
+					    <option value="Cartão">Cartão</option>
+					    <option value="Dinheiro">Dinheiro</option>
+					    <option value="Debito">Debito</option>
+					    <option value="Pix">Pix</option>
+					  </select>
+					</div>
+					<div class="justify-content-center" style="margin-top: 30px; display: flex;">
+						<button class="save btn-primary btns">Salvar</button>
+						<button class="btn-danger btns" id="close-modal" style="margin-left: 10px;">Cancelar</button>
+					</div>
+				</form>
 			</div>
 		</div>
 

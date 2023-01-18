@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.sysadm.model.Baixas;
 
 @Repository
-public interface baixasRepository extends JpaRepository<Baixas, Long> {
+public interface BaixasRepository extends JpaRepository<Baixas, Long> {
 
 }

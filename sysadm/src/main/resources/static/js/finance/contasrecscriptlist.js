@@ -9,10 +9,10 @@ let totalPages = 1;
 fetchNotes(0);
 
 let tipo = '';
-
-if (userLogados != null) {
-	logado.innerHTML = userLogados.name
-}
+let tipoRadio;
+let tipoRadios;
+let regParcela;
+let tipoService;
 
 if (getCookie('JSESSIONID') == null) {
 	alert('Você precisa estar logado para acessar essa página')
@@ -86,7 +86,7 @@ function fetchContasRec(startPage) {
 			}
 		}
 	}
-
+	
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -101,7 +101,7 @@ function fetchContasRec(startPage) {
 		},
 		success: function(response) {
 			if (tipos == 'mensalidade') {
-				console.log(response)
+				tipoRadio = 'mensalidade';
 				$('#contasTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, contas) => {
@@ -116,7 +116,7 @@ function fetchContasRec(startPage) {
 						'<td id="td_nome">' + contas[9] +
 						'<td >' + valor + '</td>' +
 						'<td >' + sts.toLocaleDateString() + '</td>' +
-						'<td> <button onclick=edit(' + contas[0] + ') title="Editar">Baixar Registro</button>' +
+						'<td> <button onclick=baixa(' + contas[0] + ') title="Editar">Baixar Registro</button>' +
 						'<!--<button  onclick=ficha(' + contas[0] + ') title="Baixa"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
 						'</tr>';
 					$('#contasTable tbody').append(contasRow);
@@ -129,7 +129,7 @@ function fetchContasRec(startPage) {
 				}
 			}
 			if (tipos == 'outros') {
-				console.log(response)
+				tipoRadio = 'outros';
 				$('#contasTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, contas) => {
@@ -144,7 +144,7 @@ function fetchContasRec(startPage) {
 						'<td id="td_nome">' + contas.descricao +
 						'<td >' + valor + '</td>' +
 						'<td >' + sts.toLocaleDateString() + '</td>' +
-						'<td> <button onclick=edit(' + contas.id + ') title="Editar">Baixar Registro</button>' +
+						'<td> <button onclick=baixa(' + contas.id + ') title="Editar">Baixar Registro</button>' +
 						'<!--<button  onclick=ficha(' + contas.id + ') title="Baixa"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
 						'</tr>';
 					$('#contasTable tbody').append(contasRow);
@@ -185,7 +185,7 @@ function fetchNotes(startPage) {
 			}
 		}
 	}
-
+	
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -200,7 +200,7 @@ function fetchNotes(startPage) {
 		},
 		success: function(response) {
 			if (tipo == 'mensalidade') {
-				console.log(response)
+				tipoRadios = 'mensalidade';
 				$('#contasTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, contas) => {
@@ -215,7 +215,7 @@ function fetchNotes(startPage) {
 						'<td id="td_nome">' + contas[9] +
 						'<td >' + valor + '</td>' +
 						'<td >' + sts.toLocaleDateString() + '</td>' +
-						'<td> <button onclick=edit(' + contas[0] + ') title="Editar">Baixar Registro</button>' +
+						'<td> <button onclick=baixa(' + contas[0] + ') title="Baixa de Registro">Baixar Registro</button>' +
 						'<!--<button  onclick=ficha(' + contas[0] + ') title="Baixa"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
 						'</tr>';
 					$('#contasTable tbody').append(contasRow);
@@ -228,23 +228,23 @@ function fetchNotes(startPage) {
 				}
 			}
 			if (tipo == 'outros') {
-				console.log(response)
+				tipoRadios = 'outros';
 				$('#contasTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, contas) => {
-					var ts = new Date(contas.emisao)
-					var sts = new Date(contas.vencimento)
+					var dataFormatada = contas.emisao.split('-').reverse().join('/');
+					var dtFormatada = contas.vencimento.split('-').reverse().join('/');
 					var atual = contas.valor;
 					var valor = atual.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 					let contasRow = '<tr>' +
 						'<td >' + contas.id + '</td>' +
-						'<td >' + ts.toLocaleDateString() + '</td>' +
+						'<td >' + dataFormatada + '</td>' +
 						'<td >' + '0' + '</td>' +
 						'<td id="td_nome">' + contas.descricao +
 						'<td >' + valor + '</td>' +
-						'<td >' + sts.toLocaleDateString() + '</td>' +
-						'<td> <button onclick=edit(' + contas.id + ') title="Editar">Baixar Registro</button>' +
-						'<!--<button  onclick=ficha(' + contas.id + ') title="Baixa"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
+						'<td >' + dtFormatada + '</td>' +
+						'<td> <button onclick=baixa('+ contas.id +') title="Baixa de Registro">Baixar Registro</button>' +
+						'<button  onclick=edit(' + contas.id + ') title="Edit"><i class="bi bi-pencil-square"></i></button> </td>' +
 						'</tr>';
 					$('#contasTable tbody').append(contasRow);
 				});
@@ -399,3 +399,208 @@ function msgError(msg) {
 		message.style.display = "none";
 	}, 3000);
 }
+
+function formatarMoedas(valor) {
+	valor = valor + '';
+	valor = parseInt(valor.replace(/[\D]+/g, ''));
+	valor = valor + '';
+	valor = valor.replace(/([0-9]{2})$/g, ".$1");
+
+	if (valor.length > 6) {
+		valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1.$2");
+	}
+
+	if (valor == 'NaN') elemento.value = '';
+}
+
+function formatarMoeda() {
+	var elemento = document.getElementById('valorpago');
+	var valor = elemento.value;
+
+	valor = valor + '';
+	valor = parseInt(valor.replace(/[\D]+/g, ''));
+	valor = valor + '';
+	valor = valor.replace(/([0-9]{2})$/g, ".$1");
+
+	if (valor.length > 6) {
+		valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1.$2");
+	}
+
+	elemento.value = valor;
+	if (valor == 'NaN') elemento.value = '';
+}
+
+/*Modal Baixa*/
+
+let modals = document.querySelector('#modals');
+let fades = document.querySelector('#fades');
+
+function baixa(idRec){
+	regParcela = idRec;
+	var status = '';
+	
+	if(tipoRadio != null){
+		status = tipoRadio;
+		tipoService = tipoRadio;
+	}
+	
+	if(tipoRadios != null){
+		status = tipoRadios;
+		tipoService = tipoRadios;
+	}
+	
+	modals.classList.toggle('hide')
+	fades.classList.toggle('hide')
+	pegaBaixa(status, idRec);
+}
+
+$(document).ready(function() {
+
+	$.ajax({
+		method: "GET",
+		url: "contasbaixasrec/pegaCaixa",
+		timeout: 0,
+		headers: {
+			Authorization: localStorage.getItem("token")
+		},
+		success: function(response) {
+			for (var i = 0; i < response.length; i++) {
+				$('#caixa').append(
+					'<option value=' + response[i].id + '>' + response[i].descricao + '</option>'
+				);
+			}
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+	});
+
+});
+
+function pegaBaixa(tipo, idRec){
+	var myHeaders = new Headers();
+	myHeaders.append("Authorization", localStorage.getItem("token"));
+	myHeaders.append('Content-Type', 'application/json;charset=utf-8');
+	
+	/*const filtro = {
+		tipo: tipo,
+		idRec: idRec
+	}*/
+	
+	$.ajax({
+		method: "GET",
+		url: "contasbaixasrec/pegaRegistro?idRec="+idRec+"&tipo="+tipo,
+		timeout: 0,
+		headers: {
+			Authorization: localStorage.getItem("token")
+		},
+		success: function(response) {
+			if(tipo == 'mensalidade'){
+				var ts = new Date(response[0][7])
+				var dataFormatada = ts.toLocaleDateString();
+				var valor = response[0][6];
+				valor = Intl.NumberFormat('en-IN',{ minimumFractionDigits: 2}).format(valor);
+				$("#parcela").val(response[0][5]);
+				$("#descricao").val(response[0][0]);
+				$("#vencimento").val(dataFormatada);
+				$("#valor").val(valor);
+			}
+			if (tipo == 'outros'){
+				var dataFormatada = response[0].vencimento.split('-').reverse().join('/');
+				var valor = response[0].valor;
+				valor = Intl.NumberFormat('en-IN',{ minimumFractionDigits: 2}).format(valor);
+				$("#parcela").val(0);
+				$("#descricao").val(response[0].descricao);
+				$("#vencimento").val(dataFormatada);
+				$("#valor").val(valor);
+			}
+			
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+	});
+
+}
+
+document.getElementById("close-modal").addEventListener("click", function(event){
+	modals.classList.toggle('hide')
+	fades.classList.toggle('hide')
+});
+
+const toggleModal = () => {
+	[modals, fades].forEach((els) => {		
+		els.classList.toggle("hide")
+	});
+}
+
+document.querySelector('.save').addEventListener("click", function(event){
+	event.preventDefault();
+	var valor = $("#valor").val();
+	var valorpago = $("#valorpago").val();
+	
+	if (valorpago < valor){
+		salvarBaixa();
+		var valor = valor - valorpago;
+		valor = Intl.NumberFormat('en-IN',{ minimumFractionDigits: 2}).format(valor);
+		$("#valor").val(valor);
+		$("#valorpago").val('');
+	}else{
+		salvarBaixa();
+		modals.classList.toggle('hide')
+		fades.classList.toggle('hide')
+		window.location.reload(true);
+	}
+	
+})
+
+function salvarBaixa(){
+	var myHeaders = new Headers();
+	myHeaders.append("Authorization", localStorage.getItem("token"));
+	myHeaders.append('Content-Type', 'application/json;charset=utf-8');
+	
+	var dateNow = new Date();
+	var dataFormatada = dateNow.toLocaleDateString();
+	dataFormatada = dataFormatada.split('/').reverse().join('-');
+
+	var id = $("#id").val();
+	var parcela = $("#parcela").val();
+	var dt_baixa = dataFormatada;
+	var descricao = $("#descricao").val();
+	var valor = $("#valorpago").val();
+	var tipopgto = $("#tipopgto").val();
+	var caixa = $('#caixa').val();
+	var tipo = 'C';
+
+	const baixa = {
+		id: id,
+		parcela: parcela,
+		dt_baixa: dt_baixa,
+		descricao: descricao,
+		valor: valor,
+		tipopgto: tipopgto,
+		tipo: tipo,
+		caixa:caixa
+	};
+
+
+	fetch('contasbaixasrec/salvarBaixa?regParcela='+regParcela+'&tipoService='+tipoService, {
+		method: 'POST',
+		headers: myHeaders,
+		body: JSON.stringify(baixa)
+	})
+		.then(response => {
+			return response.json();
+		})
+		.then(result => {
+			$("#id").val(result.id);
+			const msg = "Realizando cadatro.... ";
+			msgSuccess(msg);
+			/*setTimeout(() => {
+				window.location.href = 'caixas'
+				document.getElementById('formCadastroCaixa ').reset();
+			}, 3000)*/
+		})
+		.catch(error => {
+			console.log(error);
+		});
+}
+

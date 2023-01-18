@@ -1,7 +1,7 @@
 package br.com.sysadm.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,11 +32,11 @@ public class ContasReceber implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_creceber")
 	private Long id;
-	private Date emisao;
+	private LocalDate emisao;
 	private String descricao;
 	private float valor;
-	private Date vencimento;
-	private Date liquidacao;
+	private LocalDate vencimento;
+	private LocalDate liquidacao;
 	private String obs;
 	
 

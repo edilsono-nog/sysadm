@@ -14,5 +14,8 @@ public interface CaixaRepository extends JpaRepository<Caixa, Long> {
 	@Query(value = "select c from Caixa c where upper(trim(c.descricao)) like %?1%")
 	Page<Caixa> pesqAno(String upperCase, Pageable pageable);
 
+	@Query(value = "Select c from Caixa c where id = ?1")
+	Caixa pegaCaixa(long parseLong);
+
 
 }

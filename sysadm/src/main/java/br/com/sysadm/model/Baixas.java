@@ -1,7 +1,7 @@
 package br.com.sysadm.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,10 +32,12 @@ public class Baixas implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_baixa")
 	private Long id;
-	private Date dt_baixa;
+	private String parcela;
+	private LocalDate dt_baixa;
 	private String descricao;
 	private float valor;
 	private String tipopgto;
 	private String tipo;
+	private String caixa;
 
 }

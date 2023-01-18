@@ -1,6 +1,7 @@
 package br.com.sysadm.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -50,7 +51,7 @@ public class Mensalidades implements Serializable {
 	private float parcela;
 	private String anoletivo;
 	private Date vencimento;
-	private Date liquidacao;
+	private LocalDate liquidacao;
 	
 
 }
