@@ -124,7 +124,7 @@ public class ContasBaixasRecController {
 	@ResponseBody
 	public ResponseEntity<ContasReceber> pegaContas(@RequestParam (name = "idRec") Long idRec){
 		
-		ContasReceber contasReceber = contasReceberRepository.findByIdcontas(idRec);
+		ContasReceber contasReceber = contasReceberRepository.pegaRegConta(idRec);
 		
 		return new ResponseEntity<ContasReceber>(contasReceber, HttpStatus.OK);
 	}

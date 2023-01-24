@@ -17,9 +17,6 @@ public interface ContasReceberRepository extends JpaRepository<ContasReceber, Lo
 	Page<ContasReceber> findContasName(String name, Pageable pageable);
 
 	@Query(value = "SELECT c FROM ContasReceber c WHERE id = ?1")
-	ContasReceber findByIdcontas(Long idRec);
-	
-	@Query(value = "SELECT c FROM ContasReceber c WHERE id = ?1")
 	List<?> pegaConta(Long idRec);
 
 	@Query(value = "SELECT c FROM ContasReceber c WHERE id = ?1")

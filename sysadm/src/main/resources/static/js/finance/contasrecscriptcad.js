@@ -59,7 +59,7 @@ document.querySelector('.save').addEventListener('click', () => {
 
 	const contas = {
 		id: id,
-		descricao: $("#descricao").val(),
+		descricao: descricao,
 		emisao: emissao,
 		vencimento: vencimento,
 		obs: observacao,

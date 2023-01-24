@@ -1,7 +1,3 @@
-let userLogados = JSON.parse(localStorage.getItem("userLogado"))
-
-let logado = document.querySelector('#logado')
-
 let localiza = document.querySelector('#localiza')
 
 const divMessage = document.querySelector(".alert");
@@ -11,10 +7,6 @@ let totalPages = 1;
 fetchNotes(0);
 
 let tipo = '';
-
-if (userLogados != null) {
-	logado.innerHTML = userLogados.name
-}
 
 if (getCookie('JSESSIONID') == null) {
 	alert('Você precisa estar logado para acessar essa página')

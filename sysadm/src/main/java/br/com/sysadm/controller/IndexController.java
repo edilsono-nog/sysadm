@@ -82,6 +82,16 @@ public class IndexController {
 		return "config/escolascad";
 	}
 	
+	@GetMapping("categoriaslist")
+	private String categoriaslist() {
+		return "config/categoriaslist";
+	}
+	
+	@GetMapping("categoriascad")
+	private String categoriascad() {
+		return "config/categoriascad";
+	}
+	
 	@GetMapping("configuracoes")
 	private String configuracoes() {
 		return "config/configuracoes";
@@ -121,6 +131,16 @@ public class IndexController {
 	@GetMapping("contasarecebercad")
 	private String contasarecebercad() {
 		return "finance/contasreccad";
+	}
+	
+	@GetMapping("contasapagar")
+	private String contasapagar() {
+		return "finance/contasapagarlist";
+	}
+	
+	@GetMapping("contasapagarcad")
+	private String contasapagarcad() {
+		return "finance/contasapagarcad";
 	}
 	
 }

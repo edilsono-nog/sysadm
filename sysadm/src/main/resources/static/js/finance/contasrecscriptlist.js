@@ -49,7 +49,6 @@ localiza.addEventListener('keyup', () => {
 	} else {
 		fetchNotes(0);
 	}
-
 })
 
 document.querySelector('.radios').addEventListener('click', () => {
