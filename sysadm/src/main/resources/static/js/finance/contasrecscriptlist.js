@@ -104,8 +104,8 @@ function fetchContasRec(startPage) {
 				$('#contasTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, contas) => {
-					var dataFormatada = contas.emisao.split('-').reverse().join('/');
-					var dtFormatada = contas.vencimento.split('-').reverse().join('/');
+					var dataFormatada = contas[2].split('-').reverse().join('/');
+					var dtFormatada = contas[6].split('-').reverse().join('/');
 					var ts = new Date(contas[2])
 					var sts = new Date(contas[6])
 					var atual = contas[5];

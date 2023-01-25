@@ -41,6 +41,7 @@ function eraseCookie(nome) {
 
 document.querySelector('#voltar').addEventListener('click', ()=>{
 	localStorage.removeItem('idFicha')
+	localStorage.removeItem('idFichaAluno')
 	window.location.href='alunos_listagem'
 })
 
@@ -55,7 +56,7 @@ function autFicha(id) {
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success : function(response) {
-			if(response.dt_nasc != null || response.dt_nasc != ''){
+			if(response.dt_nasc != null){
 				var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
 			}else {
 				dataFormatada = '';

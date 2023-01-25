@@ -29,6 +29,7 @@ function eraseCookie(nome) {
 }
 
 function cadastrar() {
+	localStorage.removeItem('idEdit');
 	window.location.href = 'caixascad'
 }
 

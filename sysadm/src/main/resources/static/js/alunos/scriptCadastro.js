@@ -322,7 +322,10 @@ function colocarEmEdicao(id) {
 			Authorization: localStorage.getItem("token")
 		},
 		success: function(response) {
-			var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
+			if(response.dt_nasc != null){
+				var dataFormatada = response.dt_nasc.split('-').reverse().join('/');
+			}
+			
 
 			$("#id").val(response.id);
 			$("#nome").val(response.nome);

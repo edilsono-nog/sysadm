@@ -66,8 +66,8 @@ public class DashboardController {
 								 + "b.aluno_id=a.id and EXTRACT(month FROM b.vencimento) = "+mes
 								 +" and a.status = 'Ativo' ";
 		String sqlRecebidas = "SELECT sum(b.valor) as recebidas FROM Alunos a, Mensalidades b WHERE "
-							  + "b.aluno_id=a.id and EXTRACT(month FROM b.vencimento) = "+mes+" "
-							  + "and EXTRACT(month FROM b.liquidacao) = "+mes+" and a.status = 'Ativo' ";
+							  + "b.aluno_id=a.id and EXTRACT(month FROM b.liquidacao) = "+mes+" "
+							  		+ "and a.status = 'Ativo' ";
 		String sqlSaldo = "SELECT sum(saldo) as saldo FROM Caixa";
 		
 		String qtdeAtivos = jdbcTemplate.queryForObject(sqlMatriculados, String.class);
@@ -76,7 +76,7 @@ public class DashboardController {
 		Float saldos = jdbcTemplate.queryForObject(sqlSaldo, Float.class);
 		
 		painelDto.setMatriculados(qtdeAtivos);
-		painelDto.setSaldo(saldos);
+		
 		
 		if(mensalidade == null) {
 			painelDto.setTtl_mensalidades(0);
@@ -88,6 +88,12 @@ public class DashboardController {
 			painelDto.setTtl_recebido(0);
 		}else {
 			painelDto.setTtl_recebido(recebida);
+		}
+		
+		if (saldos == null) {
+			painelDto.setSaldo(0);
+		}else {
+			painelDto.setSaldo(saldos);
 		}
 		
 		return painelDto;
