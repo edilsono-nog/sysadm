@@ -16,7 +16,7 @@ import br.com.sysadm.model.Mensalidades;
 public interface MensalidadesRepository extends JpaRepository<Mensalidades, Long> {
 
 	@Query(value = "SELECT a.*, b.nome from Mensalidades a, Alunos b "
-			+ "WHERE a.aluno_id=b.id and a.aluno_id = ?1 and a.anoletivo = ?2", nativeQuery = true)
+			+ "WHERE a.aluno_id=b.id and a.aluno_id = ?1 and a.anoletivo = ?2 order by a.id", nativeQuery = true)
 	List<?> pegaMensalidades(long idAluno, String anoletivo);
 
 	@Modifying

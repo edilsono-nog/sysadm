@@ -2,6 +2,9 @@ package br.com.sysadm.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -51,8 +54,10 @@ public class MensalidadesService {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");		
 		
 		Date now = new Date();
-		
-		Date venc = sdf.parse(dto.getVencimento());
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDateTime = dto.getVencimento().format(dateTimeFormatter);
+        Date venc = sdf.parse(formattedDateTime);
+	//	Date venc = sdf.parse(dto.getVencimento());
 		
 		int mes = 0;
 		Calendar calendar =  sdf.getCalendar();
@@ -60,9 +65,11 @@ public class MensalidadesService {
 		
 		for (int i = 0; i < dto.getParcelas(); i++) {
 			calendar.add(Calendar.MONTH, mes);
-			mensalidade.setVencimento(calendar.getTime());
+			LocalDate localDate = calendar.getTime().toInstant().atZone( ZoneId.systemDefault() ).toLocalDate();
+			mensalidade.setVencimento(localDate);
 			mensalidade.setValor(dto.getValor());
-			mensalidade.setEmisao(now);
+			LocalDate localDatenow = now.toInstant().atZone( ZoneId.systemDefault() ).toLocalDate();
+			mensalidade.setEmisao(localDatenow);
 			mensalidade.setAluno(aluno);
 			mensalidade.setResponsavel(responsaveis);
 			mensalidade.setParcela(i+1);

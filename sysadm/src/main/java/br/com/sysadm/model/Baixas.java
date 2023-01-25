@@ -39,5 +39,5 @@ public class Baixas implements Serializable {
 	private String tipopgto;
 	private String tipo;
 	private String caixa;
-
+	private int categoria;
 }

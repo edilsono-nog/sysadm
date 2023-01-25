@@ -42,7 +42,7 @@ public class Mensalidades implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Alunos aluno;
-	private Date emisao;
+	private LocalDate emisao;
 	@JoinColumn(name = "responsavel_id")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
@@ -50,7 +50,7 @@ public class Mensalidades implements Serializable {
 	private float valor;
 	private float parcela;
 	private String anoletivo;
-	private Date vencimento;
+	private LocalDate vencimento;
 	private LocalDate liquidacao;
 	
 

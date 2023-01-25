@@ -1,5 +1,7 @@
 package br.com.sysadm.Dto;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -18,7 +20,7 @@ public class MensalidadesDTO {
 	private String idAluno;
 	private Float valor;
 	private Float parcelas;
-	private String vencimento;
+	private LocalDate vencimento;
 	private String responsavel;
 
 }

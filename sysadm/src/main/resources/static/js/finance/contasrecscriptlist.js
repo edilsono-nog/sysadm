@@ -104,17 +104,19 @@ function fetchContasRec(startPage) {
 				$('#contasTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, contas) => {
+					var dataFormatada = contas.emisao.split('-').reverse().join('/');
+					var dtFormatada = contas.vencimento.split('-').reverse().join('/');
 					var ts = new Date(contas[2])
 					var sts = new Date(contas[6])
 					var atual = contas[5];
 					var valor = atual.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 					let contasRow = '<tr>' +
 						'<td >' + contas[0] + '</td>' +
-						'<td >' + ts.toLocaleDateString() + '</td>' +
+						'<td >' + dataFormatada + '</td>' +
 						'<td >' + contas[4] + '</td>' +
 						'<td id="td_nome">' + contas[9] +
 						'<td >' + valor + '</td>' +
-						'<td >' + sts.toLocaleDateString() + '</td>' +
+						'<td >' + dtFormatada + '</td>' +
 						'<td> <button onclick=baixa(' + contas[0] + ') title="Editar">Baixar Registro</button>' +
 						'<!--<button  onclick=ficha(' + contas[0] + ') title="Baixa"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
 						'</tr>';
@@ -203,17 +205,19 @@ function fetchNotes(startPage) {
 				$('#contasTable tbody').empty();
 				// add table rows
 				$.each(response.content, (i, contas) => {
+					var dataFormatada = contas[2].split('-').reverse().join('/');
+					var dtFormatada = contas[6].split('-').reverse().join('/');
 					var ts = new Date(contas[2])
 					var sts = new Date(contas[6])
 					var atual = contas[5];
 					var valor = atual.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 					let contasRow = '<tr>' +
 						'<td >' + contas[0] + '</td>' +
-						'<td >' + ts.toLocaleDateString() + '</td>' +
+						'<td >' + dataFormatada + '</td>' +
 						'<td >' + contas[4] + '</td>' +
 						'<td id="td_nome">' + contas[9] +
 						'<td >' + valor + '</td>' +
-						'<td >' + sts.toLocaleDateString() + '</td>' +
+						'<td >' + dtFormatada + '</td>' +
 						'<td> <button onclick=baixa(' + contas[0] + ') title="Baixa de Registro">Baixar Registro</button>' +
 						'<!--<button  onclick=ficha(' + contas[0] + ') title="Baixa"><i class="bi bi-clipboard2-data-fill"></i></button> </td>-->' +
 						'</tr>';
@@ -455,6 +459,12 @@ function baixa(idRec){
 
 $(document).ready(function() {
 
+	caixas();
+	categoriaBaixaaReceber();
+
+});
+
+function caixas(){
 	$.ajax({
 		method: "GET",
 		url: "contasbaixasrec/pegaCaixa",
@@ -472,8 +482,30 @@ $(document).ready(function() {
 	}).fail(function(xhr, status, errorThrown) {
 		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
 	});
+}
 
-});
+function categoriaBaixaaReceber(){
+	
+	let tipoEntrada = 'Entrada'
+	
+	$.ajax({
+		method: "GET",
+		url: "categorias/listacategoria?tipo="+tipoEntrada,
+		timeout: 0,
+		headers: {
+			Authorization: localStorage.getItem("token")
+		},
+		success: function(response) {
+			for (var i = 0; i < response.length; i++) {
+				$('#categoria').append(
+					'<option value=' + response[i].id + '>' + response[i].descricao + '</option>'
+				);
+			}
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+	});
+}
 
 function pegaBaixa(tipo, idRec){
 	var myHeaders = new Headers();
@@ -562,6 +594,7 @@ function salvarBaixa(){
 
 	var id = $("#id").val();
 	var parcela = $("#parcela").val();
+	var categoria = $('#categoria').val();
 	var dt_baixa = dataFormatada;
 	var descricao = $("#descricao").val();
 	var valor = $("#valorpago").val();
@@ -572,6 +605,7 @@ function salvarBaixa(){
 	const baixa = {
 		id: id,
 		parcela: parcela,
+		categoria: categoria,
 		dt_baixa: dt_baixa,
 		descricao: descricao,
 		valor: valor,

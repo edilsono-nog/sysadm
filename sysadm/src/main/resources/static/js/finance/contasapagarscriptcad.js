@@ -40,6 +40,7 @@ document.querySelector('.save').addEventListener('click', () => {
 	var parcelas = $('#qtdeparcelas').val();
 	var id = $("#id").val();
 	var descricao = $("#descricao").val();
+	var categoria = $('#categoria').val();
 	var emissao = dataFormatada;
 	var vencimento = dtFormatada;
 	var observacao = $("#observacao").val();
@@ -48,6 +49,7 @@ document.querySelector('.save').addEventListener('click', () => {
 	const contas = {
 		id: id,
 		descricao: descricao,
+		categoria: categoria,
 		emissao: emissao,
 		parcelas: parcelas,
 		vencimento: vencimento,

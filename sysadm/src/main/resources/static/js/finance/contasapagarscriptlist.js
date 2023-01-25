@@ -315,6 +315,13 @@ function baixa(idRec){
 
 $(document).ready(function() {
 
+	pegaCaixa();
+	categoriaBaixaaPagar();
+
+});
+
+function pegaCaixa(){
+	
 	$.ajax({
 		method: "GET",
 		url: "contasbaixasrec/pegaCaixa",
@@ -332,8 +339,30 @@ $(document).ready(function() {
 	}).fail(function(xhr, status, errorThrown) {
 		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
 	});
+}
 
-});
+function categoriaBaixaaPagar(){
+	
+	let tipoSaida = 'Saida'
+	
+	$.ajax({
+		method: "GET",
+		url: "categorias/listacategoria?tipo="+tipoSaida,
+		timeout: 0,
+		headers: {
+			Authorization: localStorage.getItem("token")
+		},
+		success: function(response) {
+			for (var i = 0; i < response.length; i++) {
+				$('#categoria').append(
+					'<option value=' + response[i].id + '>' + response[i].descricao + '</option>'
+				);
+			}
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+	});
+}
 
 function pegaBaixa(idRec){
 
@@ -389,6 +418,7 @@ function salvarBaixa(){
 	dataFormatada = dataFormatada.split('/').reverse().join('-');
 
 	var id = $("#id").val();
+	var categoria = $('#categoria').val();
 	var parcela = $("#parcela").val();
 	var dt_baixa = dataFormatada;
 	var descricao = $("#descricao").val();
@@ -399,6 +429,7 @@ function salvarBaixa(){
 
 	const baixa = {
 		id: id,
+		categoria: categoria,
 		parcela: parcela,
 		dt_baixa: dt_baixa,
 		descricao: descricao,

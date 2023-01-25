@@ -98,33 +98,37 @@
 
 			<div class="modal-body modal-dialog-scrollable">
 				<form action="" id="formMatriculaAluno" name="formMatriculaAluno" style="display: contents;">
-					<div>
-						<label style="font-size: 13px;">Ano Letivo :</label>
-						<select name="selectAno" id="selectAno">
-							<option>Selecione o ano Letivo</option>
-						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+					
+					<div class="input-group input-group-sm mb-3" style="width: 60%;">
+					  <label class="input-group-text" for="inputGroupSelect01">Ano Letivo :</label>
+					  <select class="form-select" name="selectAno" id="selectAno">
+					    <option selected>Selecione...</option>
+					  </select>
 					</div>
-					<div>
-						<label style="font-size: 13px;">Escola :</label>
-						<select name="selectEscola" id="selectEscola">
-							<option>Selecione a escola</option>
-						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+					
+					<div class="input-group input-group-sm mb-3">
+					  <label class="input-group-text" for="inputGroupSelect01">Escola :</label>
+					  <select class="form-select" name="selectEscola" id="selectEscola">
+					    <option selected>Selecione...</option>
+					  </select>
 					</div>
-					<div>
-						<label style="font-size: 13px;">Turma :</label>
-						<div class="label-float" id="div_turma">
-							<input type="text" id="turma" placeholder="" name="turma" required>
-						</div>
+					
+					<div class="input-group input-group-sm col-md-3 mb-3" style="width: 70%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Turma :</span>
+						<input type="text" class="form-control" id="turma" name="turma" aria-label="Sizing input"
+							 aria-describedby="inputGroup-sizing-sm">
 					</div>
-					<div>
-						<label style="font-size: 13px;">Turno :</label>
-						<select name="selectTurno" id="selectTurno">
-							<option>Selecione o Turno</option>
-							<option value="Manhã">Manhã</option>
-							<option value="Tarde">Tarde</option>
-						</select> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+					
+					<div class="input-group input-group-sm mb-3" style="width: 60%;">
+					  <label class="input-group-text" for="inputGroupSelect01">Turno :</label>
+					  <select class="form-select" name="selectTurno" id="selectTurno">
+					    <option selected>Selecione...</option>
+					    <option value="Manhã">Manhã</option>
+						<option value="Tarde">Tarde</option>
+					  </select>
 					</div>
-					<div class="justify-content-center" id="salMatricula" style="margin-top: 30px;">
+					
+					<div class="justify-content-center" id="salMatricula" style="margin-top: 25px;">
 						<button id="salvaMatricula">Salvar</button>
 						<button id="close-modal">Cancelar</button>
 					</div>
@@ -144,27 +148,34 @@
 					<label id="labelMatricula">Matricula do Aluno:......... </label> <label
 						id="labelMatriculaAluno">Aluno: </label> <label id="labelAno">Ano
 						Letivo:........ </label> <label id="labelAnoLetivo">Ano Letivo: </label>
-
+					
 					<div>
-						<select name="selectfinanceiro" id="selectfinanceiro">
-							<option></option>
-							<option value=""></option>
-						</select> <i class="bi bi-caret-down"></i>
-
-						<div class="label-float" id="div_parcelas">
-							<input type="number" id="parcelas" placeholder="" name="parcelas" required> <label
-								id="labelParcelas" for="parcelas">Qtde
-								de Parcelas: </label>
+						<div class="input-group input-group-sm mb-3" style="width: 60%; margin-top: 10px;">
+						  <label class="input-group-text" for="inputGroupSelect01">Responsável :</label>
+						  <select class="form-select" name="selectfinanceiro" id="selectfinanceiro">
+						    <option selected>Selecione...</option>
+						  </select>
 						</div>
-					</div>
-					<div class="label-float" id="div_nasc">
-						<input type="text" id="dtvencimento" placeholder="" name="dtvencimento" required> <label
-							id="labeldtvencimento" for="dtnascimento">Data primeiro
-							Vencimento:</label>
-					</div>
-					<div class="label-float" id="div_nome">
-						<input type="text" id="valor" placeholder="" name="valor" onkeyup="formatarMoeda()" required>
-						<label id="labelValor" for="valor">Valor: </label>
+						
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 40%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Qtde
+								de Parcelas:</span>
+						<input type="text" class="form-control" id="parcelas" name="parcelas" aria-label="Sizing input"
+							 aria-describedby="inputGroup-sizing-sm">
+						</div>
+						
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 60%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Data primeiro
+							Vencimento:</span>
+						<input type="text" class="form-control" id="dtvencimento" name="dtvencimento" 
+								 onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" aria-label="Sizing input" maxlength="10"
+									aria-describedby="inputGroup-sizing-sm">
+						</div>
+						<div class="input-group input-group-sm col-md-3 mb-3" style="width: 40%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Valor:</span>
+						<input type="text" class="form-control" id="valor" name="valor" onkeyup="formatarMoeda()" aria-label="Sizing input"
+							 aria-describedby="inputGroup-sizing-sm">
+						</div>
 					</div>
 					<button id="gerarMensalidade" title="Gera Mensalidades" style="margin-top: 5px;">Gerar</button>
 				</div>
@@ -183,10 +194,11 @@
 						</tbody>
 					</table>
 
-					<button id="excluirMensalidade" title="Excluir Mensalidades">Excluir</button>
+					
 				</div>
 				<div id="salMatricula" >
-					<button id="closemodalMensalidade">Fechar</button>
+					<button id="closemodalMensalidade" >Fechar</button>
+					<button id="excluirMensalidade" title="Excluir Mensalidades">Excluir</button>
 				</div>
 			</div>
 		</div>

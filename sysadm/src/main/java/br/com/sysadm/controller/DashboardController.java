@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.sysadm.Dto.PainelDto;
 import br.com.sysadm.model.Alunos;
 import br.com.sysadm.model.Baixas;
+import br.com.sysadm.model.Mensalidades;
 import br.com.sysadm.repository.BaixasRepository;
 
 @RestController
@@ -51,7 +52,7 @@ public class DashboardController {
 	
 	@GetMapping(value = "/painel")
 	@ResponseBody
-	public Object painel( ){
+	public Object painel(){
 		PainelDto painelDto = new PainelDto();
 		
 		Date now = new Date();
@@ -64,20 +65,30 @@ public class DashboardController {
 		String sqlMensalidades = "SELECT sum(b.valor) as mensalidades FROM Alunos a, Mensalidades b WHERE "
 								 + "b.aluno_id=a.id and EXTRACT(month FROM b.vencimento) = "+mes
 								 +" and a.status = 'Ativo' ";
-		String sqlRecebidas = "SELECT sum(b.valor) as mensalidades FROM Alunos a, Mensalidades b WHERE "
+		String sqlRecebidas = "SELECT sum(b.valor) as recebidas FROM Alunos a, Mensalidades b WHERE "
 							  + "b.aluno_id=a.id and EXTRACT(month FROM b.vencimento) = "+mes+" "
 							  + "and EXTRACT(month FROM b.liquidacao) = "+mes+" and a.status = 'Ativo' ";
 		String sqlSaldo = "SELECT sum(saldo) as saldo FROM Caixa";
 		
-		Map<String, Object> matriculados = jdbcTemplate.queryForMap(sqlMatriculados);
-		Map<String, Object> mensalidades = jdbcTemplate.queryForMap(sqlMensalidades);
-		Map<String, Object> recebidas = jdbcTemplate.queryForMap(sqlRecebidas);
-		Map<String, Object> saldos = jdbcTemplate.queryForMap(sqlSaldo);
+		String qtdeAtivos = jdbcTemplate.queryForObject(sqlMatriculados, String.class);
+		Float mensalidade = jdbcTemplate.queryForObject(sqlMensalidades, Float.class);
+		Float recebida = jdbcTemplate.queryForObject(sqlRecebidas, Float.class);
+		Float saldos = jdbcTemplate.queryForObject(sqlSaldo, Float.class);
 		
-		painelDto.setMatriculados((String)matriculados.get("qtdeAtivos").toString());
-		painelDto.setTtl_mensalidades((Float)mensalidades.get("mensalidades"));
-		painelDto.setTtl_recebido((Float)recebidas.get("mensalidades"));
-		painelDto.setSaldo((Float)saldos.get("saldo"));
+		painelDto.setMatriculados(qtdeAtivos);
+		painelDto.setSaldo(saldos);
+		
+		if(mensalidade == null) {
+			painelDto.setTtl_mensalidades(0);
+		}else {
+			painelDto.setTtl_mensalidades(mensalidade);
+		}
+		
+		if (recebida == null) {
+			painelDto.setTtl_recebido(0);
+		}else {
+			painelDto.setTtl_recebido(recebida);
+		}
 		
 		return painelDto;
 	}

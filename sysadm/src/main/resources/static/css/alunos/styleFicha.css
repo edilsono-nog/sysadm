@@ -246,53 +246,19 @@ button:hover,
 #selectAno,
 #selectEscola,
 #selectTurno,
-#selectfinanceiro{
-	width: 40%;
-	-webkit-appearance: none;
-    /* Remove estilo padr�o do Chrome */
-    -moz-appearance: none;
-    /* Remove estilo padr�o do FireFox */
-    appearance: none;
-    /* Remove estilo padr�o do FireFox*/
-    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;
-    /* Imagem de fundo (Seta) */
-    background-position: 218px center;
-    /* Tamanho do select, maior que o tamanho da div "div-select" */
-    height: 36px;
-    /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+#selectfinanceiro,
+#turma,
+#parcelas,
+#dtvencimento,
+#valor{
+    font-size: 12px;
+    color: #01658b;
     border: 1px solid #0298cf;
     background-color: #fff;
     border-radius: 6px;
-	color: #0298cf;
+    color: #0298cf;
     padding-left: 15px;
-    font-family:Verdana, Trebuchet,sans-serif;
-}
-
-.fa-arrow-down{
-	margin-left: -10px;
-}
-
-#selectAno,
-selectEscola{
-	margin-bottom: 15px;
-}
-
-.label-float input,
-#selectAno,
-#selectEscola,
-#selectTurno,
-#selectfinanceiro {
-    padding: 5px;
-    display: inline-block;
-    border: 0;
-    border-bottom: 1px solid #000000;
-    background-color: transparent;
-    outline: none;
-    min-width: 180px;
-    font-size: 14px;
-    transition: all .3s ease-out;
-    border-radius: 0;
-    color: #01658b;
+    font-family: Verdana, Trebuchet,sans-serif;
 }
 
 .label-float{
@@ -420,9 +386,9 @@ td button:nth-child(2){
 }
 
 #excluirMensalidade{
-	margin-left: 80%;
+	margin-left: 79%;
 	background-color: red;
-	margin-top: 10px;
+	margin-top: -36px;
 }
 
 tr td{

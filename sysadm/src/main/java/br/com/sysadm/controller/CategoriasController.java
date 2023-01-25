@@ -1,5 +1,9 @@
 package br.com.sysadm.controller;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -52,6 +56,38 @@ public class CategoriasController {
 		Categorias categorias = categoriasRepository.findByIdCategoria(idCategoria);
 		
 		return new ResponseEntity<Categorias>(categorias, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "listacategoria")
+	@ResponseBody
+	public ResponseEntity<List<?>> listaCategoria(@RequestParam(name = "tipo") String tipo){
+		
+		Date now = new Date();
+		
+		List<?> categorias;
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(now);
+		int mes = calendar.get(Calendar.MONTH)+1;
+		
+		if(tipo == "") {
+			categorias = categoriasRepository.findByCategoria(mes);
+		}else {
+			categorias = categoriasRepository.findByCategorias(tipo.trim().toUpperCase());
+		}
+		
+		
+		return new ResponseEntity<List<?>>(categorias, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "listacategoriaMedia")
+	@ResponseBody
+	public ResponseEntity<List<?>> listacategoriaMedia(){
+		
+		List<?> categorias = categoriasRepository.findByCategoriaMedia();
+		
+		
+		return new ResponseEntity<List<?>>(categorias, HttpStatus.OK);
 	}
 
 }
