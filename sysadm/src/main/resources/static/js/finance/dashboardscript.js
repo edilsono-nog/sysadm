@@ -1,3 +1,5 @@
+
+
 let totalPages = 1;
 
 let tipo = '';
@@ -44,16 +46,16 @@ function pegaPainel(){
 			document.querySelector('#mensalidades').innerHTML = mensalidades;
 			document.querySelector('#recebidos').innerHTML = recebidos;
 			document.querySelector('#saldo').innerHTML = saldo;
-		},
-		error: function(e) {
-			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
-			}
 		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}
 	});
 }
 
@@ -93,16 +95,16 @@ function pegaBaixas(startPage) {
 				$('ul.pagination').empty();
 				buildPagination(response);
 			}
-		},
-		error: function(e) {
-			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
-			}
 		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}
 	});
 }
 

@@ -104,7 +104,8 @@ button {
   }
 }
 
-#fade{
+#fade, 
+#fadeAviso{
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -112,6 +113,37 @@ button {
 	height: 100%;
 	background-color: rgba(0,0,0,0.6);
 	z-index: 5;
+}
+
+.aviso{
+	margin-left: 85%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50% 50%;
+}
+
+.diamond {
+	color: red;
+}
+
+.modal-body {
+	top: -20px;
+    font-size: 15px;
+    font-family: cursive;
+    color: red;
+}
+
+#modalAviso{
+	position: fixed;
+	left: 50%;
+	top: 32%;
+	transform: translate(-50%, -50%);
+	width: 410px;
+	max-width: 90%;
+	background-color: #fff;
+	padding: 1.2rem;
+	border-radius: 0.5rem;
+	z-index: 10;
 }
 
 #modal{
@@ -128,13 +160,16 @@ button {
 }
 
 #fade,
-#modal {
+#fadeAviso
+#modal,
+#modalAviso {
   transition: 0.5s;
   opacity: 1;
   pointer-events: all;
 }
 
-.modal-header{
+.modal-header,
+.modalAviso-header{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -144,12 +179,15 @@ button {
 }
 
 #modal.hide,
-#fade.hide {
+#modalAviso.hide,
+#fade.hide,
+#fadeAviso.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-#modal.hide {
+#modal.hide,
+#modalAviso.hide {
   top: 0;
 }
 

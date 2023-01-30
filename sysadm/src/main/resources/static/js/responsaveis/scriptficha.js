@@ -81,9 +81,18 @@ function autFicha(id) {
 			pegaAlunos(response.id);
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar aluno por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar dados do responsável.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
-
 }
 
 function pegaAlunos(id) {
@@ -112,9 +121,18 @@ function pegaAlunos(id) {
 				}			
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar aluno por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar dados de aluno.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
-
 }
 
 function fichaAluno(id){

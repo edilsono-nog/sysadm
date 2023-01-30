@@ -82,12 +82,15 @@ function fetchCategorias(startPage) {
 		},
 		error: function(e) {
 			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
-			}
+				if (msg == ''){
+					msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+					fadeAviso.classList.toggle('hide')
+					modalAviso.classList.toggle('hide')
+					msgAviso(msg)
+				}
+				}else{
+					alert("Erro ao buscar usuário por id : " + e.responseText);
+				}
 		}
 	});
 }
@@ -129,11 +132,14 @@ function fetchNotes(startPage) {
 		},
 		error: function(e) {
 			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao buscar usuário por id : " + e.responseText);
 			}
 		}
 	});

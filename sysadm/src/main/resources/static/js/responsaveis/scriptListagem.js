@@ -91,8 +91,17 @@ function pegaResponsaveis(startPage) {
           }
         },
         error : function(e) {
-          alert("ERROR: ", e);
-          console.log("ERROR: ", e);
+			if (e.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao pesquisar responsável.... " + e.responseText;
+				msgError(msg);
+			}
         }
     });
 }
@@ -137,8 +146,17 @@ function listResponsaveis(startPage) {
           }
         },
         error : function(e) {
-          alert("ERROR: ", e);
-          console.log("ERROR: ", e);
+			if (e.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar lista de responsáveis.... " + e.responseText;
+				msgError(msg);
+			}
         }
     });
 }
@@ -289,11 +307,14 @@ function associar(id){
 		
 	}).fail(function (xhr, status, errorThrown) {
 	
-		if (xhr.status == 403){
-			const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-			msgError(msg);
-			sair();
-		}	
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+		}
 		
 		if (xhr.status == 400){
 			const msg = xhr.responseText;

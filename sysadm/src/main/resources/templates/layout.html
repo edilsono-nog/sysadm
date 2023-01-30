@@ -22,6 +22,20 @@
 	<div th:replace="fragments/canvMenu :: menu"></div>
 	<div layout:fragment="corpo"></div>
 
+	<!-- Modal Aviso -->
+		<div id="fadeAviso" class="hide"></div>
+		<div id="modalAviso" class="hide modalAviso">
+			<div class="modalAviso-header">
+				<h2>AVISO <i class="bi bi-exclamation-diamond-fill diamond"></i></h2>
+
+			</div>
+
+			<div class="modal-body modal-dialog-scrollable">
+				<div class="avisos"></div>
+			</div>
+			<button align="right" class="btn-primary aviso" onclick="sair()">OK</button>
+		</div>
+	
 
 	<script src="./js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>

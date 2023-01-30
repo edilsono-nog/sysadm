@@ -189,9 +189,18 @@ $(document).ready(function() {
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar niveis.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
-
 });
 
 function limpacampos() {

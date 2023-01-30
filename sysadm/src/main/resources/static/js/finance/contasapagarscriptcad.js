@@ -76,7 +76,17 @@ document.querySelector('.save').addEventListener('click', () => {
 			}, 3000)
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		const msg = "Error ao cadatrar.... " + xhr.responseText;
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao cadastrar contas a pagar.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 })
 
@@ -108,9 +118,18 @@ function colocarEmEdicao(id) {
 			localStorage.removeItem('idEdit')
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao buscar contas a pagar.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
-
 }
 
 document.querySelector('.cancel').addEventListener('click', () => {
@@ -154,4 +173,26 @@ function formatarMoeda() {
 
 	elemento.value = valor;
 	if (valor == 'NaN') elemento.value = '';
+}
+
+function msgSuccess(msg) {
+	const message = document.createElement("div");
+	message.classList.add("messageSucesso");
+	message.innerText = msg;
+	divMessage.appendChild(message);
+
+	setTimeout(() => {
+		message.style.display = "none";
+	}, 3000);
+}
+
+function msgError(msg) {
+	const message = document.createElement("div");
+	message.classList.add("messageError");
+	message.innerText = msg;
+	divMessage.appendChild(message);
+
+	setTimeout(() => {
+		message.style.display = "none";
+	}, 3000);
 }

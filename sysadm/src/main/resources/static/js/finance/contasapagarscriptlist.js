@@ -90,11 +90,15 @@ function fetchContasPagar(startPage) {
 		},
 		error: function(e) {
 			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar contas a pagar.... " + e.responseText;
 				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
 			}
 		}
 	});
@@ -142,12 +146,16 @@ function fetchNotes(startPage) {
 			}
 		},
 		error: function(e) {
-			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+		if (e.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar contas a pagar.... " + e.responseText;
 				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
 			}
 		}
 	});
@@ -337,7 +345,17 @@ function pegaCaixa(){
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao buscar caixa.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 }
 
@@ -360,7 +378,17 @@ function categoriaBaixaaPagar(){
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao lista de categorias.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 }
 
@@ -384,7 +412,17 @@ function pegaBaixa(idRec){
 			$("#valor").val(valor);
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao lista de contas a pagar.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 }
 
@@ -478,3 +516,5 @@ function formatarMoeda() {
 	elemento.value = valor;
 	if (valor == 'NaN') elemento.value = '';
 }
+
+

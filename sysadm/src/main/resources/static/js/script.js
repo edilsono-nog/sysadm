@@ -1,10 +1,28 @@
 const chartAtual = document.querySelectorAll(".chartAtual");
 const chartAnteriores = document.querySelectorAll(".chartAnteriores");
+let fadeAviso = document.querySelector('#fadeAviso');
+let modalAviso = document.querySelector('#modalAviso');
 
 let etiquetas = [];
 let valores = [];
 let etiquetasMedia = [];
 let valoresMedia = [];
+
+var msg = '';
+
+function aviso(){
+	fadeAviso.classList.toggle('hide')
+	modalAviso.classList.toggle('hide')
+	msgAviso('teste de modal de Aviso') 
+}
+
+function sair(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('userLogado')
+    window.location.href = 'login'
+    eraseCookie('JSESSIONID')
+}
+
 
 function categoriaPainel(){
 	
@@ -24,7 +42,12 @@ function categoriaPainel(){
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
 	});
 }
 
@@ -44,7 +67,14 @@ function categoriaPainelMedia(){
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}
 	});
 }
 
@@ -129,3 +159,14 @@ chartAnteriores.forEach(function (chart) {
     },
   });
 });
+
+
+
+const divMessage = document.querySelector(".avisos");
+
+function msgAviso(msg) {
+	const message = document.createElement("div");
+	//message.classList.add("messageSucesso");
+	message.innerText = msg;
+	divMessage.appendChild(message);
+}

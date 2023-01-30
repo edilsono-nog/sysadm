@@ -282,8 +282,16 @@ function salvarAluno() {
 			}, 3000)
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		const msg = "Error ao cadatrar.... " + xhr.responseText;
-		msgError(msg);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao buscar usuário por id : " + xhr.responseText);
+			}
 	});
 }
 
@@ -346,8 +354,16 @@ function colocarEmEdicao(id) {
 			localStorage.removeItem('idEdit')
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao buscar usuário por id : " + xhr.responseText);
+			}
 	});
-
 }
 

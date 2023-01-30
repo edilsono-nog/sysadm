@@ -71,10 +71,19 @@ document.querySelector('.save').addEventListener('click', ()=>{
 					document.getElementById('formCadastroEscolas').reset();
 				},3000)
 			}
-		}).fail(function (xhr, status, errorThrown) {
-			const msg = "Error ao cadatrar.... " + xhr.responseText;
-			msgError(msg);
-		});
+		}).fail(function(xhr, status, errorThrown) {
+			if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao cadatrar.... " + xhr.responseText;
+				msgError(msg);
+			}
+	});
 })
 
 const divMessage = document.querySelector(".alert");

@@ -61,9 +61,42 @@ function colocarEmEdicao(id) {
 
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao buscar caixas.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
+}
 
+const divMessage = document.querySelector(".alert");
+
+function msgSuccess(msg) {
+	const message = document.createElement("div");
+	message.classList.add("messageSucesso");
+	message.innerText = msg;
+	divMessage.appendChild(message);
+
+	setTimeout(() => {
+		message.style.display = "none";
+	}, 3000);
+}
+
+function msgError(msg) {
+	const message = document.createElement("div");
+	message.classList.add("messageError");
+	message.innerText = msg;
+	divMessage.appendChild(message);
+
+	setTimeout(() => {
+		message.style.display = "none";
+	}, 3000);
 }
 
 function limpacampos() {

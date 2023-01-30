@@ -109,7 +109,16 @@ function autFicha(id) {
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar aluno por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao buscar usuário por id : " + xhr.responseText);
+			}
 	});
 
 }
@@ -225,9 +234,18 @@ function gerarMensalidade(){
 			},3000)
 					
 		}
-	}).fail(function (xhr, status, errorThrown) {
-		const msg = "Error ao cadatrar.... " + xhr.responseText;
-		msgError(msg);
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao cadatrar.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 }
 
@@ -252,9 +270,18 @@ function limpaMensalidade(){
 			},3000)
 					
 		}
-	}).fail(function (xhr, status, errorThrown) {
-		const msg = "Error ao cadatrar.... " + xhr.responseText;
-		msgError(msg);
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao cadatrar.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 }
 
@@ -315,9 +342,17 @@ function autMensalidades(aluno, ano) {
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar aluno por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao buscar aluno por id : " + xhr.responseText);
+			}
 	});
-
 }
 
 function formatarMoeda() {
@@ -401,9 +436,17 @@ function autAno() {
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+			}
 	});
-
 }
 
 function autEscolas() {
@@ -423,9 +466,17 @@ function autEscolas() {
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
-	});
-
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+			}
+		})
 }
 
 
@@ -461,7 +512,16 @@ function salvaMatricula() {
 			
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao cadastrar matricula: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao cadastrar matricula: " + xhr.responseText);
+			}
 	});
 }
 
@@ -483,7 +543,16 @@ function pegaMatricula (id){
 			$("#selectTurno").val(response.turno);
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar matricula por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao buscar matricula por id : " + xhr.responseText);
+			}
 	});
 }
 

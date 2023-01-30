@@ -93,8 +93,17 @@ function fetchaUsuario(startPage) {
 			}
 		},
 		error: function(e) {
-			alert("ERROR: ", e);
-			console.log("ERROR: ", e);
+			if (e.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao cadatrar.... " + e.responseText;
+				msgError(msg);
+			}
 		}
 	});
 }
@@ -137,6 +146,17 @@ function fetchNotes(startPage) {
 			}
 		},
 		error: function(e) {
+			if (e.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao cadatrar.... " + e.responseText;
+				msgError(msg);
+			}
 			alert("ERROR: ", e);
 			console.log("ERROR: ", e);
 		}

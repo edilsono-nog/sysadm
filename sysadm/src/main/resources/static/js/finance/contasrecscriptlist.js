@@ -159,12 +159,16 @@ function fetchContasRec(startPage) {
 			}
 		},
 		error: function(e) {
-			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+		if (e.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar contas a receber.... " + e.responseText;
 				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
 			}
 		}
 	});
@@ -260,12 +264,16 @@ function fetchNotes(startPage) {
 			}
 		},
 		error: function(e) {
-			if (e.status == 403) {
-				const msg = "Seu TOKEN está expirado, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar contas a receber.... " + xhr.responseText;
 				msgError(msg);
-				setTimeout(() => {
-					sair();
-				}, 5000)
 			}
 		}
 	});
@@ -392,17 +400,6 @@ $(document).on("click", "ul.pagination li a", function() {
 	}
 });
 
-function msgError(msg) {
-	const message = document.createElement("div");
-	message.classList.add("messageError");
-	message.innerText = msg;
-	divMessage.appendChild(message);
-
-	setTimeout(() => {
-		message.style.display = "none";
-	}, 3000);
-}
-
 function formatarMoedas(valor) {
 	valor = valor + '';
 	valor = parseInt(valor.replace(/[\D]+/g, ''));
@@ -480,7 +477,17 @@ function caixas(){
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar caixas.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 }
 
@@ -503,7 +510,17 @@ function categoriaBaixaaReceber(){
 			}
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar categorias.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
 }
 
@@ -547,9 +564,18 @@ function pegaBaixa(tipo, idRec){
 			
 		}
 	}).fail(function(xhr, status, errorThrown) {
-		alert("Erro ao buscar usuário por id : " + xhr.responseText);
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar contas a receber.... " + xhr.responseText;
+				msgError(msg);
+			}
 	});
-
 }
 
 document.getElementById("close-modal").addEventListener("click", function(event){
@@ -637,3 +663,25 @@ function salvarBaixa(){
 		});
 }
 
+
+function msgSuccess(msg) {
+	const message = document.createElement("div");
+	message.classList.add("messageSucesso");
+	message.innerText = msg;
+	divMessage.appendChild(message);
+
+	setTimeout(() => {
+		message.style.display = "none";
+	}, 3000);
+}
+
+function msgError(msg) {
+	const message = document.createElement("div");
+	message.classList.add("messageError");
+	message.innerText = msg;
+	divMessage.appendChild(message);
+
+	setTimeout(() => {
+		message.style.display = "none";
+	}, 3000);
+}

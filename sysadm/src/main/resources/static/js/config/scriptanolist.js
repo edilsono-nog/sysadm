@@ -87,8 +87,16 @@ function fetchAnoLetivo(startPage) {
 	          }
 	        },
 	        error : function(e) {
-	          alert("ERROR: ", e);
-	          console.log("ERROR: ", e);
+				if (e.status == 403) {
+				if (msg == ''){
+					msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+					fadeAviso.classList.toggle('hide')
+					modalAviso.classList.toggle('hide')
+					msgAviso(msg)
+				}
+				}else{
+					alert("Erro ao buscar Ano Letivo : " + e.responseText);
+				}
 	        }
 	    });
 }
@@ -128,8 +136,16 @@ function fetchNotes(startPage) {
 	          }
 	        },
 	        error : function(e) {
-	          alert("ERROR: ", e);
-	          console.log("ERROR: ", e);
+				if (e.status == 403) {
+					if (msg == ''){
+						msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+						fadeAviso.classList.toggle('hide')
+						modalAviso.classList.toggle('hide')
+						msgAviso(msg)
+					}
+					}else{
+						alert("Erro ao buscar Ano Letivo : " + e.responseText);
+					}
 	        }
 	    });
 	}
