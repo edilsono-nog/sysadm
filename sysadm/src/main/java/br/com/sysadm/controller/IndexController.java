@@ -143,4 +143,10 @@ public class IndexController {
 		return "finance/contasapagarcad";
 	}
 	
+	/*Gerador de Relatorios*/
+	
+	@GetMapping("geradorderelatorio")
+	private String geradorderelatorio() {
+		return "relatorios/geradorderelatorio";
+	}
 }

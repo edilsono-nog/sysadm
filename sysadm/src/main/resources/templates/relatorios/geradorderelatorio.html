@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/relatorios/stylegeradorderelatorios.css">
+</head>
+<body>
+	<main class="mt-5 pt-3" layout:fragment="corpo">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="titulo-secao">
+					<h2>Relatórios</h2>
+					<div class="separator"></div>
+					<p>
+						<i class="bi bi-printer-fill"></i>/ Gerador de Relatórios
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="tables">
+					<div class="table_header">
+						<div class="input-group input-group-sm mb-3" id="tiporelatorio" style="width: 40%;">
+							<label class="input-group-text" for="inputGroupSelect01">Tipos
+								de Relatórios :</label> <select class="form-select" name="selectRelatorio"
+								id="selectRelatorio">
+								<option value="Selecione..." selected>Selecione...</option>
+								<option value="listatodos">Lista todos Alunos</option>
+							</select>
+						</div>
+
+						<div class="table_header" align="right">
+							<div align="left" style="display: flex;">
+								<div class="input-group input-group-sm mb-3" id="listaTipo" style="width: 30%; display: none;">
+									<label class="input-group-text" for="selectTipo" id="labeltipo" style="width: 10%;">Tipos:</label>
+									<select class="form-select" name="selectTipo" id="selectTipo" style="width: 20%;">
+										<option value="Selecione..." selected>Selecione...</option>
+										<option value="Todos">Todos</option>
+										<option value="Escolas">Escolas</option>
+										<option value="Turno">Turno</option>
+									</select>
+								</div>
+								<div class="input-group input-group-sm mb-3" id="listaTurno" style="width: 40%; display: none;">
+									<label class="input-group-text" for="selectTurno" id="labelturno" style="width: 10%;">Turno:</label>
+									<select class="form-select" name="selectTurno" id="selectTurno" style="width: 20%;">
+										<option >Selecione...</option>
+										<option value="Manhã">Manhã</option>
+										<option value="Tarde">Tarde</option>
+									</select>
+								</div>
+								<div class="input-group input-group-sm mb-3" id="listaEscolas" style="display: none;">
+								  <label class="input-group-text" for="selectEscola" style="width: 10%;">Escola :</label>
+								  <select class="form-select" name="selectEscola" id="selectEscola" style="width: 25%;">
+								    <option selected>Selecione...</option>
+								  </select>
+								</div>
+							</div>
+							<button class="add_new vizualizar" title="Visualizar Resultado" >
+								<i class="bi bi-search" style="margin-right: 10px;"></i>Vizualizar
+							</button>
+							<button class="add_new imprimir" title="Gerar Impressão">
+								<i class="bi bi-printer" style="margin-right: 10px;" ></i>Gerar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin-top: -20px;">
+				<div class="card" id="conteudo"
+					style="margin-top: 25px; height: 370px;">
+					<br>
+					<div style="overflow: auto;">
+						<table id="multiTable" class="table_section table-hover">
+							<thead class="thead-dark">
+							
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+				</div>
+				<ul class="pagination justify-content-center"
+					style="margin: 20px 0; cursor: pointer;"></ul>
+			</div>
+		</div>
+
+		<script src="js/relatorios/geradorderelatoriosscript.js"></script>
+	</main>
+</body>
+</html>

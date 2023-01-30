@@ -1,0 +1,68 @@
+table{
+	width: 100%;
+	table-layout: fixed;
+	min-width: 1000px;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+thead th{
+	position: sticky;
+	top: 0;
+	background-color: #f6f9fc;
+	color: #8493a5;
+	font-size: 15px;
+}
+
+th, td{
+	border-bottom: 1px solid #dddddd;
+	padding: 2px 7px;
+	word-break: break-all;
+	text-align: center;
+}
+
+td button:nth-child(1){
+	background-color: #0298cf;
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px;
+	color: #ffffff;
+	margin-left: 5px;
+}
+
+td button:nth-child(2){
+	background-color: #f80000;
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px;
+	color: #ffffff;
+	margin-left: 5px;
+}
+
+tr:hover td {
+	color: #0298cf;
+	cursor: pointer;
+	background-color: #f6f9fc;
+}
+
+::placeholder{
+	color: #0298cf;
+}
+
+#selectRelatorio,
+#selectTipo,
+#selectTurno,
+#selectEscola{
+    font-size: 12px;
+    color: #01658b;
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+    color: #0298cf;
+    padding-left: 15px;
+    font-family: Verdana, Trebuchet,sans-serif;
+}

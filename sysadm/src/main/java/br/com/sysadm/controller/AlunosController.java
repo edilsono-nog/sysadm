@@ -1,8 +1,17 @@
 package br.com.sysadm.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import br.com.sysadm.Dto.AlunosDto;
 import br.com.sysadm.model.Alunos;
+import br.com.sysadm.repository.AlunosRepository;
 import br.com.sysadm.service.AlunosService;
 
 @RestController
@@ -23,6 +34,12 @@ public class AlunosController {
 	
 	@Autowired
 	private AlunosService alunosService;
+	
+	@Autowired
+	private AlunosRepository alunosRepository;
+	
+	@Autowired
+	private ReportUtil reportUtil;
 	
 	 @PostMapping(value = "salvar")
 	 @ResponseBody
@@ -65,5 +82,48 @@ public class AlunosController {
 		 return alunosService.pesqAluno(name, pageable);
      }
 
+	 @GetMapping(value = "geraPdfListaAlunos")
+	 public void imprimePdf(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		 
+		 List<Alunos> alunos = new ArrayList<>();
+		 
+		 Iterable<Alunos> iterable = alunosRepository.findAll();
+		 for(Alunos aluno : iterable) {
+			 alunos.add(aluno);
+		 }
+		 /*Chama o serviço que faz a geração do relatorio*/
+		 byte[] pdf = reportUtil.gerarRelatorio(alunos, "listadealunos", request.getServletContext());
+		 
+		 /*Tamanho da resposta*/
+		 response.setContentLength(pdf.length);
+		 
+		 /*Denife na resposta o tipo de arquivo*/
+		 response.setContentType("application/octet-stream");
+		 
+		 /*Define o cabeçalho da resposta*/
+		 String headerKey = "Content-Disposition";
+		 String headerValue = String.format("attachment: filename=\"%s\"", "relatorio.pdf");
+		 response.setHeader(headerKey, headerValue);
+		 
+		 /*Finaliza a resposta pro navegador*/
+		 response.getOutputStream().write(pdf);
+		 
+	 }
+	 
+	 @GetMapping(value = "listadealunos")
+	 public List<Map> listadealunos(@RequestParam(name = "name") String name)  {
+		 
+		 List<Map> iterable = null;
+		 
+		 if(name.equals("Todos")) {
+			 iterable =  alunosRepository.findByAluno();
+		 }else if (name.equals("Manhã") || name.equals("Tarde")) {
+			 iterable =  alunosRepository.findByAlunoTurno(name);
+		 }else if (!name.equals("Escolas") && !name.equals("Manhã") || !name.equals("Tarde")) {
+			 iterable =  alunosRepository.findByAlunoEscola(name);
+		 } 
+		 
+		 return iterable;
+	 }
 
 }

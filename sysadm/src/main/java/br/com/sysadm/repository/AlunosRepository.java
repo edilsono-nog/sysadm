@@ -1,5 +1,8 @@
 package br.com.sysadm.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,5 +26,19 @@ public interface AlunosRepository extends JpaRepository<Alunos, Long> {
 
 	@Query(value = "select a from Alunos a where upper(trim(a.nome)) like %?1%")
 	Page<Alunos> pesqAluno(String name, Pageable pageable);
+
+	@Query(nativeQuery = true, value = "select a.nome as nome, b.turno, b.escolas from alunos a, matricula b "
+							+ "where b.aluno_id = a.id order by b.turno, a.nome")
+	List<Map> findByAluno();
+	
+	@Query(nativeQuery = true, value = "select a.nome as nome, b.turno, b.escolas from alunos a, matricula b "
+			+ "where b.aluno_id = a.id and b.escolas = ?1 order by b.turno, a.nome")
+	List<Map> findByAlunoEscola(String name);
+
+	@Query(nativeQuery = true, value = "select a.nome as nome, b.turno, b.escolas from alunos a, matricula b "
+			+ "where b.aluno_id = a.id and b.turno = ?1 order by b.turno, a.nome")
+	List<Map> findByAlunoTurno(String name);
+
+	
 
 }

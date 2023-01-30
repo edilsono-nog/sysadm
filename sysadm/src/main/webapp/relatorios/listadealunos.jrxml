@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadealunos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6f5c50a8-e209-4755-9cdc-b95ad5d32e80">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString language="plsql">
+		<![CDATA[select a.nome, b.turno, b.escolas from alunos a, matricula b where b.aluno_id = a.id order by b.turno, a.nome]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="alunos"/>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="turno"/>
+		<property name="com.jaspersoft.studio.field.label" value="turno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
+	</field>
+	<field name="escolas" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="escolas"/>
+		<property name="com.jaspersoft.studio.field.label" value="escolas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="10" width="520" height="50" uuid="aa7b9fdb-8c5b-4560-97f4-ef9ac692eb5b"/>
+				<textElement textAlignment="Center">
+					<font size="32"/>
+				</textElement>
+				<text><![CDATA[Listagem de Alunos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="22" uuid="0cf06ed6-7d89-4539-8ed8-51ed7dbac987">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cba1ea8b-1e45-4deb-90ab-275891f21869"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Aluno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="100" height="22" uuid="87a453bc-7a09-4cf8-a91c-dab6859cf436">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="61422a41-7988-4e57-ab7b-84ab00508090"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Turno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="100" height="22" uuid="d427bdc0-bb9a-4b2c-ba36-a1c5d2d31f0b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd44b4a5-1efe-4358-9588-823644c1ea02"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Escolas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="200" height="20" uuid="e91cd634-e613-4f5b-a1f1-b8f602ac5c09">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cba1ea8b-1e45-4deb-90ab-275891f21869"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Verdana" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="100" height="20" uuid="e993f7bc-7b86-4229-8999-29358b06fb6f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="61422a41-7988-4e57-ab7b-84ab00508090"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="160" height="20" uuid="6a46acce-bc2a-4548-8ca6-51c45459cba4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd44b4a5-1efe-4358-9588-823644c1ea02"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{escolas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
