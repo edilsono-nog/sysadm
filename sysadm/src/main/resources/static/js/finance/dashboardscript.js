@@ -1,10 +1,29 @@
-
+var data = new Date();
+var mes = String(data.getMonth() + 1).padStart(1, '0');
+var mespesquisa = mes;
 
 let totalPages = 1;
 
 let tipo = '';
 
+var pgmes = '';
+
 let categorias = [];
+
+let etiquetas = [];
+let valores = [];
+let etiquetasMedia = [];
+let valoresMedia = [];
+
+$(document).ready(function () {
+	$('#mesrefer').val(mespesquisa);
+	pegaBaixas(0, mespesquisa);
+	pegaPainel(mespesquisa);
+	categoriaPainel(mespesquisa);
+	categoriaPainelMedia();
+	preecher();
+	preecherAnt();
+});
 
 if (getCookie('JSESSIONID') == null) {
     alert('Você precisa estar logado para acessar essa página')
@@ -26,11 +45,18 @@ function eraseCookie(nome) {
     document.cookie = nome +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-function pegaPainel(){
+document.querySelector('#mesrefer').addEventListener('change', ()=>{
+	mespesquisa = $('#mesrefer').val();
+	categoriaPainel(mespesquisa);
+	pegaBaixas(0, mespesquisa);
+	pegaPainel(mespesquisa);
+})
+
+function pegaPainel(mespesq){
 	
 	$.ajax({
 		type: "GET",
-		url: "dashboard/painel",
+		url: "dashboard/painel?mes="+mespesq,
 		timeout: 0,
 		headers: {
 			Authorization: localStorage.getItem("token")
@@ -59,13 +85,15 @@ function pegaPainel(){
 	});
 }
 
-function pegaBaixas(startPage) {
+function pegaBaixas(startPage, mespesq) {
+	
+	pgmes = mespesq;
 	
 	tipo = 'baixas';
 	
 	$.ajax({
 		type: "GET",
-		url: "dashboard/buscaBaixas",
+		url: "dashboard/buscaBaixas?mes="+mespesq,
 		data: {
 			page: startPage,
 			size: 5,
@@ -169,7 +197,7 @@ $(document).on("click", "ul.pagination li a", function() {
 	if (val.toUpperCase() == "« FIRST") {
 		let currentActive = $("li.active");
 		if (tipo == 'baixas') {
-			pegaBaixas(0);
+			pegaBaixas(0, pgmes);
 		} else {
 			fetchNotes(0);
 		}
@@ -178,7 +206,7 @@ $(document).on("click", "ul.pagination li a", function() {
 		currentActive.next().addClass("active");
 	} else if (val.toUpperCase() == "LAST »") {
 		if (tipo == 'baixas') {
-			pegaBaixas(totalPages - 1);
+			pegaBaixas(totalPages - 1, pgmes);
 		} else {
 			fetchNotes(totalPages - 1);
 		}
@@ -191,7 +219,7 @@ $(document).on("click", "ul.pagination li a", function() {
 			let currentActive = $("li.active");
 			startPage = activeValue;
 			if (tipo == 'baixas') {
-				pegaBaixas(startPage);
+				pegaBaixas(startPage, pgmes);
 			} else {
 				fetchNotes(startPage);
 			}
@@ -206,7 +234,7 @@ $(document).on("click", "ul.pagination li a", function() {
 			// get the previous page
 			startPage = activeValue - 2;
 			if (tipo == 'baixas') {
-				pegaBaixas(startPage);
+				pegaBaixas(startPage, pgmes);
 			} else {
 				fetchNotes(startPage);
 			}
@@ -218,7 +246,7 @@ $(document).on("click", "ul.pagination li a", function() {
 	} else {
 		startPage = parseInt(val - 1);
 		if (tipo == 'baixas') {
-			pegaBaixas(startPage);
+			pegaBaixas(startPage, pgmes);
 		} else {
 			fetchNotes(startPage);
 		}
@@ -229,11 +257,219 @@ $(document).on("click", "ul.pagination li a", function() {
 	}
 });
 
+function categoriaPainel(mespesquisa){
+	let tipocat = ''
+	etiquetas = [];
+	valores = [];
+	
+	var myHeaders = new Headers();
+	myHeaders.append("Authorization", localStorage.getItem("token"));
+	myHeaders.append('Content-Type', 'application/json;charset=utf-8');
 
-$(document).ready(function () {
-	pegaBaixas(0);
-	pegaPainel();
+	fetch("categorias/listacategoria?tipo="+tipocat+"&mes="+mespesquisa, {
+		method: 'GET',
+		headers: myHeaders
+	})
+		.then(response => {
+			return response.json();
+		})
+		.then(result => {
+			for (var i = 0; i < result.length; i++) {
+				etiquetas.push(result[i][0])
+				valores.push(result[i][1])
+			}
+			preecher();
+		})
+		.catch(error => {
+			console.log(error);
+		});
+}
+
+/*function categoriaPainel(mespesquisa){
+	
+	let tipocat = ''
+	etiquetas = [];
+	valores = [];
+	
+	$.ajax({
+		method: "GET",
+		url: "categorias/listacategoria?tipo="+tipocat+"&mes="+mespesquisa,
+		timeout: 0,
+		headers: {
+			Authorization: localStorage.getItem("token")
+		},
+		success: function(response) {
+			for (var i = 0; i < response.length; i++) {
+				etiquetas.push(response[i][0])
+				valores.push(response[i][1])
+			}
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+	});
+}*/
+
+function categoriaPainelMedia(){
+	
+	$.ajax({
+		method: "GET",
+		url: "categorias/listacategoriaMedia",
+		timeout: 0,
+		headers: {
+			Authorization: localStorage.getItem("token")
+		},
+		success: function(response) {
+			for (var i = 0; i < response.length; i++) {
+				etiquetasMedia.push(response[i][0])
+				valoresMedia.push(response[i][1])
+			}
+			preecherAnt();
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}
+	});
+}
+
+const ctx = document.getElementsByClassName('chartAtual');
+
+const myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			datasets: [{
+			label: "Mes Atual",
+			backgroundColor: [
+		        "rgb(255, 99, 132, 0.2)",
+		        "rgba(54, 162, 235, 0.2)",
+		        "rgba(255, 206, 86, 0.2)",
+		        "rgba(47, 100, 100, 0.2)",
+		        "rgba(153, 102, 255, 0.2)",
+		        "rgba(255, 159, 64, 0.2)",
+		      ],
+		      borderColor: [
+		        "rgba(255, 99, 132, 1)",
+		        "rgba(54, 162, 235, 1)",
+		        "rgba(255, 206, 86, 1)",
+		        "rgba(47, 100, 100, 1)",
+		        "rgba(153, 102, 255, 1)",
+		        "rgba(255, 159, 64, 1)",
+		      ],
+		      borderWidth: 2,
+		}]
+		},
+		options: {
+		   scales: {
+		      y: {
+		        beginAtZero: true
+		      }
+		    }
+	  },
+	})
+
+function preecher(){
+    myChart.data.datasets[0].data = valores ;
+    myChart.data.labels = etiquetas;
+    myChart.update();
+}
+
+const ctxAnt = document.getElementsByClassName('chartAnteriores');
+
+const myChartAnt = new Chart(ctxAnt, {
+		type: 'bar',
+		data: {
+			datasets: [{
+			label: "Médias dos meses",
+			backgroundColor: [
+		        "rgb(255, 99, 132, 0.2)",
+		        "rgba(54, 162, 235, 0.2)",
+		        "rgba(255, 206, 86, 0.2)",
+		        "rgba(47, 100, 100, 0.2)",
+		        "rgba(153, 102, 255, 0.2)",
+		        "rgba(255, 159, 64, 0.2)",
+		      ],
+		      borderColor: [
+		        "rgba(255, 99, 132, 1)",
+		        "rgba(54, 162, 235, 1)",
+		        "rgba(255, 206, 86, 1)",
+		        "rgba(47, 100, 100, 1)",
+		        "rgba(153, 102, 255, 1)",
+		        "rgba(255, 159, 64, 1)",
+		      ],
+		      borderWidth: 2,
+		}]
+		},
+		options: {
+		   scales: {
+		      y: {
+		        beginAtZero: true
+		      }
+		    }
+	  },
+	})
+
+function preecherAnt(){
+    myChartAnt.data.datasets[0].data = valoresMedia ;
+    myChartAnt.data.labels = etiquetasMedia;
+    myChartAnt.update();
+}
+
+
+
+
+	
+	/*
+chartAnteriores.forEach(function (chart) {
+	categoriaPainelMedia();
+  	var ctx = chart.getContext("2d");
+  	var myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: etiquetasMedia,
+      datasets: [
+        {
+          label: "# Média",
+          data: valoresMedia,
+          backgroundColor: [
+			"rgba(54, 162, 235, 0.2)",
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(47, 100, 100, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 99, 132, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(47, 100, 100, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 });
+};*/
 
 function sair(){
     localStorage.removeItem('token')

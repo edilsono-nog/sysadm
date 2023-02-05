@@ -70,3 +70,14 @@ tr:hover td {
     text-align: center;
     font-weight: bold;
 }
+
+#mesrefer{
+    font-size: 12px;
+    color: #01658b;
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+    color: #0298cf;
+    padding-left: 15px;
+    font-family: Verdana, Trebuchet,sans-serif;
+}

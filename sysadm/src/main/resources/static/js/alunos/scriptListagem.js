@@ -109,7 +109,7 @@ function fetchAlunos(startPage) {
 	    });
 	}
 
-document.querySelector('#status').addEventListener('click', ()=>{
+document.querySelector('#status').addEventListener('change', ()=>{
 	if($select.value == "Todos"){
 	       	fetchNotes(0);
 	}else if($select.value == 'Ativo'){

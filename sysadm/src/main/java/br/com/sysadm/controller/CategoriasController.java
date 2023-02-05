@@ -1,7 +1,5 @@
 package br.com.sysadm.controller;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,18 +58,14 @@ public class CategoriasController {
 	
 	@GetMapping(value = "listacategoria")
 	@ResponseBody
-	public ResponseEntity<List<?>> listaCategoria(@RequestParam(name = "tipo") String tipo){
-		
-		Date now = new Date();
+	public ResponseEntity<List<?>> listaCategoria(@RequestParam(name = "tipo") String tipo, 
+													@RequestParam(name = "mes") String mes){
 		
 		List<?> categorias;
 		
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(now);
-		int mes = calendar.get(Calendar.MONTH)+1;
-		
 		if(tipo == "") {
-			categorias = categoriasRepository.findByCategoria(mes);
+			int mesAtual = Integer.parseInt(mes);
+			categorias = categoriasRepository.findByCategoria(mesAtual);
 		}else {
 			categorias = categoriasRepository.findByCategorias(tipo.trim().toUpperCase());
 		}

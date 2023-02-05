@@ -362,10 +362,11 @@ function pegaCaixa(){
 function categoriaBaixaaPagar(){
 	
 	let tipoSaida = 'Saida'
+	let mess = '';
 	
 	$.ajax({
 		method: "GET",
-		url: "categorias/listacategoria?tipo="+tipoSaida,
+		url: "categorias/listacategoria?tipo="+tipoSaida+"&mes="+mess,
 		timeout: 0,
 		headers: {
 			Authorization: localStorage.getItem("token")

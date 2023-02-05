@@ -4,11 +4,17 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString language="plsql">
-		<![CDATA[select a.nome, b.turno, b.escolas from alunos a, matricula b where b.aluno_id = a.id order by b.turno, a.nome]]>
+		<![CDATA[select a.nome as aluno, b.turno, b.escolas, c.nome as responsavel, c.celular as TelResp
+from alunos a
+inner join matricula b on b.aluno_id = a.id
+inner join aluno_responsavel d on d.aluno_id = a.id 
+inner join responsaveis c on d.responsavel_id = c.id and d.responsavel_id = c.id
+order by b.turno, a.nome
+]]>
 	</queryString>
-	<field name="nome" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nome"/>
-		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	<field name="aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="aluno"/>
+		<property name="com.jaspersoft.studio.field.label" value="aluno"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="alunos"/>
 	</field>
 	<field name="turno" class="java.lang.String">
@@ -21,13 +27,29 @@
 		<property name="com.jaspersoft.studio.field.label" value="escolas"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="matricula"/>
 	</field>
+	<field name="responsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="responsavel"/>
+		<property name="com.jaspersoft.studio.field.label" value="responsavel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="responsaveis"/>
+	</field>
+	<field name="telresp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telresp"/>
+		<property name="com.jaspersoft.studio.field.label" value="telresp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="responsaveis"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="60" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="55" backcolor="rgba(194, 188, 188, 0.30980393)" uuid="a3f88c28-0307-49ae-a0c7-4e955b1c9ba8"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
 			<staticText>
-				<reportElement x="20" y="10" width="520" height="50" uuid="aa7b9fdb-8c5b-4560-97f4-ef9ac692eb5b"/>
+				<reportElement x="25" y="5" width="520" height="50" uuid="912a1569-f24b-405a-9808-560c131c9cc3"/>
 				<textElement textAlignment="Center">
 					<font size="32"/>
 				</textElement>
@@ -36,61 +58,107 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="22">
+		<band height="18">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="22" uuid="0cf06ed6-7d89-4539-8ed8-51ed7dbac987">
+				<reportElement x="0" y="0" width="100" height="18" uuid="0cf06ed6-7d89-4539-8ed8-51ed7dbac987">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cba1ea8b-1e45-4deb-90ab-275891f21869"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Verdana" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome do Aluno]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="240" y="0" width="100" height="22" uuid="87a453bc-7a09-4cf8-a91c-dab6859cf436">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="61422a41-7988-4e57-ab7b-84ab00508090"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Verdana" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Turno]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="390" y="0" width="100" height="22" uuid="d427bdc0-bb9a-4b2c-ba36-a1c5d2d31f0b">
+				<reportElement x="442" y="0" width="85" height="18" uuid="d427bdc0-bb9a-4b2c-ba36-a1c5d2d31f0b">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd44b4a5-1efe-4358-9588-823644c1ea02"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Verdana" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Escolas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="0" width="80" height="18" uuid="d9900680-c643-4f6e-82ac-ce7998eaeed1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f34d830e-4ded-490c-9aa6-f0d49de177b0"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsável]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="344" y="0" width="93" height="17" uuid="702c017d-6c69-4f9b-9eca-867080005020">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c8fb54a-e4d6-4666-8d33-cdc18eaff28b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone Resp.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="17" width="561" height="1" uuid="2de09196-5c3b-40ed-8f73-f5b90a5b7b10"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="-1" width="80" height="18" uuid="76203c64-a482-4cde-b1cb-f42feb90c413">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8148fd65-9726-4085-b9ff-3d5b17030794"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Turno]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="200" height="20" uuid="e91cd634-e613-4f5b-a1f1-b8f602ac5c09">
+				<reportElement x="0" y="2" width="130" height="14" uuid="e91cd634-e613-4f5b-a1f1-b8f602ac5c09">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cba1ea8b-1e45-4deb-90ab-275891f21869"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Verdana" size="10"/>
+					<font fontName="SansSerif" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="240" y="0" width="100" height="20" uuid="e993f7bc-7b86-4229-8999-29358b06fb6f">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="61422a41-7988-4e57-ab7b-84ab00508090"/>
-				</reportElement>
-				<textElement>
-					<font fontName="Verdana" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="390" y="0" width="160" height="20" uuid="6a46acce-bc2a-4548-8ca6-51c45459cba4">
+				<reportElement x="442" y="2" width="110" height="14" uuid="6a46acce-bc2a-4548-8ca6-51c45459cba4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd44b4a5-1efe-4358-9588-823644c1ea02"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{escolas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="225" y="2" width="115" height="14" uuid="0354568f-7368-4a0d-89be-62896df0fc61">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f34d830e-4ded-490c-9aa6-f0d49de177b0"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsavel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="349" y="2" width="80" height="14" uuid="d36047e3-f5cf-4d9a-85e9-9ef8dbb0e1ec">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c8fb54a-e4d6-4666-8d33-cdc18eaff28b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telresp}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="fd612217-d6ea-41a0-9413-9de3c370b01f"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#BDBDBD"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="135" y="0" width="75" height="16" uuid="f132241b-3b0a-4610-ad01-86b07c34ae98">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8148fd65-9726-4085-b9ff-3d5b17030794"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

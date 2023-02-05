@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,36 +38,28 @@ public class DashboardController {
 	
 	@GetMapping(value = "/buscaBaixas")
 	@ResponseBody
-	public Page<Baixas> buscaBaixas(Pageable pageable){
+	public Page<Baixas> buscaBaixas(@RequestParam(name = "mes") String mes, Pageable pageable){
 		
-		Date now = new Date();
+		int mesAtual = Integer.parseInt(mes);
 		
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(now);
-		int mes = calendar.get(Calendar.MONTH)+1;
-		
-		Page<Baixas> baixas = baixasRepository.pegaBaixas(mes, pageable);
+		Page<Baixas> baixas = baixasRepository.pegaBaixas(mesAtual, pageable);
 		
 		return baixas;
 	}
 	
 	@GetMapping(value = "/painel")
 	@ResponseBody
-	public Object painel(){
+	public Object painel(@RequestParam(name = "mes") String mes){
 		PainelDto painelDto = new PainelDto();
 		
-		Date now = new Date();
-		
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(now);
-		int mes = calendar.get(Calendar.MONTH)+1;
+		int mesAtual = Integer.parseInt(mes);
 		
 		String sqlMatriculados = "SELECT count(id) as qtdeAtivos FROM Alunos WHERE status = 'Ativo'";
 		String sqlMensalidades = "SELECT sum(b.valor) as mensalidades FROM Alunos a, Mensalidades b WHERE "
-								 + "b.aluno_id=a.id and EXTRACT(month FROM b.vencimento) = "+mes
+								 + "b.aluno_id=a.id and EXTRACT(month FROM b.vencimento) = "+mesAtual
 								 +" and a.status = 'Ativo' ";
 		String sqlRecebidas = "SELECT sum(b.valor) as recebidas FROM Alunos a, Mensalidades b WHERE "
-							  + "b.aluno_id=a.id and EXTRACT(month FROM b.liquidacao) = "+mes+" "
+							  + "b.aluno_id=a.id and EXTRACT(month FROM b.liquidacao) = "+mesAtual+" "
 							  		+ "and a.status = 'Ativo' ";
 		String sqlSaldo = "SELECT sum(saldo) as saldo FROM Caixa";
 		

@@ -494,10 +494,11 @@ function caixas(){
 function categoriaBaixaaReceber(){
 	
 	let tipoEntrada = 'Entrada'
+	let mess = '';
 	
 	$.ajax({
 		method: "GET",
-		url: "categorias/listacategoria?tipo="+tipoEntrada,
+		url: "categorias/listacategoria?tipo="+tipoEntrada+"&mes="+mess,
 		timeout: 0,
 		headers: {
 			Authorization: localStorage.getItem("token")

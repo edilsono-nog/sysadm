@@ -4,6 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/styledashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> -->
 </head>
 <body>
 	<main class="mt-5 pt-3 topmain" layout:fragment="corpo">
@@ -12,11 +14,33 @@
 				<div class="col-md-12 fw-bold fs-3">Dashboard</div>
 			</div>
 			<div class="row">
+				<div class="input-group input-group-sm mb-3" style="width: 35%;">
+					<label class="input-group-text" for="mesrefer">Mês
+						de Referenência :</label> <select class="form-select" id="mesrefer"
+						name="mesrefer">
+						<option selected>Selecione...</option>
+						<option value="1">Janeiro</option>
+						<option value="2">Fevereiro</option>
+						<option value="3">Março</option>
+						<option value="4">Abril</option>
+						<option value="5">Maio</option>
+						<option value="6">Junho</option>
+						<option value="7">Julho</option>
+						<option value="8">Agosto</option>
+						<option value="9">Setembro</option>
+						<option value="10">Outibro</option>
+						<option value="11">Novembro</option>
+						<option value="12">Dezembro</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-3 mb-3">
 					<div class="card text-white bg-primary h-100">
 						<div class="card-header">Alunos Matriculados</div>
 						<div class="card-body">
-							<h5 class="card-title" id="matriculados" name="matriculados" align="center">0</h5>
+							<h5 class="card-title" id="matriculados" name="matriculados"
+								align="center">0</h5>
 						</div>
 					</div>
 				</div>
@@ -24,7 +48,8 @@
 					<div class="card text-white bg-success h-100">
 						<div class="card-header">Total das Mensalidades</div>
 						<div class="card-body" align="right">
-							<h5 class="card-title" id="mensalidades" name="mensalidades">R$ 0,00</h5>
+							<h5 class="card-title" id="mensalidades" name="mensalidades">R$
+								0,00</h5>
 						</div>
 					</div>
 				</div>
@@ -32,7 +57,8 @@
 					<div class="card text-white bg-warning h-100">
 						<div class="card-header">Mensalidades Recebidas</div>
 						<div class="card-body">
-							<h5 class="card-title" id="recebidos" name="recebidos" align="right">R$ 0,00</h5>
+							<h5 class="card-title" id="recebidos" name="recebidos"
+								align="right">R$ 0,00</h5>
 						</div>
 					</div>
 				</div>
@@ -40,7 +66,8 @@
 					<div class="card text-white bg-danger h-100">
 						<div class="card-header">Saldo em Caixa</div>
 						<div class="card-body">
-							<h5 class="card-title" id="saldo" name="saldo" align="right">R$ 0,00</h5>
+							<h5 class="card-title" id="saldo" name="saldo" align="right">R$
+								0,00</h5>
 						</div>
 					</div>
 				</div>
@@ -48,7 +75,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card">
-						<div class="card-header">Gráfico da média dos ultimos 3 meses</div>
+						<div class="card-header">Gráfico da média dos ultimos 3
+							meses</div>
 						<div class="card-body">
 							<canvas class="chartAnteriores" width="400" height="200"></canvas>
 						</div>
@@ -57,7 +85,7 @@
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-header">Grafico do Mês atual</div>
-						<div class="card-body">
+						<div class="card-body" >
 							<canvas class="chartAtual" width="400" height="200"></canvas>
 						</div>
 					</div>
@@ -65,7 +93,8 @@
 			</div>
 			<div class="row">
 				<div class="row" style="margin-top: -20px;">
-					<div class="card" id="conteudo" style="margin-top: 30px; width: 100%;">
+					<div class="card" id="conteudo"
+						style="margin-top: 30px; width: 100%;">
 						<label id="table-titulo">Relação de Entradas e Saídas</label>
 						<div style="overflow: auto;">
 							<table id="baixasTable" class="table_section table-hover">
@@ -94,7 +123,9 @@
 								</tfoot>
 							</table>
 						</div>
-						<label style="font-size: 11px; color: red;">Tipos: '<b>C</b>' Crédito / '<b>D</b>' Débito</label>
+						<label style="font-size: 11px; color: red;">Tipos: '<b>C</b>'
+							Crédito / '<b>D</b>' Débito
+						</label>
 					</div>
 					<ul class="pagination justify-content-center"
 						style="margin: 20px 0; cursor: pointer;"></ul>
@@ -102,6 +133,8 @@
 			</div>
 		</div>
 		<script src="js/finance/dashboardscript.js"></script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.min.js"> </script>
+		 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> -->
 	</main>
 
 </body>

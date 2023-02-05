@@ -93,8 +93,10 @@ document.querySelector('.vizualizar').addEventListener('click', ()=>{
 			$('#multiTable > thead > tr').remove();
 			$('#multiTable > thead').append(
 				'<tr>'+
-					'<th scope="col" >Nome</th>'+
+					'<th scope="col" >Nome do Aluno </th>'+
 					'<th scope="col" >Turno</th>'+
+					'<th scope="col" >Responsável</th>'+
+					'<th scope="col" >Telefone Resp.</th>'+
 					'<th scope="col" >Escola</th>'+
 				'</tr');
 			$('#multiTable > tbody > tr').remove();
@@ -102,9 +104,11 @@ document.querySelector('.vizualizar').addEventListener('click', ()=>{
 	          for (var i = 0; i < response.length; i++) {
 				$('#multiTable > tbody').append(					
 					'<tr>'+
-						'<td style="text-align: left;">'+  response[i].nome + '</td>'+
+						'<td style="text-align: left;">'+  response[i].aluno + '</td>'+
 						'<td >'+  response[i].turno + '</td>'+
-						'<td >'+  response[i].escolas + '</td>'+
+						'<td style="text-align: left;">'+  response[i].responsavel + '</td>'+
+						'<td >'+  response[i].telresp + '</td>'+
+						'<td style="text-align: left;">'+  response[i].escolas + '</td>'+
 					'</tr>')};
 		}
 	}).fail(function(xhr, status, errorThrown) {

@@ -14,8 +14,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ListaAlunosDto {
 	
-	private String nome;
+	private String aluno;
 	private String turno;
 	private String escolas;
+	private String responsavel;
+	private String telresp;
 	
 }

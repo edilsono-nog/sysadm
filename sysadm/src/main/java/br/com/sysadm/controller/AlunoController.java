@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +29,22 @@ public class AlunoController {
 	@Autowired
 	private ReportUtil reportUtil;
 	
+	private JdbcTemplate jdbcTemplate;
+	
 	@GetMapping(value = "listadealunos")
 	 public void imprimePdf(HttpServletRequest request, HttpServletResponse response,
 			 				 @RequestParam(name = "name") String name) throws Exception {
+		
+		/*String sql = "SELECT a.nome as aluno, b.turno, b.escolas, c.nome as responsavel, c.celular as TelResp"
+							+ "FROM Alunos a "
+							+ "INNER JOIN Matricula b on b.aluno_id = a.id"
+							+ "INNER JOIN aluno_responsavel d on d.aluno_id = a.id "
+							+ "INNER JOIN responsaveis c on d.responsavel_id = c.id and d.responsavel_id = c.id"
+							+ "ORDER BY b.turno, a.nome";
+		
+		RowMapper<ListaAlunosDto> rowMapper = (RowMapper<ListaAlunosDto>) new ListaAlunosDto();
+
+	    List<ListaAlunosDto>  list = jdbcTemplate.query(sql, rowMapper);*/
 		
 		ListaAlunosDto alunosDto = new ListaAlunosDto();
 		
@@ -49,13 +64,17 @@ public class AlunoController {
 		
 		 for (Map map : iterable) {
 			 
-			 String nome = (String) map.get("nome");
+			 String nome = (String) map.get("aluno");
 			 String escolas = (String) map.get("escolas");
 			 String turno = (String) map.get("turno");
+			 String responsavel = (String) map.get("responsavel");
+			 String telresp = (String) map.get("telresp");
 			 
-			 alunosDto.setNome(nome);
+			 alunosDto.setAluno(nome);
 			 alunosDto.setEscolas(escolas);
 			 alunosDto.setTurno(turno);
+			 alunosDto.setResponsavel(responsavel);
+			 alunosDto.setTelresp(telresp);
 			 
 			 alunosDtos.add(alunosDto);
 			 alunosDto = new ListaAlunosDto();

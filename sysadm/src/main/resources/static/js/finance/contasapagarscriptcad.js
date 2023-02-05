@@ -175,6 +175,8 @@ function formatarMoeda() {
 	if (valor == 'NaN') elemento.value = '';
 }
 
+const divMessage = document.querySelector(".alert");
+
 function msgSuccess(msg) {
 	const message = document.createElement("div");
 	message.classList.add("messageSucesso");
