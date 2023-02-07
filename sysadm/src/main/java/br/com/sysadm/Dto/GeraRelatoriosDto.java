@@ -12,12 +12,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ListaAlunosDto {
+public class GeraRelatoriosDto {
 	
 	private String aluno;
 	private String turno;
 	private String escolas;
 	private String responsavel;
 	private String telresp;
+	private String turma;
+	private Double venc;
+	private Float valor;
 	
 }

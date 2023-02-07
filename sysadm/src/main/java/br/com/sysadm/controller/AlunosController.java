@@ -109,21 +109,4 @@ public class AlunosController {
 		 response.getOutputStream().write(pdf);
 		 
 	 }
-	 
-	 @GetMapping(value = "listadealunos")
-	 public List<Map> listadealunos(@RequestParam(name = "name") String name)  {
-		 
-		 List<Map> iterable = null;
-		 
-		 if(name.equals("Todos")) {
-			 iterable =  alunosRepository.findByAluno();
-		 }else if (name.equals("Manhã") || name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByAlunoTurno(name);
-		 }else if (!name.equals("Escolas") && !name.equals("Manhã") || !name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByAlunoEscola(name);
-		 } 
-		 
-		 return iterable;
-	 }
-
 }

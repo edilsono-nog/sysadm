@@ -48,6 +48,27 @@ public interface AlunosRepository extends JpaRepository<Alunos, Long> {
 										+ "and b.turno = ?1 order by b.turno, a.nome")
 	List<Map> findByAlunoTurno(String name);
 
+	@Query(nativeQuery = true, value = "select a.nome as aluno, b.turma, b.turno, b.escolas, "
+										+ "Extract('Day' From c.vencimento) as venc, c.valor from Alunos a, "
+										+ "Matricula b, Mensalidades c where b.aluno_id = a.id and c.aluno_id = a.id "
+										+ "and EXTRACT(month FROM c.vencimento) = 12 order by b.escolas, b.turno, "
+										+ "a.nome")
+	List<Map> findByCarteirinhaAlunos();
+
+	@Query(nativeQuery = true, value = "select a.nome as aluno, b.turma, b.turno, b.escolas, "
+										+ "Extract('Day' From c.vencimento) as venc, c.valor from Alunos a, "
+										+ "Matricula b, Mensalidades c where b.aluno_id = a.id and c.aluno_id = a.id "
+										+ "and EXTRACT(month FROM c.vencimento) = 12 and b.turno = ?1 "
+										+ "order by b.escolas, b.turno, a.nome")
+	List<Map> findByCarteirinhaAlunoTurno(String name);
+
+	@Query(nativeQuery = true, value = "select a.nome as aluno, b.turma, b.turno, b.escolas, "
+										+ "Extract('Day' From c.vencimento) as venc, c.valor from Alunos a, "
+										+ "Matricula b, Mensalidades c where b.aluno_id = a.id and c.aluno_id = a.id "
+										+ "and EXTRACT(month FROM c.vencimento) = 12 and b.escolas = ?1 "
+										+ "order by b.escolas, b.turno, a.nome")
+	List<Map> findByCarteirinhaAlunoEscola(String name);
+
 	
 
 }
