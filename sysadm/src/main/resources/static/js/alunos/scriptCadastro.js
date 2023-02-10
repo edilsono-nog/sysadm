@@ -217,6 +217,85 @@ function formatDate(data, formato) {
 }
 
 function salvarAluno() {
+	
+	var id = $("#id").val();
+	
+	if (id == ''){
+		postAluno();
+	}else if (id != ''){
+		putAluno();
+	}
+	
+}
+
+function putAluno(){
+	var id = $("#id").val();
+	var nome = $("#nome").val();
+	var dtnascimento = $("#dtnascimento").val();
+	var formtDate = formatDate(dtnascimento)
+	var email = $("#email").val();
+	var cep = $("#cep").val();
+	var logradouro = $("#logradouro").val();
+	var complemento = $("#complemento").val();
+	var bairro = $("#bairro").val();
+	var cidade = $("#cidade").val();
+	var uf = $("#uf").val();
+	var telefone = $("#telefone").val();
+	var celular = $("#celular").val();
+	var cpf = $("#cpf").val();
+	var rg = $("#rg").val();
+	var status = $("#status").val();
+	
+	$.ajax({
+		method: "PUT",
+		url: "aluno/atualizar?idAluno="+id,
+		data: JSON.stringify({
+			id: id,
+			nome: nome,
+			dt_nasc: formtDate,
+			email: email,
+			cep: cep,
+			logradouro: logradouro,
+			complemento: complemento,
+			bairro: bairro,
+			localidade: cidade,
+			uf: uf,
+			telefone: telefone,
+			celular: celular,
+			cpf: cpf,
+			rg: rg,
+			status: status
+		}),
+		contentType: "application/json; charset=utf-8",
+		timeout: 0,
+		headers: {
+			Authorization: localStorage.getItem("token")
+		},
+		success: function(response) {
+
+			$("#id").val(response.id);
+			const msg = "Realizando Atualização do cadastro.... ";
+			msgSuccess(msg);
+			setTimeout(() => {
+				window.location.href = 'alunos_listagem'
+				document.getElementById('formCadastroAluno').reset();
+			}, 3000)
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao buscar usuário por id : " + xhr.responseText);
+			}
+	});
+}
+
+function postAluno(){
 	var id = $("#id").val();
 	var nome = $("#nome").val();
 	var dtnascimento = $("#dtnascimento").val();
@@ -240,7 +319,7 @@ function salvarAluno() {
 		return;
 	}
 
-	if (status == "Abra este menu de seleção") {
+	if (status == "Selecione o Status") {
 		$("#status").focus();
 		alert('Selecione um item para o Status correto');
 		return;

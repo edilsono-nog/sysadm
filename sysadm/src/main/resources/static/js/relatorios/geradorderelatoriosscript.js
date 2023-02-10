@@ -29,18 +29,20 @@ document.querySelector('#selectRelatorio').addEventListener('change', ()=>{
 	}else if(document.querySelector('#selectRelatorio').value == 'Selecione...'){
 	    document.querySelector('#listaTipo').setAttribute('style', 'display: none;')
 	    document.querySelector('#listaTurno').setAttribute('style', 'display: none;');
+	    document.querySelector('#resumos').setAttribute('style', 'display: none; width: 30%;')
 	    document.querySelector('#selectTipo').setAttribute('style', 'width: 20%;');
 	    document.querySelector('#labeltipo').setAttribute('style', 'width: 10%;');
+	    document.querySelector('#selectResumos').setAttribute('style', 'width: 20%;');
+	    document.querySelector('#labelResumos').setAttribute('style', 'width: 10%;');
+	}else if(document.querySelector('#selectRelatorio').value == 'resumobaixas'){
+		document.querySelector('#resumos').setAttribute('style', 'display: block; width: 30%;')
+		document.querySelector('#selectResumos').setAttribute('style', 'width: 90%;');
+	    document.querySelector('#labelResumos').setAttribute('style', 'width: 35%;');
+	}else if(document.querySelector('#selectRelatorio').value == 'resumomansalidades'){
+		document.querySelector('#resumos').setAttribute('style', 'display: block; width: 30%;')
+		document.querySelector('#selectResumos').setAttribute('style', 'width: 90%;');
+	    document.querySelector('#labelResumos').setAttribute('style', 'width: 35%;');
 	}
-	/*if(document.querySelector('#selectRelatorio').value == 'carteirinhas'){
-		document.querySelector('#listaTipoCarteirinha').setAttribute('style', 'display: block; width: 30%;')
-		document.querySelector('#selectTipoCarteirinha').setAttribute('style', 'width: 90%;');
-	    document.querySelector('#labeltipoCarteirinha').setAttribute('style', 'width: 35%;');
-	}else if(document.querySelector('#selectRelatorio').value == 'Selecione...'|| document.querySelector('#selectRelatorio').value == 'listatodos'){
-		document.querySelector('#listaTipoCarteirinha').setAttribute('style', 'display: none;')
-		document.querySelector('#selectTipoCarteirinha').setAttribute('style', 'width: 20%;');
-	    document.querySelector('#labeltipoCarteirinha').setAttribute('style', 'width: 10%;');
-	}*/
 })
 
 document.querySelector('#selectTipo').addEventListener('change', ()=>{
@@ -65,6 +67,37 @@ document.querySelector('.imprimir').addEventListener('click', ()=>{
 	var select = document.getElementById('selectEscola');
 	let escolas = select.options[select.selectedIndex].text;
 	
+	var selectMes = document.getElementById('selectResumos');
+	selectMes = selectMes.options[selectMes.selectedIndex].value;
+	var mes = '';
+
+	if (selectMes == 1){
+		mes = 'JANEIRO'
+	}else if (selectMes == 2){
+		mes = 'FEVEREIRO'
+	}else if (selectMes == 3){
+		mes = 'MARÇO'
+	}else if (selectMes == 4){
+		mes = 'ABRIL'
+	}else if (selectMes == 5){
+		mes = 'MAIO'
+	}else if (selectMes == 6){
+		mes = 'JUNHO'
+	}else if (selectMes == 7){
+		mes = 'JULHO'
+	}else if (selectMes == 8){
+		mes = 'AGOSTO'
+	}else if (selectMes == 9){
+		mes = 'SETEMBRO'
+	}else if (selectMes == 10){
+		mes = 'OUTUBRO'
+	}else if (selectMes == 11){
+		mes = 'NOVEMBRO'
+	}else if (selectMes == 12){
+		mes = 'DEZEMEBRO'
+	}
+	
+	
 	if(document.querySelector('#selectTipo').value == 'Todos'){
 		tipo = document.querySelector('#selectTipo').value;
 	}else if(document.querySelector('#selectTipo').value == 'Turno'){
@@ -77,7 +110,13 @@ document.querySelector('.imprimir').addEventListener('click', ()=>{
 		window.open('geradorderelatorios/listadealunos?name='+tipo, '_blank');
 	}else if (document.querySelector('#selectRelatorio').value == 'carteirinhas'){
 		window.open('geradorderelatorios/geracarteirinhas?name='+tipo, '_blank');
+	}else if(document.querySelector('#selectRelatorio').value == 'resumobaixas'){
+		window.open('geradorderelatorios/resumodebaixas?mes='+mes+'&mesNum='+selectMes, '_blank');
+	}else if(document.querySelector('#selectRelatorio').value == 'resumomansalidades'){
+		window.open('geradorderelatorios/resumodemensalidades?mes='+mes+'&mesNum='+selectMes, '_blank');
 	}
+	
+	
 })
 
 document.querySelector('.vizualizar').addEventListener('click', ()=>{
@@ -97,8 +136,176 @@ document.querySelector('.vizualizar').addEventListener('click', ()=>{
 		listadealunos(tipo);
 	}else if (document.querySelector('#selectRelatorio').value == 'carteirinhas'){
 		geracarteirinhas(tipo);
+	}else if (document.querySelector('#selectRelatorio').value == 'resumobaixas'){
+		listaresumo();
+	}else if (document.querySelector('#selectRelatorio').value == 'resumomansalidades'){
+		listaresumomensalidades();
 	}
 })
+
+function listaresumomensalidades(){
+	
+	var selectMes = document.getElementById('selectResumos');
+	selectMes = selectMes.options[selectMes.selectedIndex].value;
+	var mes = '';
+
+	if (selectMes == 1){
+		mes = 'JANEIRO'
+	}else if (selectMes == 2){
+		mes = 'FEVEREIRO'
+	}else if (selectMes == 3){
+		mes = 'MARÇO'
+	}else if (selectMes == 4){
+		mes = 'ABRIL'
+	}else if (selectMes == 5){
+		mes = 'MAIO'
+	}else if (selectMes == 6){
+		mes = 'JUNHO'
+	}else if (selectMes == 7){
+		mes = 'JULHO'
+	}else if (selectMes == 8){
+		mes = 'AGOSTO'
+	}else if (selectMes == 9){
+		mes = 'SETEMBRO'
+	}else if (selectMes == 10){
+		mes = 'OUTUBRO'
+	}else if (selectMes == 11){
+		mes = 'NOVEMBRO'
+	}else if (selectMes == 12){
+		mes = 'DEZEMEBRO'
+	}
+	
+	$.ajax({
+		method : "GET",
+		url : "visualizador/resumodemensalidades?mes="+mes+"&mesNum="+selectMes,
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			console.log(response)
+			$('#multiTable > thead > tr').remove();
+			$('#multiTable > thead').append(
+				'<tr>'+
+					'<th scope="col" >Nome do Aluno </th>'+
+					'<th scope="col" >Data de Vencimento</th>'+
+					'<th scope="col" >Data de Liquidação</th>'+
+					'<th scope="col" >Valor</th>'+
+				'</tr');
+			$('#multiTable > tbody > tr').remove();
+	          // add table rows
+	          for (var i = 0; i < response.length; i++) {
+				  var dataVencimento = response[i].vencimento.split('-').reverse().join('/');
+				  var dataLiquidacao = response[i].liquidacao.split('-').reverse().join('/');
+				  var atual = response[i].valor;
+				  var valor = atual.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+				$('#multiTable > tbody').append(					
+					'<tr>'+
+						'<td style="text-align: left;">'+  response[i].nome + '</td>'+
+						'<td >'+ dataVencimento + '</td>'+
+						'<td >'+ dataLiquidacao + '</td>'+
+						'<td style="text-align: center;">'+ valor + '</td>'+
+					'</tr>')};
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar lista de alunos.... " + xhr.responseText;
+				msgError(msg);
+			}
+	});
+	
+}
+
+function listaresumo(){
+	
+	var selectMes = document.getElementById('selectResumos');
+	selectMes = selectMes.options[selectMes.selectedIndex].value;
+	var mes = '';
+
+	if (selectMes == 1){
+		mes = 'JANEIRO'
+	}else if (selectMes == 2){
+		mes = 'FEVEREIRO'
+	}else if (selectMes == 3){
+		mes = 'MARÇO'
+	}else if (selectMes == 4){
+		mes = 'ABRIL'
+	}else if (selectMes == 5){
+		mes = 'MAIO'
+	}else if (selectMes == 6){
+		mes = 'JUNHO'
+	}else if (selectMes == 7){
+		mes = 'JULHO'
+	}else if (selectMes == 8){
+		mes = 'AGOSTO'
+	}else if (selectMes == 9){
+		mes = 'SETEMBRO'
+	}else if (selectMes == 10){
+		mes = 'OUTUBRO'
+	}else if (selectMes == 11){
+		mes = 'NOVEMBRO'
+	}else if (selectMes == 12){
+		mes = 'DEZEMEBRO'
+	}
+	
+	$.ajax({
+		method : "GET",
+		url : "visualizador/resumodebaixas?mes="+mes+"&mesNum="+selectMes,
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			console.log(response)
+			$('#multiTable > thead > tr').remove();
+			$('#multiTable > thead').append(
+				'<tr>'+
+					'<th scope="col" >Descrição </th>'+
+					'<th scope="col" >Data de Baixa</th>'+
+					'<th scope="col" style="width: 15%;">Tipo de Pagamento</th>'+
+					'<th scope="col" >Tipo</th>'+
+					'<th scope="col" >Valor</th>'+
+					'<th scope="col" >Categoria</th>'+
+					'<th scope="col" >Tipo de Categoria</th>'+
+				'</tr');
+			$('#multiTable > tbody > tr').remove();
+	          // add table rows
+	          for (var i = 0; i < response.length; i++) {
+				  var dataFormatada = response[i].dt_baixa.split('-').reverse().join('/');
+				  var atual = response[i].valor;
+				  var valor = atual.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+				$('#multiTable > tbody').append(					
+					'<tr>'+
+						'<td style="text-align: left;">'+  response[i].descricao + '</td>'+
+						'<td >'+ dataFormatada + '</td>'+
+						'<td style="text-align: center;">'+  response[i].tipopgto + '</td>'+
+						'<td >'+  response[i].tipo + '</td>'+
+						'<td style="text-align: center;">'+ valor + '</td>'+
+						'<td style="text-align: center;">'+  response[i].categorias + '</td>'+
+						'<td style="text-align: center;">'+  response[i].tipocategoria + '</td>'+
+					'</tr>')};
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				const msg = "Error ao carregar lista de alunos.... " + xhr.responseText;
+				msgError(msg);
+			}
+	});
+}
 
 function listadealunos(tipo){
 		$.ajax({

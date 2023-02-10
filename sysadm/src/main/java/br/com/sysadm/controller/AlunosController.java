@@ -1,9 +1,7 @@
 package br.com.sysadm.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,17 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import br.com.sysadm.Dto.AlunosDto;
 import br.com.sysadm.model.Alunos;
@@ -41,10 +38,28 @@ public class AlunosController {
 	@Autowired
 	private ReportUtil reportUtil;
 	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
 	 @PostMapping(value = "salvar")
 	 @ResponseBody
 	 public ResponseEntity<Alunos> salvar(@RequestBody Alunos aluno ){
 		 return alunosService.salvar(aluno);
+	 }
+	 
+	 @PutMapping(value = "atualizar")
+	 @ResponseBody
+	 public int atualizar(@RequestBody Alunos aluno, 
+			 				@RequestParam(name = "idAluno") Long idAluno){
+		 return jdbcTemplate.update("UPDATE Alunos SET nome = ?, status = ?, dt_nasc = ?, "
+							 		+ "email = ?, cep = ?, logradouro = ?, complemento = ?, bairro = ?, "
+							 		+ "localidade = ?, uf = ?, telefone = ?, celular = ?, cpf = ?, rg = ? "
+							 		+ "WHERE id = ?", 
+							 		new Object[] {aluno.getNome(), aluno.getStatus(), aluno.getDt_nasc(),
+							 				aluno.getEmail(), aluno.getCep(), aluno.getLogradouro(), aluno.getComplemento(),
+							 				aluno.getBairro(), aluno.getLocalidade(), aluno.getUf(), aluno.getTelefone(),
+							 				aluno.getCelular(), aluno.getCpf(), aluno.getRg(),
+							 		idAluno});
 	 }
 	 
 	 @GetMapping(value = "listatodos")

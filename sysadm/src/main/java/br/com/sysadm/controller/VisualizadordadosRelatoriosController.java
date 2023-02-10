@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sysadm.repository.AlunosRepository;
+import br.com.sysadm.repository.BaixasRepository;
 
 @RestController
 @RequestMapping(value = "/visualizador")
@@ -17,6 +18,9 @@ public class VisualizadordadosRelatoriosController {
 	
 	@Autowired
 	private AlunosRepository alunosRepository;
+	
+	@Autowired
+	private BaixasRepository baixasRepository;
 	
 	@GetMapping(value = "listadealunos")
 	 public List<Map> listadealunos(@RequestParam(name = "name") String name)  {
@@ -49,5 +53,27 @@ public class VisualizadordadosRelatoriosController {
 		 
 		 return iterable;
 	 }
+	
+	@GetMapping(value = "resumodebaixas")
+	 public List<Map> resumoDeBaixas(@RequestParam(name = "mes") String mes, 
+	 						 			@RequestParam(name = "mesNum") String mesNum) {
+		
+		int mesAtual = Integer.parseInt(mesNum);
+		
+		List<Map> maps = baixasRepository.findByResumoBaixas(mesAtual);
+		
+		return maps;
+	}
+	
+	@GetMapping(value = "resumodemensalidades")
+	 public List<Map> resumodemensalidades(@RequestParam(name = "mes") String mes, 
+	 						 			@RequestParam(name = "mesNum") String mesNum) {
+		
+		int mesAtual = Integer.parseInt(mesNum);
+		
+		List<Map> maps = baixasRepository.findByResumoMensalidades(mesAtual);
+		
+		return maps;
+	}
 
 }

@@ -57,7 +57,8 @@ tr:hover td {
 #selectTipo,
 #selectTurno,
 #selectEscola,
-#selectTipoCarteirinha{
+#selectTipoCarteirinha,
+#selectResumos{
     font-size: 12px;
     color: #01658b;
     border: 1px solid #0298cf;
