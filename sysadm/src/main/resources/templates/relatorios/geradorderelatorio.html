@@ -3,7 +3,8 @@
 	xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/relatorios/stylegeradorderelatorios.css">
+<link rel="stylesheet"
+	href="css/relatorios/stylegeradorderelatorios.css">
 </head>
 <body>
 	<main class="mt-5 pt-3" layout:fragment="corpo">
@@ -20,46 +21,67 @@
 			<div class="row">
 				<div class="tables">
 					<div class="table_header">
-						<div class="input-group input-group-sm mb-3" id="tiporelatorio" style="width: 40%;">
-							<label class="input-group-text" for="inputGroupSelect01">Tipos
-								de Relatórios :</label> <select class="form-select" name="selectRelatorio"
-								id="selectRelatorio">
-								<option value="Selecione..." selected>Selecione...</option>
-								<option value="listatodos">Lista de Alunos</option>
-								<option value="carteirinhas">Gerador de Carteirinhas</option>
-								<option value="resumobaixas">Resumo de Baixas</option>
-								<option value="resumomansalidades">Resumo de Mensalidades</option>
-							</select>
+						<div class="row">
+							<div class="input-group input-group-sm mb-3" id="tiporelatorio"
+								style="width: 40%;">
+								<label class="input-group-text" for="inputGroupSelect01">Tipos
+									de Relatórios :</label> <select class="form-select"
+									name="selectRelatorio" id="selectRelatorio">
+									<option value="Selecione..." selected>Selecione...</option>
+									<option value="listatodos">Lista de Alunos</option>
+									<option value="carteirinhas">Gerador de Carteirinhas</option>
+									<option value="resumobaixas">Resumo de Baixas</option>
+									<option value="resumomansalidades">Resumo de
+										Mensalidades</option>
+								</select>
+							</div>
+							<div class="input-group input-group-sm mb-3" style="width: 20%;">
+								<label class="input-group-text" for="inputGroupSelect01">Ano
+									Letivo :</label> <select class="form-select" name="selectAno"
+									id="selectAno">
+									<option selected>Selecione...</option>
+								</select>
+							</div>
 						</div>
-
-						<div class="table_header" align="right">
+						<div class="row">
 							<div align="left" style="display: flex;">
-								<div class="input-group input-group-sm mb-3" id="listaTipo" style="width: 30%; display: none;">
-									<label class="input-group-text" for="selectTipo" id="labeltipo" style="width: 10%;">Tipos:</label>
-									<select class="form-select" name="selectTipo" id="selectTipo" style="width: 20%;">
+								<div class="input-group input-group-sm mb-3" id="listaTipo"
+									style="width: 30%; display: none;">
+									<label class="input-group-text" for="selectTipo" id="labeltipo"
+										style="width: 10%;">Tipos:</label> <select class="form-select"
+										name="selectTipo" id="selectTipo" style="width: 20%;">
 										<option value="Selecione..." selected>Selecione...</option>
 										<option value="Todos">Todos</option>
 										<option value="Escolas">Escolas</option>
 										<option value="Turno">Turno</option>
 									</select>
 								</div>
-								<div class="input-group input-group-sm mb-3" id="listaTurno" style="width: 40%; display: none;">
-									<label class="input-group-text" for="selectTurno" id="labelturno" style="width: 10%;">Turno:</label>
-									<select class="form-select" name="selectTurno" id="selectTurno" style="width: 20%;">
-										<option >Selecione...</option>
+								<div class="input-group input-group-sm mb-3" id="listaTurno"
+									style="width: 40%; display: none;">
+									<label class="input-group-text" for="selectTurno"
+										id="labelturno" style="width: 10%;">Turno:</label> <select
+										class="form-select" name="selectTurno" id="selectTurno"
+										style="width: 20%;">
+										<option>Selecione...</option>
 										<option value="Manhã">Manhã</option>
 										<option value="Tarde">Tarde</option>
 									</select>
 								</div>
-								<div class="input-group input-group-sm mb-3" id="listaEscolas" style="display: none;">
-								  <label class="input-group-text" for="selectEscola" style="width: 10%;">Escola :</label>
-								  <select class="form-select" name="selectEscola" id="selectEscola" style="width: 25%;">
-								    <option selected>Selecione...</option>
-								  </select>
+								<div class="input-group input-group-sm mb-3" id="listaEscolas"
+									style="display: none;">
+									<label class="input-group-text" for="selectEscola"
+										style="width: 10%;">Escola :</label> <select
+										class="form-select" name="selectEscola" id="selectEscola"
+										style="width: 25%;">
+										<option selected>Selecione...</option>
+									</select>
 								</div>
-								<div class="input-group input-group-sm mb-3" id="resumos" style="width: 30%; display: none;">
-									<label class="input-group-text" for="selectResumos" id="labelResumos" style="width: 10%;">Meses:</label>
-									<select class="form-select" name="selectResumos" id="selectResumos" style="width: 20%;">
+								<div class="input-group input-group-sm mb-3" id="resumos"
+									style="width: 30%; display: none;">
+									<label class="input-group-text" for="selectResumos"
+										id="labelResumos" style="width: 10%;">Meses:</label> <select
+										class="form-select" name="selectResumos" id="selectResumos"
+										style="width: 20%;">
 										<option value="Selecione..." selected>Selecione...</option>
 										<option value="1">Janeiro</option>
 										<option value="2">Fevereiro</option>
@@ -76,13 +98,13 @@
 									</select>
 								</div>
 							</div>
-							
-							
-							<button class="add_new vizualizar" title="Visualizar Resultado" >
+						</div>
+						<div class="table_header" align="right">
+							<button class="add_new vizualizar" title="Visualizar Resultado">
 								<i class="bi bi-search" style="margin-right: 10px;"></i>Vizualizar
 							</button>
 							<button class="add_new imprimir" title="Gerar Impressão">
-								<i class="bi bi-printer" style="margin-right: 10px;" ></i>Gerar
+								<i class="bi bi-printer" style="margin-right: 10px;"></i>Gerar
 							</button>
 						</div>
 					</div>
@@ -96,7 +118,7 @@
 					<div style="overflow: auto;">
 						<table id="multiTable" class="table_section table-hover">
 							<thead class="thead-dark">
-							
+
 							</thead>
 							<tbody>
 

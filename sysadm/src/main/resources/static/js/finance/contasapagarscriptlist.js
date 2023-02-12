@@ -363,10 +363,11 @@ function categoriaBaixaaPagar(){
 	
 	let tipoSaida = 'Saida'
 	let mess = '';
+	let anos = '';
 	
 	$.ajax({
 		method: "GET",
-		url: "categorias/listacategoria?tipo="+tipoSaida+"&mes="+mess,
+		url: "categorias/listacategoria?tipo="+tipoSaida+"&mes="+mess+"&ano="+anos,
 		timeout: 0,
 		headers: {
 			Authorization: localStorage.getItem("token")

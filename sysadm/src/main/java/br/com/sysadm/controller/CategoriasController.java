@@ -59,13 +59,15 @@ public class CategoriasController {
 	@GetMapping(value = "listacategoria")
 	@ResponseBody
 	public ResponseEntity<List<?>> listaCategoria(@RequestParam(name = "tipo") String tipo, 
+													@RequestParam(name = "ano") String ano,
 													@RequestParam(name = "mes") String mes){
 		
 		List<?> categorias;
 		
 		if(tipo == "") {
 			int mesAtual = Integer.parseInt(mes);
-			categorias = categoriasRepository.findByCategoria(mesAtual);
+			int anoAtual = Integer.parseInt(ano);
+			categorias = categoriasRepository.findByCategoria(anoAtual, mesAtual);
 		}else {
 			categorias = categoriasRepository.findByCategorias(tipo.trim().toUpperCase());
 		}

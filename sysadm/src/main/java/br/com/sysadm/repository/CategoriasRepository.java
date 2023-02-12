@@ -23,9 +23,10 @@ public interface CategoriasRepository extends JpaRepository<Categorias, Long>{
 	List<Categorias> findByCategorias(String upperCase);
 
 	@Query(nativeQuery = true, value = "select b.descricao, sum(a.valor) as valores from baixas a, categorias b "
-									 + "where a.categoria=b.id and EXTRACT(month FROM a.dt_baixa) = ?1 "
+									 + "where a.categoria=b.id and EXTRACT(year FROM a.dt_baixa) = ?1 "
+									 + "and EXTRACT(month FROM a.dt_baixa) = ?2 "
 									 + "group by b.descricao, b.tipo order by b.tipo, b.descricao")
-	List<?> findByCategoria(int mes);
+	List<?> findByCategoria(int anoAtual, int mesAtual);
 
 	@Query(nativeQuery = true, value = "SELECT b.descricao, sum(a.valor)/3 as valores from baixas a, categorias b "
 									 + "WHERE EXTRACT(MONTH FROM a.dt_baixa) "
@@ -33,6 +34,8 @@ public interface CategoriasRepository extends JpaRepository<Categorias, Long>{
 									 + "and DATE_PART('MONTH', CURRENT_DATE - interval '1 months') "
 									 + "and a.categoria=b.id group by b.descricao, b.tipo order by b.tipo, b.descricao")
 	List<?> findByCategoriaMedia();
+
+	
 
 	
 

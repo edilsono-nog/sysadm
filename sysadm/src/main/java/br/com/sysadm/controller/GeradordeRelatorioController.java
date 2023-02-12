@@ -35,7 +35,8 @@ public class GeradordeRelatorioController {
 	
 	@GetMapping(value = "listadealunos")
 	 public void imprimePdf(HttpServletRequest request, HttpServletResponse response,
-			 				 @RequestParam(name = "name") String name) throws Exception {
+			 				 @RequestParam(name = "name") String name,
+			 				 @RequestParam(name = "anoletivo") String anoletivo) throws Exception {
 		
 		GeraRelatoriosDto alunosDto = new GeraRelatoriosDto();
 		
@@ -44,11 +45,11 @@ public class GeradordeRelatorioController {
 		List<Map> iterable = null;
 		 
 		 if(name.equals("Todos")) {
-			 iterable =  alunosRepository.findByAluno();
+			 iterable =  alunosRepository.findByAluno(anoletivo);
 		 }else if (name.equals("Manhã") || name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByAlunoTurno(name);
+			 iterable =  alunosRepository.findByAlunoTurno(name, anoletivo);
 		 }else if (!name.equals("Escolas") && !name.equals("Manhã") || !name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByAlunoEscola(name);
+			 iterable =  alunosRepository.findByAlunoEscola(name, anoletivo);
 		 } 
 		
 		 for (Map map : iterable) {
@@ -93,7 +94,8 @@ public class GeradordeRelatorioController {
 	
 	@GetMapping(value = "geracarteirinhas")
 	 public void geraCarteirinhas(HttpServletRequest request, HttpServletResponse response,
-			 				 @RequestParam(name = "name") String name) throws Exception {
+			 				 @RequestParam(name = "name") String name,
+			 				 @RequestParam(name = "anoletivo") String anoletivo) throws Exception {
 		
 		GeraRelatoriosDto alunosDto = new GeraRelatoriosDto();
 		
@@ -102,11 +104,11 @@ public class GeradordeRelatorioController {
 		List<Map> iterable = null;
 		 
 		 if(name.equals("Todos")) {
-			 iterable =  alunosRepository.findByCarteirinhaAlunos();
+			 iterable =  alunosRepository.findByCarteirinhaAlunos(anoletivo);
 		 }else if (name.equals("Manhã") || name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByCarteirinhaAlunoTurno(name);
+			 iterable =  alunosRepository.findByCarteirinhaAlunoTurno(name, anoletivo);
 		 }else if (!name.equals("Escolas") && !name.equals("Manhã") || !name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByCarteirinhaAlunoEscola(name);
+			 iterable =  alunosRepository.findByCarteirinhaAlunoEscola(name, anoletivo);
 		 } 
 		
 		
@@ -161,15 +163,17 @@ public class GeradordeRelatorioController {
 	@GetMapping(value = "resumodebaixas")
 	 public void resumoDeBaixas(HttpServletRequest request, HttpServletResponse response,
 			 				 @RequestParam(name = "mes") String mes, 
-	 						 @RequestParam(name = "mesNum") String mesNum) throws Exception {
+	 						 @RequestParam(name = "mesNum") String mesNum,
+			 				 @RequestParam(name = "anoletivo") String anoletivo) throws Exception {
 		
 		int mesAtual = Integer.parseInt(mesNum);
+		int anoAtual = Integer.parseInt(anoletivo);
 		
 		GeraRelatoriosDto relatoriosDto = new GeraRelatoriosDto();
 		
 		List<GeraRelatoriosDto> relatoriosDtos = new ArrayList<>();
 		
-		List<Map> maps = baixasRepository.findByResumoBaixas(mesAtual);
+		List<Map> maps = baixasRepository.findByResumoBaixas(mesAtual, anoAtual);
 		
 		for (Map map : maps) {
 			 
@@ -221,15 +225,17 @@ public class GeradordeRelatorioController {
 	@GetMapping(value = "resumodemensalidades")
 	 public void resumodemensalidades(HttpServletRequest request, HttpServletResponse response,
 			 				 @RequestParam(name = "mes") String mes, 
-	 						 @RequestParam(name = "mesNum") String mesNum) throws Exception {
+	 						 @RequestParam(name = "mesNum") String mesNum,
+			 				 @RequestParam(name = "anoletivo") String anoletivo) throws Exception {
 		
 		int mesAtual = Integer.parseInt(mesNum);
+		int anoAtual = Integer.parseInt(anoletivo);
 		
 		GeraRelatoriosDto relatoriosDto = new GeraRelatoriosDto();
 		
 		List<GeraRelatoriosDto> relatoriosDtos = new ArrayList<>();
 		
-		List<Map> maps = baixasRepository.findByResumoMensalidades(mesAtual);
+		List<Map> maps = baixasRepository.findByResumoMensalidades(mesAtual, anoAtual);
 		
 		for (Map map : maps) {
 			 

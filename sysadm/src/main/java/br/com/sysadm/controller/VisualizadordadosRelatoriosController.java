@@ -23,32 +23,34 @@ public class VisualizadordadosRelatoriosController {
 	private BaixasRepository baixasRepository;
 	
 	@GetMapping(value = "listadealunos")
-	 public List<Map> listadealunos(@RequestParam(name = "name") String name)  {
+	 public List<Map> listadealunos(@RequestParam(name = "name") String name,
+			 						@RequestParam(name = "anoletivo") String anoletivo)  {
 		 
 		 List<Map> iterable = null;
 		 
 		 if(name.equals("Todos")) {
-			 iterable =  alunosRepository.findByAluno();
+			 iterable =  alunosRepository.findByAluno(anoletivo);
 		 }else if (name.equals("Manhã") || name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByAlunoTurno(name);
+			 iterable =  alunosRepository.findByAlunoTurno(name, anoletivo);
 		 }else if (!name.equals("Escolas") && !name.equals("Manhã") || !name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByAlunoEscola(name);
+			 iterable =  alunosRepository.findByAlunoEscola(name, anoletivo);
 		 } 
 		 
 		 return iterable;
 	 }
 	
 	@GetMapping(value = "geracarteirinhas")
-	 public List<Map> geraCarteirinhas(@RequestParam(name = "name") String name)  {
+	 public List<Map> geraCarteirinhas(@RequestParam(name = "name") String name,
+										@RequestParam(name = "anoletivo") String anoletivo)  {
 		 
 		 List<Map> iterable = null;
 		 
 		 if(name.equals("Todos")) {
-			 iterable =  alunosRepository.findByCarteirinhaAlunos();
+			 iterable =  alunosRepository.findByCarteirinhaAlunos(anoletivo);
 		 }else if (name.equals("Manhã") || name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByCarteirinhaAlunoTurno(name);
+			 iterable =  alunosRepository.findByCarteirinhaAlunoTurno(name, anoletivo);
 		 }else if (!name.equals("Escolas") && !name.equals("Manhã") || !name.equals("Tarde")) {
-			 iterable =  alunosRepository.findByCarteirinhaAlunoEscola(name);
+			 iterable =  alunosRepository.findByCarteirinhaAlunoEscola(name, anoletivo);
 		 } 
 		 
 		 return iterable;
@@ -56,22 +58,26 @@ public class VisualizadordadosRelatoriosController {
 	
 	@GetMapping(value = "resumodebaixas")
 	 public List<Map> resumoDeBaixas(@RequestParam(name = "mes") String mes, 
-	 						 			@RequestParam(name = "mesNum") String mesNum) {
+	 						 			@RequestParam(name = "mesNum") String mesNum,
+	 					 				@RequestParam(name = "anoletivo") String anoletivo) {
 		
 		int mesAtual = Integer.parseInt(mesNum);
+		int anoAtual = Integer.parseInt(anoletivo);
 		
-		List<Map> maps = baixasRepository.findByResumoBaixas(mesAtual);
+		List<Map> maps = baixasRepository.findByResumoBaixas(mesAtual, anoAtual);
 		
 		return maps;
 	}
 	
 	@GetMapping(value = "resumodemensalidades")
 	 public List<Map> resumodemensalidades(@RequestParam(name = "mes") String mes, 
-	 						 			@RequestParam(name = "mesNum") String mesNum) {
+	 						 			@RequestParam(name = "mesNum") String mesNum,
+	 					 				@RequestParam(name = "anoletivo") String anoletivo) {
 		
 		int mesAtual = Integer.parseInt(mesNum);
+		int anoAtual = Integer.parseInt(anoletivo);
 		
-		List<Map> maps = baixasRepository.findByResumoMensalidades(mesAtual);
+		List<Map> maps = baixasRepository.findByResumoMensalidades(mesAtual, anoAtual);
 		
 		return maps;
 	}

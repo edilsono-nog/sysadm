@@ -1,3 +1,6 @@
+var data = new Date();
+var ano = String(data.getFullYear()).padStart(4, '0');
+var anopesquisa = ano;
 
 let tipo;
 
@@ -70,6 +73,8 @@ document.querySelector('.imprimir').addEventListener('click', ()=>{
 	var selectMes = document.getElementById('selectResumos');
 	selectMes = selectMes.options[selectMes.selectedIndex].value;
 	var mes = '';
+	
+	anopesq = $('#selectAno').val();
 
 	if (selectMes == 1){
 		mes = 'JANEIRO'
@@ -107,19 +112,21 @@ document.querySelector('.imprimir').addEventListener('click', ()=>{
 	}
 	
 	if (document.querySelector('#selectRelatorio').value == 'listatodos'){
-		window.open('geradorderelatorios/listadealunos?name='+tipo, '_blank');
+		window.open('geradorderelatorios/listadealunos?name='+tipo+'&anoletivo='+anopesq, '_blank');
 	}else if (document.querySelector('#selectRelatorio').value == 'carteirinhas'){
-		window.open('geradorderelatorios/geracarteirinhas?name='+tipo, '_blank');
+		window.open('geradorderelatorios/geracarteirinhas?name='+tipo+'&anoletivo='+anopesq, '_blank');
 	}else if(document.querySelector('#selectRelatorio').value == 'resumobaixas'){
-		window.open('geradorderelatorios/resumodebaixas?mes='+mes+'&mesNum='+selectMes, '_blank');
+		window.open('geradorderelatorios/resumodebaixas?mes='+mes+'&mesNum='+selectMes+'&anoletivo='+anopesq, '_blank');
 	}else if(document.querySelector('#selectRelatorio').value == 'resumomansalidades'){
-		window.open('geradorderelatorios/resumodemensalidades?mes='+mes+'&mesNum='+selectMes, '_blank');
+		window.open('geradorderelatorios/resumodemensalidades?mes='+mes+'&mesNum='+selectMes+'&anoletivo='+anopesq, '_blank');
 	}
 	
 	
 })
 
 document.querySelector('.vizualizar').addEventListener('click', ()=>{
+	
+	anopesq = $('#selectAno').val();
 	
 	var select = document.getElementById('selectEscola');
 	let escolas = select.options[select.selectedIndex].text;
@@ -133,17 +140,17 @@ document.querySelector('.vizualizar').addEventListener('click', ()=>{
 	}
 	
 	if (document.querySelector('#selectRelatorio').value == 'listatodos'){
-		listadealunos(tipo);
+		listadealunos(tipo, anopesq);
 	}else if (document.querySelector('#selectRelatorio').value == 'carteirinhas'){
-		geracarteirinhas(tipo);
+		geracarteirinhas(tipo, anopesq);
 	}else if (document.querySelector('#selectRelatorio').value == 'resumobaixas'){
-		listaresumo();
+		listaresumo(anopesq);
 	}else if (document.querySelector('#selectRelatorio').value == 'resumomansalidades'){
-		listaresumomensalidades();
+		listaresumomensalidades(anopesq);
 	}
 })
 
-function listaresumomensalidades(){
+function listaresumomensalidades(anopesquisa){
 	
 	var selectMes = document.getElementById('selectResumos');
 	selectMes = selectMes.options[selectMes.selectedIndex].value;
@@ -177,13 +184,12 @@ function listaresumomensalidades(){
 	
 	$.ajax({
 		method : "GET",
-		url : "visualizador/resumodemensalidades?mes="+mes+"&mesNum="+selectMes,
+		url : "visualizador/resumodemensalidades?mes="+mes+"&mesNum="+selectMes+"&anoletivo="+anopesquisa,
 		timeout: 0,
 	    headers: {
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success : function(response) {
-			console.log(response)
 			$('#multiTable > thead > tr').remove();
 			$('#multiTable > thead').append(
 				'<tr>'+
@@ -196,7 +202,11 @@ function listaresumomensalidades(){
 	          // add table rows
 	          for (var i = 0; i < response.length; i++) {
 				  var dataVencimento = response[i].vencimento.split('-').reverse().join('/');
-				  var dataLiquidacao = response[i].liquidacao.split('-').reverse().join('/');
+				  if (response[i].liquidacao != null){
+					  var dataLiquidacao = response[i].liquidacao.split('-').reverse().join('/');
+				  }else{
+					  var dataLiquidacao = '';
+				  }
 				  var atual = response[i].valor;
 				  var valor = atual.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 				$('#multiTable > tbody').append(					
@@ -223,7 +233,7 @@ function listaresumomensalidades(){
 	
 }
 
-function listaresumo(){
+function listaresumo(anopesuisa){
 	
 	var selectMes = document.getElementById('selectResumos');
 	selectMes = selectMes.options[selectMes.selectedIndex].value;
@@ -257,13 +267,12 @@ function listaresumo(){
 	
 	$.ajax({
 		method : "GET",
-		url : "visualizador/resumodebaixas?mes="+mes+"&mesNum="+selectMes,
+		url : "visualizador/resumodebaixas?mes="+mes+"&mesNum="+selectMes+"&anoletivo="+anopesuisa,
 		timeout: 0,
 	    headers: {
 	    Authorization: localStorage.getItem("token")
 	 	 },
 		success : function(response) {
-			console.log(response)
 			$('#multiTable > thead > tr').remove();
 			$('#multiTable > thead').append(
 				'<tr>'+
@@ -307,11 +316,10 @@ function listaresumo(){
 	});
 }
 
-function listadealunos(tipo){
+function listadealunos(tipo, anopesquisa){
 		$.ajax({
 		method : "GET",
-		url : "visualizador/listadealunos",
-		data : "name=" + tipo,
+		url : "visualizador/listadealunos?name="+tipo+'&anoletivo='+anopesquisa,
 		timeout: 0,
 	    headers: {
 	    Authorization: localStorage.getItem("token")
@@ -353,11 +361,10 @@ function listadealunos(tipo){
 	});
 }
 
-function geracarteirinhas(tipo){
+function geracarteirinhas(tipo, anopesquisa){
 		$.ajax({
 		method : "GET",
-		url : "visualizador/geracarteirinhas",
-		data : "name=" + tipo,
+		url : "visualizador/geracarteirinhas?name="+tipo+'&anoletivo='+anopesquisa,
 		timeout: 0,
 	    headers: {
 	    Authorization: localStorage.getItem("token")
@@ -405,7 +412,39 @@ function geracarteirinhas(tipo){
 
 $(document).ready(function() {
 	autEscolas();
+	autAno();
 })
+
+function autAno() {
+
+	$.ajax({
+		method : "GET",
+		url : "anoletivo/listaAno",
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			 for (var i = 0; i < response.length; i++) {
+				$('#selectAno').append(
+					'<option value='+response[i].ano+'>'+response[i].ano+'</option>'
+					);
+			}
+			$('#selectAno').val(anopesquisa);
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+			}
+	});
+}
 
 function autEscolas() {
 

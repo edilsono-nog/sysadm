@@ -1,12 +1,15 @@
 var data = new Date();
 var mes = String(data.getMonth() + 1).padStart(1, '0');
 var mespesquisa = mes;
+var ano = String(data.getFullYear()).padStart(4, '0');
+var anopesquisa = ano;
 
 let totalPages = 1;
 
 let tipo = '';
 
 var pgmes = '';
+var pgano = '';
 
 let categorias = [];
 
@@ -16,10 +19,11 @@ let etiquetasMedia = [];
 let valoresMedia = [];
 
 $(document).ready(function () {
+	autAno();
 	$('#mesrefer').val(mespesquisa);
-	pegaBaixas(0, mespesquisa);
-	pegaPainel(mespesquisa);
-	categoriaPainel(mespesquisa);
+	pegaBaixas(0, mespesquisa, anopesquisa);
+	pegaPainel(mespesquisa, anopesquisa);
+	categoriaPainel(mespesquisa, anopesquisa);
 	categoriaPainelMedia();
 	preecher();
 	preecherAnt();
@@ -47,16 +51,25 @@ function eraseCookie(nome) {
 
 document.querySelector('#mesrefer').addEventListener('change', ()=>{
 	mespesquisa = $('#mesrefer').val();
-	categoriaPainel(mespesquisa);
-	pegaBaixas(0, mespesquisa);
-	pegaPainel(mespesquisa);
+	anopesquisa = $('#selectAno').val();
+	categoriaPainel(mespesquisa, anopesquisa);
+	pegaBaixas(0, mespesquisa, anopesquisa);
+	pegaPainel(mespesquisa, anopesquisa);
 })
 
-function pegaPainel(mespesq){
+document.querySelector('#selectAno').addEventListener('change', ()=>{
+	mespesquisa = $('#mesrefer').val();
+	anopesquisa = $('#selectAno').val();
+	categoriaPainel(mespesquisa, anopesquisa);
+	pegaBaixas(0, mespesquisa, anopesquisa);
+	pegaPainel(mespesquisa, anopesquisa);
+})
+
+function pegaPainel(mespesq, anopesq){
 	
 	$.ajax({
 		type: "GET",
-		url: "dashboard/painel?mes="+mespesq,
+		url: "dashboard/painel?mes="+mespesq+"&anoletivo="+anopesq,
 		timeout: 0,
 		headers: {
 			Authorization: localStorage.getItem("token")
@@ -85,15 +98,16 @@ function pegaPainel(mespesq){
 	});
 }
 
-function pegaBaixas(startPage, mespesq) {
+function pegaBaixas(startPage, mespesq, anopesq) {
 	
 	pgmes = mespesq;
+	pgano = anopesq;
 	
 	tipo = 'baixas';
 	
 	$.ajax({
 		type: "GET",
-		url: "dashboard/buscaBaixas?mes="+mespesq,
+		url: "dashboard/buscaBaixas?mes="+mespesq+"&anoletivo="+anopesq,
 		data: {
 			page: startPage,
 			size: 5,
@@ -120,6 +134,9 @@ function pegaBaixas(startPage, mespesq) {
 				$('#baixasTable tbody').append(baixasRow);
 			});
 			if ($('ul.pagination li').length - 1 != response.totalPages) {
+				$('ul.pagination').empty();
+				buildPagination(response);
+			}else{
 				$('ul.pagination').empty();
 				buildPagination(response);
 			}
@@ -197,7 +214,7 @@ $(document).on("click", "ul.pagination li a", function() {
 	if (val.toUpperCase() == "« FIRST") {
 		let currentActive = $("li.active");
 		if (tipo == 'baixas') {
-			pegaBaixas(0, pgmes);
+			pegaBaixas(0, pgmes, pgano);
 		} else {
 			fetchNotes(0);
 		}
@@ -206,7 +223,7 @@ $(document).on("click", "ul.pagination li a", function() {
 		currentActive.next().addClass("active");
 	} else if (val.toUpperCase() == "LAST »") {
 		if (tipo == 'baixas') {
-			pegaBaixas(totalPages - 1, pgmes);
+			pegaBaixas(totalPages - 1, pgmes, pgano);
 		} else {
 			fetchNotes(totalPages - 1);
 		}
@@ -219,7 +236,7 @@ $(document).on("click", "ul.pagination li a", function() {
 			let currentActive = $("li.active");
 			startPage = activeValue;
 			if (tipo == 'baixas') {
-				pegaBaixas(startPage, pgmes);
+				pegaBaixas(startPage, pgmes, pgano);
 			} else {
 				fetchNotes(startPage);
 			}
@@ -234,7 +251,7 @@ $(document).on("click", "ul.pagination li a", function() {
 			// get the previous page
 			startPage = activeValue - 2;
 			if (tipo == 'baixas') {
-				pegaBaixas(startPage, pgmes);
+				pegaBaixas(startPage, pgmes, pgano);
 			} else {
 				fetchNotes(startPage);
 			}
@@ -246,7 +263,7 @@ $(document).on("click", "ul.pagination li a", function() {
 	} else {
 		startPage = parseInt(val - 1);
 		if (tipo == 'baixas') {
-			pegaBaixas(startPage, pgmes);
+			pegaBaixas(startPage, pgmes, pgano);
 		} else {
 			fetchNotes(startPage);
 		}
@@ -257,7 +274,7 @@ $(document).on("click", "ul.pagination li a", function() {
 	}
 });
 
-function categoriaPainel(mespesquisa){
+function categoriaPainel(mespesquisa, anopesquisa){
 	let tipocat = ''
 	etiquetas = [];
 	valores = [];
@@ -266,7 +283,7 @@ function categoriaPainel(mespesquisa){
 	myHeaders.append("Authorization", localStorage.getItem("token"));
 	myHeaders.append('Content-Type', 'application/json;charset=utf-8');
 
-	fetch("categorias/listacategoria?tipo="+tipocat+"&mes="+mespesquisa, {
+	fetch("categorias/listacategoria?tipo="+tipocat+"&ano="+anopesquisa+"&mes="+mespesquisa, {
 		method: 'GET',
 		headers: myHeaders
 	})
@@ -284,35 +301,6 @@ function categoriaPainel(mespesquisa){
 			console.log(error);
 		});
 }
-
-/*function categoriaPainel(mespesquisa){
-	
-	let tipocat = ''
-	etiquetas = [];
-	valores = [];
-	
-	$.ajax({
-		method: "GET",
-		url: "categorias/listacategoria?tipo="+tipocat+"&mes="+mespesquisa,
-		timeout: 0,
-		headers: {
-			Authorization: localStorage.getItem("token")
-		},
-		success: function(response) {
-			for (var i = 0; i < response.length; i++) {
-				etiquetas.push(response[i][0])
-				valores.push(response[i][1])
-			}
-		}
-	}).fail(function(xhr, status, errorThrown) {
-		if (xhr.status == 403) {
-				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-				fadeAviso.classList.toggle('hide')
-				modalAviso.classList.toggle('hide')
-				msgAviso(msg)
-			}
-	});
-}*/
 
 function categoriaPainelMedia(){
 	
@@ -424,52 +412,36 @@ function preecherAnt(){
     myChartAnt.update();
 }
 
+function autAno() {
 
-
-
-	
-	/*
-chartAnteriores.forEach(function (chart) {
-	categoriaPainelMedia();
-  	var ctx = chart.getContext("2d");
-  	var myChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: etiquetasMedia,
-      datasets: [
-        {
-          label: "# Média",
-          data: valoresMedia,
-          backgroundColor: [
-			"rgba(54, 162, 235, 0.2)",
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(47, 100, 100, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)",
-          ],
-          borderColor: [
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 99, 132, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(47, 100, 100, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-          ],
-          borderWidth: 2,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
-});
-};*/
+	$.ajax({
+		method : "GET",
+		url : "anoletivo/listaAno",
+		timeout: 0,
+	    headers: {
+	    Authorization: localStorage.getItem("token")
+	 	 },
+		success : function(response) {
+			 for (var i = 0; i < response.length; i++) {
+				$('#selectAno').append(
+					'<option value='+response[i].ano+'>'+response[i].ano+'</option>'
+					);
+			}
+			$('#selectAno').val(anopesquisa);
+		}
+	}).fail(function(xhr, status, errorThrown) {
+		if (xhr.status == 403) {
+			if (msg == ''){
+				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
+				fadeAviso.classList.toggle('hide')
+				modalAviso.classList.toggle('hide')
+				msgAviso(msg)
+			}
+			}else{
+				alert("Erro ao atualizar lita anoletivo: " + xhr.responseText);
+			}
+	});
+}
 
 function sair(){
     localStorage.removeItem('token')

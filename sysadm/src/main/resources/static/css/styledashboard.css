@@ -71,7 +71,8 @@ tr:hover td {
     font-weight: bold;
 }
 
-#mesrefer{
+#mesrefer,
+#selectAno{
     font-size: 12px;
     color: #01658b;
     border: 1px solid #0298cf;
