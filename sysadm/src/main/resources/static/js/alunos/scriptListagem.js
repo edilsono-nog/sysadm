@@ -10,9 +10,11 @@ if (userLogados != null) {
     logado.innerHTML = userLogados.name
 }
 
+let paginas = 5;
+
 let totalPages = 1;
 
-fetchNotes(0);
+fetchAlunos(0);
 
 let tipo = '';
 
@@ -46,24 +48,22 @@ function edit(id){
 }
 
 localiza.addEventListener('keyup', ()=>{
-	if(localiza.value != ""){
-		fetchAlunos(0)
-	}else {
-		fetchNotes(0);
-	}
-	
+	fetchAlunos(0)
+})
+
+document.querySelector('#selectQtde').addEventListener('change', ()=>{
+	paginas = $('#selectQtde').val();
+	fetchAlunos(0)
 })
 
 function fetchAlunos(startPage) {
 		
-		tipo = 'aluno';
-
 	    $.ajax({
 	        type : "GET",
-	        url : "aluno/pesqAluno?sort=id",
+	        url : "aluno/listaCadastros?sort=id",
 	        data: { 
 				page: startPage, 
-				size: 5, 
+				size: paginas, 
 				status: $select.value,  
 				name: localiza.value
 			},
@@ -75,15 +75,21 @@ function fetchAlunos(startPage) {
 	          $('#alunoTable tbody').empty();
 	          // add table rows
 	          $.each(response.content, (i, aluno) => {
+				  var dataNasc;
+				  if(aluno[2] != null){
+					  dataNasc = aluno[2].split('-').reverse().join('/');
+				  }else{
+					  dataNasc = '';
+				  }
 				 let alunoRow = '<tr>' +
-	      	  						'<td >' + aluno.id + '</td>' +
-			                		'<td style="text-align: left;" >' + aluno.nome + 
-			                		'<p style="font-size: 10px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
-			                		'<td>' + aluno.dt_nasc + '</td>' +
-			                		'<td>' + aluno.celular + '</td>' +
-			                		'<td>' + aluno.status + '</td>' +
-			                		'<td> <button  onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
-			      						 '<button  onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
+	      	  						'<td >' + aluno[0] + '</td>' +
+			                		'<td style="text-align: left;" >' + aluno[1] + 
+			                		'<p style="font-size: 10px; margin-top: 5px;" >' + aluno[3]+'</p></td>' +
+			                		'<td>' + dataNasc + '</td>' +
+			                		'<td>' + aluno[4] + '</td>' +
+			                		'<td>' + aluno[5] + '</td>' +
+			                		'<td> <button  onclick=edit('+aluno[0]+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
+			      						 '<button  onclick=ficha('+aluno[0]+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
 			                   '</tr>';
 	            $('#alunoTable tbody').append(alunoRow);
 	          });
@@ -111,73 +117,20 @@ function fetchAlunos(startPage) {
 
 document.querySelector('#status').addEventListener('change', ()=>{
 	if($select.value == "Todos"){
-	       	fetchNotes(0);
+	       	fetchAlunos(0);
 	}else if($select.value == 'Ativo'){
-	    	fetchNotes(0);
+	    	fetchAlunos(0);
 	}else if($select.value == 'Inativo'){
-	    	fetchNotes(0);
+	    	fetchAlunos(0);
 	}
 })
-	
-function fetchNotes(startPage) {
-
-	    $.ajax({
-	        type : "GET",
-	        url : "aluno/listatodos?sort=id",
-	        data: { 
-				page: startPage, 
-				size: 5, 
-				status: $select.value  
-			},
-	        timeout: 0,
-		    headers: {
-		    Authorization: localStorage.getItem("token")
-		 	 },
-	        success: function(response){
-	          $('#alunoTable tbody').empty();
-	          // add table rows
-	          $.each(response.content, (i, aluno) => {
-				 let alunoRow = '<tr>' +
-	      	  						'<td >' + aluno.id + '</td>' +
-			                		'<td style="text-align: left;" >' + aluno.nome + 
-			                		'<p style="font-size: 10px; margin-top: 5px;" >' + aluno.email+'</p></td>' +
-			                		'<td>' + aluno.dt_nasc + '</td>' +
-			                		'<td>' + aluno.celular + '</td>' +
-			                		'<td>' + aluno.status + '</td>' +
-			                		'<td> <button  onclick=edit('+aluno.id+') title="Editar"><i class="bi bi-pencil-square"></i></button>'+
-			      						 '<button  onclick=ficha('+aluno.id+') title="Ficha"><i class="bi bi-clipboard2-data-fill"></i></button> </td>' +
-			                   '</tr>';
-	            $('#alunoTable tbody').append(alunoRow);
-	          });
-
-	          if ($('ul.pagination li').length - 1 != response.totalPages){
-	          	  // build pagination list at the first time loading
-	        	  $('ul.pagination').empty();
-	              buildPagination(response);
-	          }
-	        },
-	        error : function(e) {
-				
-					if (xhr.status == 403) {
-					if (msg == ''){
-						msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-						fadeAviso.classList.toggle('hide')
-						modalAviso.classList.toggle('hide')
-						msgAviso(msg)
-					}
-					}else{
-						alert("Erro ao buscar Alunos : " + xhr.responseText);
-					}
-	        }
-	    });
-	}
 	
 function buildPagination(response) {
 		totalPages = response.totalPages;
 
 		var pageNumber = response.pageable.pageNumber;
 		
-		var numLinks = 5;
+		var numLinks = paginas;
 		
 		// print 'previous' link only if not on page one
 		var first = '';
@@ -232,20 +185,12 @@ function buildPagination(response) {
 		// click on the NEXT tag
 		if(val.toUpperCase() == "« FIRST") {
 			let currentActive = $("li.active");
-			if (tipo == 'aluno'){
-				fetchAlunos(0);
-			}else {
-				fetchNotes(0);
-			}
+			fetchAlunos(0);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
 		} else if(val.toUpperCase() == "LAST »") {
-			if (tipo == 'aluno'){
-				fetchAlunos(totalPages - 1);
-			}else {
-				fetchNotes(totalPages - 1);
-			}
+			fetchAlunos(totalPages - 1);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
@@ -254,11 +199,7 @@ function buildPagination(response) {
 	  		if(activeValue < totalPages){
 	  			let currentActive = $("li.active");
 				startPage = activeValue;
-				if (tipo == 'aluno'){
-					fetchAlunos(startPage);
-				}else {
-					fetchNotes(startPage);
-				}
+				fetchAlunos(startPage);
 	  			// remove .active class for the old li tag
 	  			$("li.active").removeClass("active");
 	  			// add .active to next-pagination li
@@ -269,11 +210,7 @@ function buildPagination(response) {
 	  		if(activeValue > 1) {
 	  			// get the previous page
 				startPage = activeValue - 2;
-				if (tipo == 'aluno'){
-					fetchAlunos(startPage);
-				}else {
-					fetchNotes(startPage);
-				}
+				fetchAlunos(startPage);
 	  			let currentActive = $("li.active");
 	  			currentActive.removeClass("active");
 	  			// add .active to previous-pagination li
@@ -281,11 +218,7 @@ function buildPagination(response) {
 	  		}
 	  	} else {
 			startPage = parseInt(val - 1);
-			if (tipo == 'aluno'){
-					fetchAlunos(startPage);
-				}else {
-					fetchNotes(startPage);
-				}
+			fetchAlunos(startPage);
 	  		// add focus to the li tag
 	  		$("li.active").removeClass("active");
 	  		$(this).parent().addClass("active");

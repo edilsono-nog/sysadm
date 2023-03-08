@@ -39,6 +39,22 @@ public class ResponsaveisController {
 	@Autowired
 	private AlunosService alunosService;
 	
+	
+	@GetMapping(value = "listaResponsaveis")
+	@ResponseBody
+	public Page<Responsaveis> listaResponsaveis(@RequestParam(name = "name") String name, 
+													Pageable pageable){
+		
+		if (name == "") {
+			return responsaveisRepository.listaResponsaveis(pageable);
+		}else {
+			return responsaveisRepository.listaResponsaveisNome(name.trim().toUpperCase(),pageable);
+		}
+
+	}
+	
+	
+	
 	@GetMapping(value = "")
     @ResponseBody
     public Page<ResponsaveisDto> listaTodos(Pageable pageable){

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import br.com.sysadm.Dto.AlunosDto;
 import br.com.sysadm.model.Alunos;
 
 @Repository
@@ -68,6 +69,19 @@ public interface AlunosRepository extends JpaRepository<Alunos, Long> {
 										+ "and EXTRACT(month FROM c.vencimento) = 12 and b.escolas = ?1 and b.anoletivo = ?2 "
 										+ "order by b.escolas, b.turno, a.nome")
 	List<Map> findByCarteirinhaAlunoEscola(String name, String anoletivo);
+
+	@Query(value = "select a.id, a.nome, a.dt_nasc, a.email, a.celular, a.status from Alunos a")
+	Page<Alunos> listCadastros(Pageable pageable);
+
+	@Query(value = "select a.id, a.nome, a.dt_nasc, a.email, a.celular, a.status from Alunos a where upper(trim(a.nome)) like %?1%")
+	Page<Alunos> listCadastrosNome(String upperCase, Pageable pageable);
+
+	@Query(value = "select a.id, a.nome, a.dt_nasc, a.email, a.celular, a.status from Alunos a where a.status = ?1")
+	Page<Alunos> listCadastrosStatus(String status, Pageable pageable);
+
+	@Query(value = "select a.id, a.nome, a.dt_nasc, a.email, a.celular, a.status from Alunos a "
+										+ "where a.status = ?1 and upper(trim(a.nome)) like %?2%")
+	Page<Alunos> listCadastrosStatusNome(String status, String upperCase, Pageable pageable);
 
 	
 

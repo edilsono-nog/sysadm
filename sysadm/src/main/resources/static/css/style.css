@@ -329,12 +329,14 @@ form.sign-in-form {
     width: 98%;
     margin-left: 8px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     box-shadow: 4px 7px 6px 0px #00000080;
 }
 
 .titulo-secao h2{
-    font-size: 19px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .titulo-secao p{
@@ -388,6 +390,17 @@ form.sign-in-form {
 	color: #0298cf;
     padding-left: 15px;
     font-family:Verdana, Trebuchet,sans-serif;
+}
+
+#selectQtde{
+    font-size: 12px;
+    color: #01658b;
+    border: 1px solid #0298cf;
+    background-color: #fff;
+    border-radius: 6px;
+    color: #0298cf;
+    padding-left: 15px;
+    font-family: Verdana, Trebuchet,sans-serif;
 }
 
 #localiza{

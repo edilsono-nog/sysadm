@@ -4,42 +4,46 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/styledashboard.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> -->
 </head>
 <body>
 	<main class="mt-5 pt-3 topmain" layout:fragment="corpo">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-12 fw-bold fs-3">Dashboard</div>
-			</div>
-			<div class="row">
-				<div class="input-group input-group-sm mb-3" style="width: 20%;">
-				  <label class="input-group-text" for="inputGroupSelect01">Ano Letivo :</label>
-				  <select class="form-select" name="selectAno" id="selectAno">
-				    <option selected>Selecione...</option>
-				  </select>
+				<div class="titulo-secao">
+					<h2>Painel de Controle</h2>
+					<div class="separator"></div>
+					<div class="row" style="margin-bottom: -15px;">
+						<div class="input-group input-group-sm mb-3" style="width: 20%;">
+							<label class="input-group-text" for="inputGroupSelect01">Ano
+								Letivo :</label> <select class="form-select" name="selectAno"
+								id="selectAno">
+							</select>
+						</div>
+						<div class="input-group input-group-sm mb-3" style="width: 25%;">
+							<label class="input-group-text" for="mesrefer">Mês de
+								Referenência :</label> <select class="form-select" id="mesrefer"
+								name="mesrefer">
+								<option value="1">Janeiro</option>
+								<option value="2">Fevereiro</option>
+								<option value="3">Março</option>
+								<option value="4">Abril</option>
+								<option value="5">Maio</option>
+								<option value="6">Junho</option>
+								<option value="7">Julho</option>
+								<option value="8">Agosto</option>
+								<option value="9">Setembro</option>
+								<option value="10">Outibro</option>
+								<option value="11">Novembro</option>
+								<option value="12">Dezembro</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div class="input-group input-group-sm mb-3" style="width: 25%;">
-					<label class="input-group-text" for="mesrefer">Mês
-						de Referenência :</label> <select class="form-select" id="mesrefer"
-						name="mesrefer">
-						<option selected>Selecione...</option>
-						<option value="1">Janeiro</option>
-						<option value="2">Fevereiro</option>
-						<option value="3">Março</option>
-						<option value="4">Abril</option>
-						<option value="5">Maio</option>
-						<option value="6">Junho</option>
-						<option value="7">Julho</option>
-						<option value="8">Agosto</option>
-						<option value="9">Setembro</option>
-						<option value="10">Outibro</option>
-						<option value="11">Novembro</option>
-						<option value="12">Dezembro</option>
-					</select>
-				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-md-3 mb-3">
 					<div class="card text-white bg-primary h-100">
@@ -91,7 +95,7 @@
 				<div class="col-md-6">
 					<div class="card">
 						<div class="card-header">Grafico do Mês atual</div>
-						<div class="card-body" >
+						<div class="card-body">
 							<canvas class="chartAtual" width="400" height="200"></canvas>
 						</div>
 					</div>

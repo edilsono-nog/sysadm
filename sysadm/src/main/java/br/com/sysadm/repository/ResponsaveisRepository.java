@@ -35,6 +35,12 @@ public interface ResponsaveisRepository extends JpaRepository<Responsaveis, Long
 	@Query(value= "select * from aluno_responsavel where aluno_id = ?1 and responsavel_id = ?2", nativeQuery = true)
 	Boolean verificar(long parseLong, Long idresp);
 
+	@Query(value = "Select r.id, r.nome, r.email, r.dt_nasc, r.celular from Responsaveis r")
+	Page<Responsaveis> listaResponsaveis(Pageable pageable);
+
+	@Query(value = "Select r.id, r.nome, r.email, r.dt_nasc, r.celular from Responsaveis r where upper(trim(r.nome)) like %?1%")
+	Page<Responsaveis> listaResponsaveisNome(String upperCase, Pageable pageable);
+
 	
 
 

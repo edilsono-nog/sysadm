@@ -28,7 +28,7 @@ public interface BaixasRepository extends JpaRepository<Baixas, Long> {
 
 	@Query(nativeQuery = true, value = "select a.valor, a.vencimento, a.liquidacao, b.nome from mensalidades a, "
 									 + "alunos b where a.aluno_id = b.id and EXTRACT(month FROM a.vencimento) = ?1 "
-									 + "and EXTRACT(Year FROM a.vencimento) = ?2 order by a.liquidacao, a.vencimento, b.nome")
+									 + "and EXTRACT(Year FROM a.vencimento) = ?2 and b.status = 'Ativo' order by a.liquidacao, a.vencimento, b.nome")
 	List<Map> findByResumoMensalidades(int mesAtual, int anoAtual);
 
 	

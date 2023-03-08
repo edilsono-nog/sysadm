@@ -62,16 +62,27 @@ public class AlunosController {
 							 		idAluno});
 	 }
 	 
-	 @GetMapping(value = "listatodos")
+	 @GetMapping(value = "listaCadastros")
      @ResponseBody
-     public Page<AlunosDto> alunos(@RequestParam(name = "status") String status, Pageable pageable){
+     public Page<Alunos> listaCadastros(@RequestParam(name = "status") String status,
+											@RequestParam(name = "name") String name, 
+											Pageable pageable){
+		 
 		 if (status.equals("Todos")) {
-			 return alunosService.listatodos(pageable);
-		} else if (!status.equals("Todos")) {
-			 return alunosService.listatodosStatus(status, pageable);
-		}
-		 return alunosService.listatodos(pageable);
-     }
+			 if (name == "") {
+				 return alunosRepository.listCadastros(pageable);
+			 }else {
+				 return alunosRepository.listCadastrosNome(name.trim().toUpperCase(), pageable);
+			 }			 
+		 }else if (!status.equals("Todos")) {
+			 if (name == "") {
+				 return alunosRepository.listCadastrosStatus(status, pageable);
+			 }else {
+				 return alunosRepository.listCadastrosStatusNome(status, name.trim().toUpperCase(), pageable);
+			 }
+		 }
+		return null;
+	 }
 	 
 	 @GetMapping(value = "buscaralunoid")
      @ResponseBody
@@ -79,24 +90,11 @@ public class AlunosController {
 		 return alunosService.pegaAlunoId(iduser);
      }
 	 
-	 @GetMapping(value = "listaAluno")
      @ResponseBody
      public Page<AlunosDto> listaAlunos(@RequestParam(name = "name") String name,Pageable pageable){
 		 return alunosService.listaAlunos(name, pageable);
      }
 	 
-	 @GetMapping(value = "pesqAluno")
-     @ResponseBody
-     public Page<AlunosDto> pesqAlunos(@RequestParam(name = "status") String status,
-    		 							@RequestParam(name = "name") String name, Pageable pageable){
-		 if (status.equals("Todos")) {
-			 return alunosService.pesqAluno( name, pageable);
-		 }else if (!status.equals("Todos")) {
-			 return alunosService.pesqAlunos(status, name, pageable);
-		}
-		 return alunosService.pesqAluno(name, pageable);
-     }
-
 	 @GetMapping(value = "geraPdfListaAlunos")
 	 public void imprimePdf(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		 

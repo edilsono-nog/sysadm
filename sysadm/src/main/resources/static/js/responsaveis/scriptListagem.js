@@ -1,11 +1,9 @@
 let userLogados = JSON.parse(localStorage.getItem("userLogado")) 
-
 let idAluno = JSON.parse(localStorage.getItem("idFicha")) 
-
 let logado = document.querySelector('#logado')
-
 let adicionar = document.querySelector('.add_new')
 adicionar.disabled = true;
+let localiza = document.querySelector('#localiza')
 
 let tipo = '';
 
@@ -33,15 +31,10 @@ function eraseCookie(nome) {
     document.cookie = nome +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-let localiza = document.querySelector('#localiza')
+listResponsaveis(0);
 
 localiza.addEventListener('keyup', ()=>{
-	if(localiza.value != ""){
-		pegaResponsaveis(0)
-	}else {
-		listResponsaveis(0);
-	}
-	
+	listResponsaveis(0);
 })
 
 document.querySelector('#voltar').addEventListener('click', ()=>{
@@ -50,11 +43,10 @@ document.querySelector('#voltar').addEventListener('click', ()=>{
 
 let totalPages = 1;
 
-function pegaResponsaveis(startPage) {
-	tipo = 'pega';
+function listResponsaveis(startPage) {
     $.ajax({
         type : "GET",
-        url : "responsavel/pesqResponsaveis?sort=id",
+        url : "responsavel/listaResponsaveis?sort=id",
         data: { 
 			page: startPage, 
 			size: 5,   
@@ -73,13 +65,19 @@ function pegaResponsaveis(startPage) {
           $('#responsaveisTable tbody').empty();
 	          // add table rows
 	          $.each(response.content, (i, responsavel) => {
+				  var dataNasc;
+				  if(responsavel[3] != null){
+					  dataNasc = responsavel[3].split('-').reverse().join('/');
+				  }else{
+					  dataNasc = '';
+				  }
 				 let responsavelRow = '<tr>' +
-	      	  						'<td >' + responsavel.id + '</td>' +
-			                		'<td style="text-align: left;">' + responsavel.nome + 
-			                		'<p style="font-size: 11px; margin-top: 5px;" >' + responsavel.email+'</p></td>' +
-			                		'<td>' + responsavel.dt_nasc + '</td>' +
-			                		'<td>' + responsavel.celular + '</td>' +
-			                		'<td> <button class="btn-primary btns" style="margin-left: 42%;" onclick=associar('+responsavel.id+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
+	      	  						'<td >' + responsavel[0] + '</td>' +
+			                		'<td style="text-align: left;">' + responsavel[1] + 
+			                		'<p style="font-size: 11px; margin-top: 5px;" >' + responsavel[2]+'</p></td>' +
+			                		'<td>' + dataNasc + '</td>' +
+			                		'<td>' + responsavel[4] + '</td>' +
+			                		'<td> <button class="btn-primary btns" style="margin-left: 42%;" onclick=associar('+responsavel[0]+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
 			                   '</tr>';
 	            $('#responsaveisTable tbody').append(responsavelRow);
           });
@@ -100,61 +98,6 @@ function pegaResponsaveis(startPage) {
 			}
 			}else{
 				const msg = "Error ao pesquisar responsável.... " + e.responseText;
-				msgError(msg);
-			}
-        }
-    });
-}
-
-function listResponsaveis(startPage) {
-	tipo = 'list';
-    $.ajax({
-        type : "GET",
-        url : "responsavel?sort=id&",
-        data: { 
-			page: startPage, 
-			size: 5 
-		},
-        timeout: 0,
-	    headers: {
-	    Authorization: localStorage.getItem("token")
-	 	 },
-        success: function(response){
-		 if (response.content.length == 0 ){
-				adicionar.disabled = false;
-			}else {
-				adicionar.disabled = true;
-			}
-          $('#responsaveisTable tbody').empty();
-	          // add table rows
-	          $.each(response.content, (i, responsavel) => {
-				 let responsavelRow = '<tr>' +
-	      	  						'<td >' + responsavel.id + '</td>' +
-			                		'<td style="text-align: left;">' + responsavel.nome + 
-			                		'<p style="font-size: 11px; margin-top: 5px;" >' + responsavel.email+'</p></td>' +
-			                		'<td>' + responsavel.dt_nasc + '</td>' +
-			                		'<td>' + responsavel.celular + '</td>' +
-			                		'<td> <button class="btn-primary btns" style="margin-left: 42%;" onclick=associar('+responsavel.id+') title="Associar"><i class="bi bi-box-arrow-in-right"></i></button></td>' +
-			                   '</tr>';
-	            $('#responsaveisTable tbody').append(responsavelRow);
-          });
-
-          if ($('ul.pagination li').length - 1 != response.totalPages){
-          	  // build pagination list at the first time loading
-        	  $('ul.pagination').empty();
-              buildPagination(response);
-          }
-        },
-        error : function(e) {
-			if (e.status == 403) {
-			if (msg == ''){
-				msg = "Seu TOKEN está expirado ou está logado em outra máquina, faça o login ou informe um novo TOKEN PARA AUTENTICAÇÂO";
-				fadeAviso.classList.toggle('hide')
-				modalAviso.classList.toggle('hide')
-				msgAviso(msg)
-			}
-			}else{
-				const msg = "Error ao carregar lista de responsáveis.... " + e.responseText;
 				msgError(msg);
 			}
         }
@@ -221,20 +164,12 @@ function buildPagination(response) {
 		// click on the NEXT tag
 		if(val.toUpperCase() === "« FIRST") {
 			let currentActive = $("li.active");
-			if (tipo == 'pega'){
-				pegaResponsaveis(0);
-			}else if (tipo == 'lista'){
-				listResponsaveis(0);
-			}
+			listResponsaveis(0);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
 		} else if(val.toUpperCase() === "LAST »") {
-			if (tipo == 'pega'){
-				pegaResponsaveis(totalPages - 1);
-			}else if (tipo == 'lista'){
-				listResponsaveis(totalPages - 1);
-			}
+			listResponsaveis(totalPages - 1);
 			$("li.active").removeClass("active");
 	  		// add .active to next-pagination li
 	  		currentActive.next().addClass("active");
@@ -243,11 +178,7 @@ function buildPagination(response) {
 	  		if(activeValue < totalPages){
 	  			let currentActive = $("li.active");
 				startPage = activeValue;
-				if (tipo == 'pega'){
-					pegaResponsaveis(startPage);
-				}else if (tipo == 'lista'){
-					listResponsaveis(startPage);
-				}
+				listResponsaveis(startPage);
 	  			// remove .active class for the old li tag
 	  			$("li.active").removeClass("active");
 	  			// add .active to next-pagination li
@@ -258,11 +189,7 @@ function buildPagination(response) {
 	  		if(activeValue > 1) {
 	  			// get the previous page
 				startPage = activeValue - 2;
-				if (tipo == 'pega'){
-					pegaResponsaveis(startPage);
-				}else if (tipo == 'lista'){
-					listResponsaveis(startPage);
-				}
+				listResponsaveis(startPage);
 	  			let currentActive = $("li.active");
 	  			currentActive.removeClass("active");
 	  			// add .active to previous-pagination li
@@ -270,11 +197,7 @@ function buildPagination(response) {
 	  		}
 	  	} else {
 			startPage = parseInt(val - 1);
-			if (tipo == 'pega'){
-					pegaResponsaveis(startPage);
-				}else if (tipo == 'lista'){
-					listResponsaveis(startPage);
-				}
+			listResponsaveis(startPage);
 	  		// add focus to the li tag
 	  		$("li.active").removeClass("active");
 	  		$(this).parent().addClass("active");
