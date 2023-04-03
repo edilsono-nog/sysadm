@@ -94,6 +94,12 @@
 						<input type="text" class="form-control" id="vencimento" name="vencimento" aria-label="Sizing input"
 							aria-describedby="inputGroup-sizing-sm" disabled>
 					</div>
+					<div class="input-group input-group-sm col-md-3 mb-3" style="width: 45%;">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Data de Pgto:</span>
+						<input type="text" class="form-control" id="dtpgto" name="dtpgto" onfocus="(this.type='date')"
+							onblur="if(!this.value) this.type='text'" aria-label="Sizing input"
+							aria-describedby="inputGroup-sizing-sm" >
+					</div>
 					<div class="input-group input-group-sm col-md-3 mb-3" style="width: 30%;">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Valor:</span>
 						<input type="text" class="form-control" id="valor" onkeyup="formatarMoeda()"

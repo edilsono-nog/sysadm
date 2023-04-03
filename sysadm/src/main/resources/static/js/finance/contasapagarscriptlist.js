@@ -460,7 +460,7 @@ function salvarBaixa(){
 	var id = $("#id").val();
 	var categoria = $('#categoria').val();
 	var parcela = $("#parcela").val();
-	var dt_baixa = dataFormatada;
+	var dt_baixa = $("#dtpgto").val();
 	var descricao = $("#descricao").val();
 	var valor = $("#valorpago").val();
 	var tipopgto = $("#tipopgto").val();
