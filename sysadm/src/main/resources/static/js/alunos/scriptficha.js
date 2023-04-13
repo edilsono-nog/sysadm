@@ -19,10 +19,10 @@ if (idFicha != null && idFicha == idFichaAluno || idFichaAluno == null) {
 	localStorage.removeItem('idFichaAluno')
 }
 
-if (getCookie('JSESSIONID') == null) {
+/*if (getCookie('JSESSIONID') == null) {
     alert('Você precisa estar logado para acessar essa página')
     window.location.href = 'login'
-}
+}*/
 
 function getCookie(nome) {
     var nomeCookie = nome + "=";
