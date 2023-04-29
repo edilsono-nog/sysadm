@@ -1,31 +1,28 @@
-let userLogados = JSON.parse(localStorage.getItem("userLogado")) 
+let userLogados = JSON.parse(localStorage.getItem("userLogado"))
 
 let logado = document.querySelector('#logado')
 
-if (userLogados != null) {
-    logado.innerHTML = userLogados.name
-}
+if (!Cookies.get('SysAdm')) {
+	let fade = document.querySelector('#fade');
+	var clicked = function() {
+		window.location.href = 'login'
+		fade.classList.toggle('hide')
+		$.fallr.hide();
+	};
+	fade.classList.toggle('hide')
+	$.fallr.show({
+		useOverlay: false,
+		zIndex: 1043,
+		buttons: {
+			button1: { text: 'Ok', danger: true, onclick: clicked },
+		},
+		content: '<p>Você precisa estar logado para acessar essa página</p>',
+		position: 'center',
+		icon: 'error'
+	});
+} else {
 
-if (getCookie('JSESSIONID') == null) {
-    alert('Você precisa estar logado para acessar essa página')
-    window.location.href = 'login'
+	document.querySelector('.email').addEventListener('click', () => {
+		window.location.href = 'configemail'
+	})
 }
-
-function getCookie(nome) {
-    var nomeCookie = nome + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nomeCookie) == 0) return c.substring(nomeCookie.length,c.length);
-    }
-    return null;
-}
-
-function eraseCookie(nome) {   
-    document.cookie = nome +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
-document.querySelector('.email').addEventListener('click', ()=>{
-	window.location.href='configemail'
-})

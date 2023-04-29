@@ -15,7 +15,7 @@ function sair(){
     localStorage.removeItem('token')
     localStorage.removeItem('userLogado')
     window.location.href = 'login'
-    eraseCookie('JSESSIONID')
+    Cookies.remove('SysAdm');
 }
 
 const divMessageAviso = document.querySelector(".avisos");

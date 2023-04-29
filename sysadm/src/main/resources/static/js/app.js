@@ -36,13 +36,20 @@ form.addEventListener("submit", function(event){
     token = token.replace('"}', '');
     localStorage.setItem("token",  token);
     let jsession = Math.random().toString(16).substr(2) + Math.random().toString(16).substr(2)
-	setCookie('JSESSIONID', jsession, 0)
+    var d = new Date();
+	var v = new Date();
+	var s = new Date();
+	v.setMinutes(d.getMinutes()+30);
+//	setCookie('JSESSIONIDSYSADM', jsession, 0.5)
+	Cookies.set('SysAdm', jsession, { expires: v });
+//	Cookies.set('JSESSIONIDSs', jsession, { expires: s });
     pegaUsuario(username.value);
     window.location='dashboard';
   })
   .catch(error => {
     localStorage.removeItem("token");
     localStorage.removeItem("userLogado");
+   // Cookies.remove('JSESSIONIDSYSADM');
 		const msg = "Usuário e/ou senha inválido: ";
 		ativar(msg);
   });
