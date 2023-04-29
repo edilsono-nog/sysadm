@@ -12,6 +12,7 @@ public class ApplicationContextLoad implements ApplicationContextAware {
 	@Autowired
 	private static ApplicationContext applicationContext;
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 
